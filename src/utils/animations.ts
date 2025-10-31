@@ -133,7 +133,7 @@ export const initAuroraBlobs = (): void => {
   const blobs = document.querySelectorAll('.animate-blob, .animate-blob-delayed')
 
   // Dodaj random delay i intensity dla bardziej naturalnych animacji
-  blobs.forEach((blob, index) => {
+  blobs.forEach((blob) => {
     const el = blob as HTMLElement
     const randomDelay = Math.random() * 2
     const randomDuration = 18 + Math.random() * 6
@@ -175,7 +175,7 @@ export const initTextShimmers = (): void => {
 
 // Performance optimized scroll listener
 export const initOptimizedScrollEffects = (): void => {
-  let scrollTimeout: NodeJS.Timeout
+  let scrollTimeout: number
 
   const handleScroll = () => {
     document.body.classList.add('is-scrolling')

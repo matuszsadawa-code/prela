@@ -1,131 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
-/* Import glassmorphism utilities */
-@import './styles/glassmorphism.css';
-
-/* Modern CSS Reset + Base Styles */
 :root {
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-  line-height: 1.6;
+  font-family: 'Urbanist', system-ui, sans-serif;
+  line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.92);
-  background-color: #0D0A10;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0a0a0a;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  /* Brand colors - CSS Variables */
-  --brand-50: #FFF1F6;
-  --brand-100: #FFE4ED;
-  --brand-200: #FFC9DC;
-  --brand-300: #FF9DC1;
-  --brand-400: #FF71B8;
-  --brand-500: #FF4FD8;
-  --brand-600: #E03BBE;
-  --brand-700: #BA2D9C;
-  --brand-800: #8E2377;
-  --brand-900: #5A164B;
-  
-  /* Lavender palette */
-  --lavender-400: #C9B6FF;
-  --lavender-500: #B794F6;
-  --lavender-600: #9F7AEA;
-  
-  /* Blush palette */
-  --blush-300: #FFC7D9;
-  --blush-400: #FFB3CC;
-  --blush-500: #FF9FBF;
-  
-  /* Dark theme enhanced */
-  --dark-900: #0D0A10;
-  --dark-800: #1A1220;
-  --dark-700: #2A2030;
-  --dark-600: #3A2F40;
-  --dark-500: #4A3F50;
 }
 
 * {
   box-sizing: border-box;
-}
-
-/* Modern CSS Reset */
-* {
-  box-sizing: border-box;
-}
-
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   min-height: 100vh;
-  background: var(--dark-900);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 25%, #2a0a2a 50%, #1a0a1a 75%, #0a0a0a 100%);
   overflow-x: hidden;
-  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
 }
 
-/* Enhanced base for images */
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-/* Better form elements */
-button, input, select, textarea {
-  font: inherit;
-  color: inherit;
-}
-
-/* Focus management */
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--brand-400);
-  outline-offset: 2px;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Modern feminine scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--dark-800);
-  border-radius: 3px;
+  background: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, var(--brand-500), var(--lavender-400));
-  border-radius: 3px;
-  box-shadow: 0 0 3px rgba(255, 79, 216, 0.3);
+  background: linear-gradient(45deg, #ff0080, #8b5cf6);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, var(--brand-400), var(--lavender-500));
-  box-shadow: 0 0 6px rgba(255, 79, 216, 0.5);
+  background: linear-gradient(45deg, #ff0080, #8b5cf6);
+  filter: brightness(1.2);
 }
 
 /* Hide scrollbar for gallery */
@@ -138,26 +55,14 @@ a:focus-visible {
   display: none;  /* Safari and Chrome */
 }
 
-/* Enhanced glow effects with new brand colors */
+/* Glow effects */
 .glow-text {
-  text-shadow: 0 0 12px rgba(255, 79, 216, 0.6),
-               0 0 24px rgba(201, 182, 255, 0.4);
-}
-
-.glow-text-soft {
-  text-shadow: 0 0 8px rgba(255, 199, 217, 0.5),
-               0 0 16px rgba(255, 113, 184, 0.3);
+  text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
 }
 
 .glow-border {
-  border: 1px solid rgba(255, 79, 216, 0.4);
-  box-shadow: 0 0 20px rgba(255, 79, 216, 0.25),
-              0 0 40px rgba(201, 182, 255, 0.15);
-}
-
-.glow-border-soft {
-  border: 1px solid rgba(255, 199, 217, 0.3);
-  box-shadow: 0 0 15px rgba(255, 199, 217, 0.2);
+  border: 1px solid rgba(255, 0, 128, 0.3);
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.2);
 }
 
 .blur-overlay {
@@ -230,6 +135,14 @@ a:focus-visible {
   66% { transform: translateY(-12px) rotate(-1deg); }
 }
 
+/* Wyrazisty wariant pływania dla elementów dekoracyjnych okładki */
+@keyframes float-vivid {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); filter: brightness(1); }
+  25% { transform: translateY(-14px) rotate(1.5deg) scale(1.03); filter: brightness(1.08); }
+  50% { transform: translateY(-18px) rotate(-1.5deg) scale(1.06); filter: brightness(1.12); }
+  75% { transform: translateY(-10px) rotate(0.5deg) scale(1.02); filter: brightness(1.06); }
+}
+
 @keyframes bounce-slow {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-8px) scale(1.05); }
@@ -269,6 +182,7 @@ a:focus-visible {
 /* Enhanced animation classes */
 .animate-glow { animation: glow 4s ease-in-out infinite; }
 .animate-float { animation: float 4s ease-in-out infinite; }
+.animate-float-vivid { animation: float-vivid 4.5s ease-in-out infinite; }
 .animate-bounce-slow { animation: bounce-slow 3s ease-in-out infinite; }
 .animate-pulse-slow { animation: pulse-slow 5s ease-in-out infinite; }
 .animate-glow-text { animation: glow-text 4s ease-in-out infinite; }
@@ -348,3 +262,37 @@ a:focus-visible {
 .animate-heart-float { animation: heart-float 8s ease-in-out infinite; }
 .animate-heart-glow { animation: heart-glow 4s ease-in-out infinite; }
 .animate-heart-pulse { animation: heart-pulse 3s ease-in-out infinite; }
+
+/* Gradient Animation for Title */
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* Gradient Animation for Verification Section */
+@keyframes gradient {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 4s ease infinite;
+  background-size: 200% 200%;
+}

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Heart, MessageCircle, Shield, CheckCircle, Lock, CreditCard, Calendar, MapPin, Circle } from 'lucide-react'
-import lauraVerificationImg from '../../assets/laura-verification.jpg'
+import { Heart, MessageCircle, Shield, CheckCircle, Lock, CreditCard, Calendar, MapPin, Circle, Bitcoin, Coins, TrendingUp, Zap, DollarSign } from 'lucide-react'
+import heroVideo from '../../assets/video.mp4'
 
 const HeroSection: React.FC = () => {
   const [typewriterText, setTypewriterText] = useState('')
-  const fullText = "W dzień studentka medycyny... w nocy spełniam Twoje najdziksze wyobrażenia."
+  const fullText = "W dzień studentka blockchain... w nocy spełniam Twoje najdziksze wyobrażenia."
 
   useEffect(() => {
     let index = 0
@@ -80,12 +80,6 @@ const HeroSection: React.FC = () => {
       role="banner"
       className="relative min-h-[90vh] md:min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden py-6 sm:py-8 md:py-10 lg:py-12"
     >
-      {/* Optimized Background with better performance */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-purple-900/25 to-neon-pink/10">
-        {/* Subtle animated gradient overlay */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/8 via-transparent to-neon-purple/8 animate-pulse-slow"></div>
-        </div>
 
         {/* Reduced floating particles for better performance */}
         <div className="absolute inset-0 opacity-30" role="img" aria-label="Dekoracyjne animowane elementy">
@@ -93,7 +87,6 @@ const HeroSection: React.FC = () => {
           <div className="absolute top-[65%] right-[12%] w-1.5 h-1.5 sm:w-2 sm:h-2 bg-neon-purple rounded-full animate-float delay-1000 shadow-lg shadow-neon-purple/40"></div>
           <div className="absolute bottom-[25%] left-[15%] w-2 h-2 sm:w-2.5 sm:h-2.5 bg-neon-pink rounded-full animate-float delay-2000 shadow-lg shadow-neon-pink/40"></div>
         </div>
-      </div>
 
       {/* Optimized main glow effect */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] bg-gradient-radial from-neon-pink/12 via-neon-purple/6 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
@@ -120,11 +113,13 @@ const HeroSection: React.FC = () => {
               {/* Responsive photo frame with improved sizing */}
               <div className="relative w-44 h-56 sm:w-52 sm:h-66 md:w-60 md:h-76 lg:w-64 lg:h-80 xl:w-72 xl:h-88 rounded-3xl bg-gradient-to-br from-neon-pink via-purple-500 to-neon-purple p-1.5 group-hover:scale-105 transition-all duration-500 shadow-2xl shadow-neon-pink/25">
                 <div className="w-full h-full rounded-3xl bg-gradient-to-br from-dark-900 to-dark-800 flex items-center justify-center overflow-hidden relative border border-gray-700/25">
-                  <img
-                    src={lauraVerificationImg}
-                    alt="Laura Czereńia - Zdjęcie weryfikacyjne z kartką potwierdzającą tożsamość"
+                  <video
+                    src={heroVideo}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                     className="w-full h-full object-cover rounded-3xl group-hover:scale-110 transition-transform duration-500 filter group-hover:brightness-110"
-                    loading="lazy"
                   />
                   {/* Subtle overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent rounded-3xl"></div>
@@ -136,7 +131,7 @@ const HeroSection: React.FC = () => {
 
               {/* Enhanced Verification Badge with better positioning */}
               <div
-                className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-gradient-to-r from-green-400 to-emerald-500 text-white p-2.5 sm:p-3 rounded-full shadow-xl shadow-green-500/40 animate-bounce-slow border-2 border-white/20"
+                className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-gradient-to-r from-green-400 to-emerald-500 text-white p-2.5 sm:p-3 rounded-full shadow-xl shadow-green-500/40 animate-bounce-slow border-2 border-green-400/30"
                 aria-label="Profil zweryfikowany"
                 role="img"
               >
@@ -144,9 +139,24 @@ const HeroSection: React.FC = () => {
                 <div className="absolute inset-0 bg-green-400/15 rounded-full blur-md animate-pulse"></div>
               </div>
 
-              {/* Optimized floating particles with better responsiveness */}
-              <div className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 w-2 h-2 sm:w-3 sm:h-3 bg-neon-pink rounded-full animate-float opacity-50 shadow-lg shadow-neon-pink/40" role="img" aria-label="Dekoracyjny element"></div>
-              <div className="absolute bottom-1/4 -right-2 sm:-right-3 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-neon-purple rounded-full animate-float delay-1500 opacity-50 shadow-lg shadow-neon-purple/40" role="img" aria-label="Dekoracyjny element"></div>
+              {/* Optimized floating particles with crypto theme */}
+              <div className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full animate-float opacity-70 shadow-lg shadow-amber-400/50 flex items-center justify-center" role="img" aria-label="Bitcoin symbol">
+                <Bitcoin className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-white" />
+              </div>
+              <div className="absolute bottom-1/4 -right-2 sm:-right-3 w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full animate-float delay-1500 opacity-70 shadow-lg shadow-blue-400/50 flex items-center justify-center" role="img" aria-label="Ethereum symbol">
+                <Coins className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-white" />
+              </div>
+              
+              {/* Additional crypto floating elements */}
+              <div className="absolute top-1/3 -left-3 sm:-left-4 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full animate-float delay-500 opacity-60 shadow-lg shadow-green-400/40 flex items-center justify-center" role="img" aria-label="DeFi symbol">
+                <TrendingUp className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white" />
+              </div>
+              <div className="absolute top-2/3 -right-1 sm:-right-2 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full animate-float delay-2500 opacity-60 shadow-lg shadow-yellow-400/40 flex items-center justify-center" role="img" aria-label="Lightning Network">
+                <Zap className="w-1 h-1 sm:w-1.5 sm:h-1.5 text-white" />
+              </div>
+              <div className="absolute bottom-1/3 left-1/4 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full animate-float delay-3000 opacity-50 shadow-lg shadow-purple-400/40 flex items-center justify-center" role="img" aria-label="Dollar symbol">
+                <DollarSign className="w-1 h-1 sm:w-1.5 sm:h-1.5 text-white" />
+              </div>
             </div>
           </motion.div>
 
@@ -168,11 +178,11 @@ const HeroSection: React.FC = () => {
                 id="hero-title"
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold glow-text relative z-10 bg-gradient-to-r from-white via-neon-pink to-white bg-clip-text text-transparent leading-tight mb-3 sm:mb-4"
               >
-                Laura Czereśnia
+                Maja Czereśnia
               </h1>
               {/* Optimized text shadow effect */}
               <h1 className="absolute inset-0 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-neon-pink/12 blur-sm leading-tight" aria-hidden="true">
-                Laura Czereśnia
+                Maja Czereśnia
               </h1>
 
               {/* Enhanced subtitle with better responsive sizing */}
@@ -202,10 +212,10 @@ const HeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/4 via-neon-purple/4 to-green-400/4 rounded-2xl blur-xl"></div>
 
               {/* Enhanced container with better responsive spacing */}
-              <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 bg-gradient-to-r from-dark-800/60 via-dark-700/60 to-dark-800/60 backdrop-blur-lg rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 border border-gray-600/20 shadow-xl shadow-neon-pink/8">
+              <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 bg-gradient-to-r from-dark-800/60 via-dark-700/60 to-dark-800/60 backdrop-blur-lg rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-xl shadow-neon-pink/8 rainbow-border-animated">
                 {/* Age Card - Enhanced responsive design */}
                 <div
-                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-neon-pink/10 to-neon-pink/20 border border-neon-pink/20 hover:border-neon-pink/40 focus:border-neon-pink/50 focus:ring-2 focus:ring-neon-pink/30 focus:outline-none transition-all duration-300 group cursor-pointer"
+                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-neon-pink/10 to-neon-pink/20 hover:bg-neon-pink/30 focus:bg-neon-pink/30 focus:ring-2 focus:ring-neon-pink/30 focus:outline-none transition-all duration-300 group cursor-pointer rainbow-border"
                   role="button"
                   tabIndex={0}
                   aria-label="Wiek: 22 lata"
@@ -224,7 +234,7 @@ const HeroSection: React.FC = () => {
 
                 {/* Location Card - Enhanced responsive design */}
                 <div
-                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-neon-purple/10 to-neon-purple/20 border border-neon-purple/20 hover:border-neon-purple/40 focus:border-neon-purple/50 focus:ring-2 focus:ring-neon-purple/30 focus:outline-none transition-all duration-300 group cursor-pointer"
+                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-neon-purple/10 to-neon-purple/20 hover:bg-neon-purple/30 focus:bg-neon-purple/30 focus:ring-2 focus:ring-neon-purple/30 focus:outline-none transition-all duration-300 group cursor-pointer rainbow-border"
                   role="button"
                   tabIndex={0}
                   aria-label="Lokalizacja: Polska"
@@ -243,7 +253,7 @@ const HeroSection: React.FC = () => {
 
                 {/* Online Status Card - Enhanced responsive design */}
                 <div
-                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-green-400/10 to-green-400/20 border border-green-400/20 hover:border-green-400/40 focus:border-green-400/50 focus:ring-2 focus:ring-green-400/30 focus:outline-none transition-all duration-300 group cursor-pointer"
+                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-green-400/10 to-green-400/20 hover:bg-green-400/30 focus:bg-green-400/30 focus:ring-2 focus:ring-green-400/30 focus:outline-none transition-all duration-300 group cursor-pointer rainbow-border"
                   role="button"
                   tabIndex={0}
                   aria-label="Status: Online"
@@ -278,7 +288,7 @@ const HeroSection: React.FC = () => {
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl font-playfair italic text-white leading-relaxed text-center lg:text-left">
                   <span
                     className="typewriter border-r-2 border-neon-pink pr-1 sm:pr-2 animate-pulse"
-                    aria-label="Opis: W dzień studentka medycyny, w nocy spełniam Twoje najdziksze wyobrażenia"
+                    aria-label="Opis: W dzień studentka blockchain, w nocy spełniam Twoje najdziksze wyobrażenia"
                   >
                     {typewriterText}
                   </span>
@@ -322,7 +332,7 @@ const HeroSection: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 2.6 + index * 0.1 }}
-                  className="flex flex-col items-center text-center p-4 sm:p-5 md:p-6 lg:p-7 rounded-xl bg-gradient-to-br from-dark-800/60 to-dark-700/60 backdrop-blur-lg border border-gray-600/25 hover:border-neon-pink/40 focus:border-neon-pink/50 focus:ring-2 focus:ring-neon-pink/30 focus:outline-none transition-all duration-300 group cursor-pointer shadow-lg hover:shadow-xl hover:shadow-neon-pink/15 min-h-[120px] sm:min-h-[140px] md:min-h-[160px]"
+                  className="flex flex-col items-center text-center p-4 sm:p-5 md:p-6 lg:p-7 rounded-xl bg-gradient-to-br from-dark-800/60 to-dark-700/60 backdrop-blur-lg hover:border-neon-pink/40 focus:border-neon-pink/50 focus:ring-2 focus:ring-neon-pink/30 focus:outline-none transition-all duration-300 group cursor-pointer shadow-lg hover:shadow-xl hover:shadow-neon-pink/15 min-h-[120px] sm:min-h-[140px] md:min-h-[160px]"
                   role="button"
                   tabIndex={0}
                   aria-label={booster.ariaLabel}
@@ -421,7 +431,7 @@ const HeroSection: React.FC = () => {
             <div className="absolute inset-0 bg-neon-pink/15 rounded-full blur-lg scale-150 group-hover:scale-200 group-focus:scale-200 transition-transform duration-500"></div>
 
             {/* Enhanced main indicator with better responsive sizing */}
-            <div className="relative w-5 h-8 sm:w-6 sm:h-10 md:w-8 md:h-12 border-2 border-neon-pink rounded-full flex justify-center group-hover:border-white group-focus:border-white transition-colors duration-300 bg-dark-800/50 backdrop-blur-sm group-focus:ring-2 group-focus:ring-neon-pink group-focus:ring-offset-2 group-focus:ring-offset-dark-900 group-focus:outline-none">
+            <div className="relative w-5 h-8 sm:w-6 sm:h-10 md:w-8 md:h-12 border-2 border-neon-pink rounded-full flex justify-center group-hover:border-yellow-400 group-focus:border-yellow-400 transition-colors duration-300 bg-dark-800/50 backdrop-blur-sm group-focus:ring-2 group-focus:ring-neon-pink group-focus:ring-offset-2 group-focus:ring-offset-dark-900 group-focus:outline-none">
               <div className="w-0.5 h-2 sm:w-1 sm:h-3 md:w-1.5 md:h-4 bg-gradient-to-b from-neon-pink to-neon-purple rounded-full mt-1.5 sm:mt-2 animate-bounce group-hover:animate-pulse"></div>
             </div>
           </div>
@@ -433,15 +443,24 @@ const HeroSection: React.FC = () => {
         </motion.div>
 
         {/* Optimized Floating Elements with better performance */}
-        <div className="absolute inset-0 pointer-events-none" role="img" aria-label="Dekoracyjne animowane serca">
-          {/* Single floating heart for optimal performance */}
+        <div className="absolute inset-0 pointer-events-none" role="img" aria-label="Dekoracyjne animowane elementy crypto">
+          {/* Floating crypto decorations */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0.3, 0] }}
+            animate={{ opacity: [0, 0.3, 0], y: [-10, 10, -10], rotate: [0, 180, 360] }}
             transition={{ duration: 8, repeat: Infinity, delay: 4, type: "tween", ease: "easeInOut" }}
-            className="absolute top-1/3 right-1/4 hidden sm:block"
+            className="absolute top-1/3 right-1/4 hidden sm:block w-4 h-4 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full shadow-lg shadow-amber-400/50 flex items-center justify-center"
           >
-            <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-neon-pink/25 animate-float" />
+            <Bitcoin className="w-2.5 h-2.5 text-white" />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.3, 0], y: [10, -10, 10], rotate: [360, 180, 0] }}
+            transition={{ duration: 10, repeat: Infinity, delay: 6, type: "tween", ease: "easeInOut" }}
+            className="absolute bottom-1/3 left-1/4 hidden sm:block w-3 h-3 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full shadow-lg shadow-blue-400/50 flex items-center justify-center"
+          >
+            <Coins className="w-2 h-2 text-white" />
           </motion.div>
         </div>
       </div>

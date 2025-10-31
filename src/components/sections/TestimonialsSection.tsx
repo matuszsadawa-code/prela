@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, Heart, Star } from 'lucide-react'
-import AudioPlayer from '../ui/AudioPlayer'
 
 interface Testimonial {
   id: string
@@ -9,13 +8,6 @@ interface Testimonial {
   message: string
   time: string
   rating?: number
-  type: 'text' | 'audio'
-  audioData?: {
-    title: string
-    description: string
-    duration: string
-    name: string
-  }
 }
 
 const TestimonialsSection: React.FC = () => {
@@ -27,66 +19,42 @@ const TestimonialsSection: React.FC = () => {
       platform: 'whatsapp',
       message: "Nie wierzyłem, że odpisujesz, aż dostałem to wideo o 3 w nocy... 🔥",
       time: "3:24 AM",
-      rating: 5,
-      type: 'text'
+      rating: 5
     },
     {
       id: '2',
       platform: 'telegram',
-      message: "",
+      message: "Maja, twoje treści to coś niesamowitego! Każdy dzień z VIP to nowa przygoda 😍",
       time: "11:45 PM",
-      rating: 5,
-      type: 'audio',
-      audioData: {
-        title: "Wiadomość głosowa od Michała",
-        description: "Opinia o prywatnych treściach",
-        duration: "0:42",
-        name: "Michał z Warszawy"
-      }
+      rating: 5
     },
     {
       id: '3',
       platform: 'onlyfans',
-      message: "Najlepsza inwestycja tego roku. Laura, jesteś wyjątkowa ❤️",
+      message: "Najlepsza inwestycja tego roku. Maja, jesteś wyjątkowa ❤️",
       time: "2:15 PM",
-      rating: 5,
-      type: 'text'
+      rating: 5
     },
     {
       id: '4',
       platform: 'whatsapp',
-      message: "",
+      message: "Twoje nocne wiadomości to najlepszy sposób na zakończenie dnia 🌙",
       time: "9:30 PM",
-      rating: 5,
-      type: 'audio',
-      audioData: {
-        title: "Wiadomość głosowa od Pawła",
-        description: "Reakcja na nocne wideo",
-        duration: "0:38",
-        name: "Paweł z Krakowa"
-      }
+      rating: 5
     },
     {
       id: '5',
       platform: 'telegram',
       message: "VIP kanał to najlepsze co mi się przytrafiło. Worth every penny!",
       time: "7:22 AM",
-      rating: 5,
-      type: 'text'
+      rating: 5
     },
     {
       id: '6',
       platform: 'onlyfans',
-      message: "",
+      message: "Codzienne rozmowy z Tobą to coś, na co czekam każdego dnia. Jesteś niesamowita! 💕",
       time: "10:18 PM",
-      rating: 5,
-      type: 'audio',
-      audioData: {
-        title: "Wiadomość głosowa od Jakuba",
-        description: "Opinia o codziennych rozmowach",
-        duration: "0:51",
-        name: "Jakub z Gdańska"
-      }
+      rating: 5
     }
   ]
 
@@ -339,32 +307,45 @@ const TestimonialsSection: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              {testimonials[currentIndex].type === 'audio' ? (
-                /* Audio Testimonial */
-                <div className="max-w-2xl mx-auto">
-                  <div className="text-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-neon-pink/20 to-neon-purple/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      {getPlatformIcon(testimonials[currentIndex].platform)}
+              {/* Text Testimonial - Phone Mockup */}
+              <div className="bg-dark-800 rounded-3xl p-6 max-w-md mx-auto shadow-2xl border border-gray-700">
+                {/* Phone Header */}
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-600">
+                  <div className="flex items-center gap-3">
+                    {getPlatformIcon(testimonials[currentIndex].platform)}
+                    <div>
+                      <h3 className="text-white font-semibold">Maja</h3>
+                      <p className="text-green-400 text-sm">● Online</p>
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      {testimonials[currentIndex].audioData?.name}
-                    </h3>
-                    <p className="text-gray-400 text-sm">
-                      {testimonials[currentIndex].time} • {testimonials[currentIndex].platform}
-                    </p>
+                  </div>
+                  <div className="text-gray-400 text-sm">
+                    {testimonials[currentIndex].time}
+                  </div>
+                </div>
+
+                {/* Message */}
+                <div className="space-y-4">
+                  {/* Laura's message (placeholder) */}
+                  <div className="flex justify-end">
+                    <div className="bg-neon-pink/20 text-white px-4 py-3 rounded-2xl rounded-br-md max-w-xs">
+                      <p className="text-sm">Hey babe 😘</p>
+                    </div>
                   </div>
 
-                  <AudioPlayer
-                    title={testimonials[currentIndex].audioData?.title || ""}
-                    description={testimonials[currentIndex].audioData?.description || ""}
-                    duration={testimonials[currentIndex].audioData?.duration || "0:45"}
-                    className="relative"
-                  />
+                  {/* Fan's response */}
+                  <div className="flex justify-start">
+                    <div className={`
+                      bg-gradient-to-r ${getPlatformColor(testimonials[currentIndex].platform)}
+                      text-white px-4 py-3 rounded-2xl rounded-bl-md max-w-xs
+                    `}>
+                      <p className="text-sm">{testimonials[currentIndex].message}</p>
+                    </div>
+                  </div>
 
-                  {/* Rating for audio */}
+                  {/* Rating */}
                   {testimonials[currentIndex].rating && (
-                    <div className="flex justify-center mt-6">
-                      <div className="flex items-center gap-1 bg-dark-700/50 px-4 py-2 rounded-full">
+                    <div className="flex justify-start">
+                      <div className="flex items-center gap-1 bg-dark-700 px-3 py-2 rounded-full">
                         {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                           <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                         ))}
@@ -372,55 +353,7 @@ const TestimonialsSection: React.FC = () => {
                     </div>
                   )}
                 </div>
-              ) : (
-                /* Text Testimonial - Phone Mockup */
-                <div className="bg-dark-800 rounded-3xl p-6 max-w-md mx-auto shadow-2xl border border-gray-700">
-                  {/* Phone Header */}
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-600">
-                    <div className="flex items-center gap-3">
-                      {getPlatformIcon(testimonials[currentIndex].platform)}
-                      <div>
-                        <h3 className="text-white font-semibold">Laura</h3>
-                        <p className="text-green-400 text-sm">● Online</p>
-                      </div>
-                    </div>
-                    <div className="text-gray-400 text-sm">
-                      {testimonials[currentIndex].time}
-                    </div>
-                  </div>
-
-                  {/* Message */}
-                  <div className="space-y-4">
-                    {/* Laura's message (placeholder) */}
-                    <div className="flex justify-end">
-                      <div className="bg-neon-pink/20 text-white px-4 py-3 rounded-2xl rounded-br-md max-w-xs">
-                        <p className="text-sm">Hey babe 😘</p>
-                      </div>
-                    </div>
-
-                    {/* Fan's response */}
-                    <div className="flex justify-start">
-                      <div className={`
-                        bg-gradient-to-r ${getPlatformColor(testimonials[currentIndex].platform)}
-                        text-white px-4 py-3 rounded-2xl rounded-bl-md max-w-xs
-                      `}>
-                        <p className="text-sm">{testimonials[currentIndex].message}</p>
-                      </div>
-                    </div>
-
-                    {/* Rating */}
-                    {testimonials[currentIndex].rating && (
-                      <div className="flex justify-start">
-                        <div className="flex items-center gap-1 bg-dark-700 px-3 py-2 rounded-full">
-                          {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
+              </div>
             </motion.div>
           </AnimatePresence>
 

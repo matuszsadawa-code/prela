@@ -14,33 +14,43 @@ const FAQSection: React.FC = () => {
   const faqItems: FAQItem[] = [
     {
       id: '1',
-      question: 'Co jest w VIP kanale?',
-      answer: 'VIP kanał zawiera ekskluzywne zdjęcia i filmy NSFW, które nie są dostępne nigdzie indziej. Codziennie dodaję nowe treści, prowadzę live sessions i odpowiadam na prywatne wiadomości. To miejsce, gdzie mogę być sobą bez ograniczeń.'
+      question: 'Jakie treści otrzymam na Fanvue?',
+      answer: 'Na Fanvue otrzymasz dostęp do ekskluzywnych zdjęć i filmów w najwyższej jakości (4K/8K), behind-the-scenes content, wczesny dostęp do nowych materiałów, bezpośrednie wiadomości prywatne bez limitów, ekskluzywne live streamy, personalizowane treści na zamówienie oraz pełny dostęp do archiwum. To miejsce, gdzie mogę być sobą bez ograniczeń i dzielić się najbardziej intymnymi momentami.'
     },
     {
       id: '2',
-      question: 'Czy odpisujesz sama?',
-      answer: 'Tak! Wszystkie wiadomości piszę osobiście. Nie mam żadnego zespołu ani botów. Gdy piszesz do mnie, rozmawiasz bezpośrednio ze mną. Czasami może minąć kilka godzin zanim odpowiem (szczególnie gdy śpię lub jestem na zajęciach), ale zawsze odpisuję.'
+      question: 'Czy naprawdę odpisujesz sama?',
+      answer: 'Tak! Wszystkie wiadomości piszę osobiście. Nie mam żadnego zespołu ani botów. Gdy piszesz do mnie, rozmawiasz bezpośrednio ze mną. Czasami może minąć kilka godzin zanim odpowiem (szczególnie gdy śpię lub jestem na zajęciach), ale zawsze odpisuję. To jest dla mnie ważne - chcę budować autentyczne relacje z moimi fanami.'
     },
     {
       id: '3',
-      question: 'Jak długo trwa dostęp?',
-      answer: 'Dostęp jest miesięczny i odnawia się automatycznie. Możesz anulować subskrypcję w każdej chwili - zachowasz dostęp do końca opłaconego okresu. Nie ma żadnych ukrytych opłat czy długoterminowych zobowiązań.'
+      question: 'Jak działa subskrypcja na Fanvue?',
+      answer: 'Subskrypcja na Fanvue jest miesięczna i odnawia się automatycznie. Możesz wybrać plan na 1 miesiąc, 3 miesiące lub lifetime. Możesz anulować subskrypcję w każdej chwili - zachowasz dostęp do końca opłaconego okresu. Nie ma żadnych ukrytych opłat czy długoterminowych zobowiązań. Wszystkie płatności są bezpieczne i szyfrowane.'
     },
     {
       id: '4',
-      question: 'Czy jest możliwość live\'a?',
-      answer: 'Tak! Regularnie organizuję live sessions dla VIP członków. Zazwyczaj są to spontaniczne transmisje, o których informuję z wyprzedzeniem. Dla WhatsApp Premium oferuję również prywatne video calls - to najbardziej intymne doświadczenie, jakie mogę zaoferować.'
+      question: 'Czy organizujesz live streamy?',
+      answer: 'Tak! Regularnie organizuję live sessions dla moich subskrybentów na Fanvue. Są to spontaniczne transmisje, o których informuję z wyprzedzeniem. To najlepszy sposób na bezpośrednią interakcję - możesz zadawać pytania, rozmawiać ze mną na żywo i być częścią mojego dnia. Każdy live to unikalne doświadczenie.'
     },
     {
       id: '5',
-      question: 'Czy mogę anulować w każdej chwili?',
-      answer: 'Oczywiście! Nie ma żadnych zobowiązań długoterminowych. Możesz anulować subskrypcję kiedy chcesz przez platformę, na której ją wykupiłeś. Twój dostęp będzie aktywny do końca opłaconego okresu.'
+      question: 'Czy mogę anulować subskrypcję w każdej chwili?',
+      answer: 'Oczywiście! Nie ma żadnych zobowiązań długoterminowych. Możesz anulować subskrypcję kiedy chcesz bezpośrednio na platformie Fanvue. Twój dostęp będzie aktywny do końca opłaconego okresu. Nie będzie żadnych dodatkowych opłat ani problemów z anulowaniem.'
     },
     {
       id: '6',
-      question: 'Czy przyjmujesz custom requests?',
-      answer: 'Tak, ale tylko dla VIP członków. Mogę zrobić zdjęcia lub filmy według Twoich życzeń (w granicach rozsądku). Ceny zależą od złożoności request\'u. Napisz do mnie prywatnie, a omówimy szczegóły.'
+      question: 'Czy mogę zamówić personalizowane treści?',
+      answer: 'Tak! Dla moich subskrybentów na Fanvue mogę przygotować treści według Twoich preferencji i pomysłów. Mogę zrobić zdjęcia lub filmy na zamówienie (w granicach rozsądku). Napisz do mnie prywatnie, a omówimy szczegóły i cenę. To świetny sposób na uzyskanie czegoś naprawdę spersonalizowanego.'
+    },
+    {
+      id: '7',
+      question: 'Czy e-book o kryptowalutach jest wart swojej ceny?',
+      answer: 'Zdecydowanie! E-book "Zarabiaj na Kryptowalutach by Maja Lubicz" zawiera praktyczne strategie, frameworki, checklisty i reguły decyzyjne, które nauczyły mnie zarabiać na rynku krypto. Teraz oferuję go w promocji za 149,99 zł (zamiast 299 zł). To inwestycja w Twoją edukację finansową i potencjalne zyski.'
+    },
+    {
+      id: '8',
+      question: 'Czy moje dane są bezpieczne?',
+      answer: 'Tak! Gwarantuję pełną dyskrecję i prywatność. Wszystkie płatności są szyfrowane i bezpieczne. Twoje dane osobowe nigdy nie będą udostępniane trzecim stronom. Jestem zweryfikowaną twórczynią z gwarancją dyskrecji - to jest dla mnie priorytet.'
     }
   ]
 
@@ -49,9 +59,7 @@ const FAQSection: React.FC = () => {
   }
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-800/30 to-transparent"></div>
+    <section className="py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
       
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
@@ -68,8 +76,8 @@ const FAQSection: React.FC = () => {
             </h2>
           </div>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Masz pytania? Prawdopodobnie znajdziesz odpowiedź tutaj. 
-            Jeśli nie, napisz do mnie bezpośrednio!
+            Masz pytania dotyczące Fanvue, e-booka lub moich treści? Odpowiedzi na najczęstsze pytania znajdziesz poniżej.
+            Jeśli nie znalazłeś odpowiedzi, napisz do mnie bezpośrednio!
           </p>
         </motion.div>
 

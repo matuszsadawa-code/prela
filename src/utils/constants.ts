@@ -1,12 +1,13 @@
 // Social Media Links
 export const SOCIAL_LINKS = {
-  instagram: 'https://instagram.com/laura',
-  tiktok: 'https://tiktok.com/@laura',
-  twitter: 'https://twitter.com/laura',
-  telegram_free: 'https://t.me/laura_free',
-  telegram_vip: 'https://t.me/laura_vip',
+  instagram: 'https://instagram.com/mayalubicz',
+  tiktok: 'https://tiktok.com/@mayalubicz',
+  twitter: 'https://twitter.com/mayalubicz',
+  telegram_free: 'https://t.me/mayalubicz_free',
+  telegram_vip: 'https://t.me/mayalubicz_vip',
   whatsapp: 'https://wa.me/1234567890',
-  onlyfans: 'https://onlyfans.com/laura',
+  onlyfans: 'https://onlyfans.com/mayalubicz',
+  fanvue: 'https://www.fanvue.com/mayalubicz',
 }
 
 // Pricing
@@ -29,29 +30,34 @@ export const ANALYTICS_EVENTS = {
 
 // Personal Info
 export const PERSONAL_INFO = {
-  name: 'Laura',
+  name: 'Maja',
   age: 22,
   location: 'Warszawa',
-  profession: 'Studentka medycyny',
+  profession: 'Studentka Blockchain',
   onlyfans_rank: 'Online',
 }
 
 // Subscription Features
 export const SUBSCRIPTION_FEATURES = {
   free: [
-    'Podstawowe zdjęcia',
-    'Publiczne posty',
-    'Ograniczone wiadomości',
-    'Standardowa jakość'
+    'Podstawowe zdjęcia z mediów społecznościowych',
+    'Publiczne posty i stories',
+    'Ograniczone wiadomości (5/dzień)',
+    'Standardowa jakość zdjęć',
+    'Brak dostępu do ekskluzywnych treści'
   ],
   vip: [
-    'Ekskluzywne zdjęcia i filmy',
-    'Prywatne wiadomości bez limitów',
-    'Treści w jakości 4K',
-    'Personalizowane treści',
-    'Priorytetowe odpowiedzi',
-    'Specjalne live streamy',
-    'Dostęp do archiwum',
-    'Rabaty na dodatkowe usługi'
+    'Ekskluzywne treści premium w najwyższej jakości',
+    'Behind-the-scenes content i kulisy sesji',
+    'Treści w rozdzielczości 4K/8K bez kompresji',
+    'Wczesny dostęp do nowych materiałów',
+    'Bezpośrednie wiadomości prywatne bez limitów',
+    'Ekskluzywne live streamy dla subskrybentów',
+    'Personalizowane treści na zamówienie',
+    'Możliwośc Poznanie Się Bliżej nie tylko online',
+    'Pełny dostęp do archiwum wszystkich treści',
+    'Priorytetowe odpowiedzi w ciągu 1h',
+    'Możliwość pobierania treści offline',
+    'Powiadomienia o nowych postach'
   ]
 }

@@ -25,14 +25,14 @@ const MyStorySection: React.FC = () => {
             <div className="md:w-1/3">
               <img 
                 src="/images/laura-casual.jpg" 
-                alt="Laura w codziennym wydaniu" 
+                alt="Maja w codziennym wydaniu" 
                 className="w-full h-auto rounded-xl shadow-lg"
               />
             </div>
             
             <div className="md:w-2/3 space-y-4">
               <p className="text-gray-200 leading-relaxed">
-                Cześć, jestem Laura. Mam 22 lata i studiuję medycynę na trzecim roku. Zawsze byłam ambitną osobą z wieloma pasjami, ale studia medyczne są drogie, a życie w Warszawie kosztowne.
+                Cześć, jestem Maja. Mam 22 lata i studiuję technologie blockchain na trzecim roku. Zawsze byłam ambitną osobą z wieloma pasjami, ale studia techniczne są drogie, a życie w Warszawie kosztowne.
               </p>
               
               <p className="text-gray-200 leading-relaxed">
@@ -46,11 +46,11 @@ const MyStorySection: React.FC = () => {
               <div className="pt-4 flex flex-wrap gap-4">
                 <div className="flex items-center">
                   <GraduationCap className="w-5 h-5 text-neon-pink mr-2" />
-                  <span className="text-gray-300">3 rok medycyny</span>
+                  <span className="text-gray-300">3 rok blockchain</span>
                 </div>
                 <div className="flex items-center">
                   <Heart className="w-5 h-5 text-neon-pink mr-2" />
-                  <span className="text-gray-300">Pasjonatka fotografii</span>
+                  <span className="text-gray-300">Pasjonatka crypto</span>
                 </div>
                 <div className="flex items-center">
                   <Coffee className="w-5 h-5 text-neon-pink mr-2" />

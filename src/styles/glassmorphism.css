@@ -2,9 +2,9 @@
 
 /* Core glassmorphism utilities */
 .glass {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.22) inset, 
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.06), rgba(168, 85, 247, 0.06));
+  border: 1px solid rgba(251, 191, 36, 0.18);
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.22) inset, 
               0 10px 30px rgba(255, 79, 216, 0.22);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
@@ -17,31 +17,83 @@
 
 .glass--hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.25) inset, 
               0 18px 40px rgba(255, 79, 216, 0.32);
-  background: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(168, 85, 247, 0.08));
 }
 
 /* Glass variants */
 .glass-pink {
   background: rgba(255, 79, 216, 0.08);
   border: 1px solid rgba(255, 79, 216, 0.2);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.15) inset, 
               0 10px 30px rgba(255, 79, 216, 0.3);
 }
 
 .glass-lavender {
   background: rgba(201, 182, 255, 0.08);
   border: 1px solid rgba(201, 182, 255, 0.2);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.15) inset, 
               0 10px 30px rgba(201, 182, 255, 0.25);
 }
 
 .glass-blush {
   background: rgba(255, 199, 217, 0.06);
   border: 1px solid rgba(255, 199, 217, 0.15);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.12) inset, 
               0 8px 25px rgba(255, 199, 217, 0.2);
+}
+
+/* Premium Content Glass Variants */
+.glass-crypto {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.15) inset, 
+              0 10px 30px rgba(59, 130, 246, 0.25);
+}
+
+.glass-trading {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.15) inset, 
+              0 10px 30px rgba(16, 185, 129, 0.25);
+}
+
+.glass-nsfw {
+  background: rgba(236, 72, 153, 0.08);
+  border: 1px solid rgba(236, 72, 153, 0.2);
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.15) inset, 
+              0 10px 30px rgba(236, 72, 153, 0.25);
+}
+
+.glass-gold {
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.15) inset, 
+              0 10px 30px rgba(251, 191, 36, 0.25);
+}
+
+/* Glass variant for Live Activity Widget - more transparent and cohesive */
+.glass-activity {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.03), rgba(168, 85, 247, 0.03));
+  border: 1px solid rgba(251, 191, 36, 0.08);
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.08) inset, 
+              0 8px 25px rgba(139, 92, 246, 0.12);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+}
+
+.glass-activity--hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, 
+              background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-activity--hover:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.05), rgba(168, 85, 247, 0.05));
+  border-color: rgba(251, 191, 36, 0.12);
+  box-shadow: 0 1px 0 rgba(251, 191, 36, 0.12) inset, 
+              0 12px 35px rgba(139, 92, 246, 0.18);
 }
 
 /* Gradient text utilities */
@@ -157,8 +209,8 @@
 /* Cross-browser fallbacks */
 @supports not (backdrop-filter: blur(1px)) {
   .glass {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(168, 85, 247, 0.12));
+    border: 1px solid rgba(251, 191, 36, 0.25);
   }
   
   .glass-pink {
@@ -195,12 +247,95 @@
   .glass,
   .glass-pink,
   .glass-lavender,
-  .glass-blush {
+  .glass-blush,
+  .glass-crypto,
+  .glass-trading,
+  .glass-nsfw,
+  .glass-gold {
     background: rgba(255, 255, 255, 0.95);
     color: #000;
     border: 2px solid #000;
   }
   
+  .text-gradient {
+    background: none;
+    color: #000;
+  }
+}
+
+/* Premium Content Animations */
+@keyframes premium-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+  }
+}
+
+@keyframes crypto-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes nsfw-shimmer {
+  0% { 
+    background-position: -200% 0;
+  }
+  100% { 
+    background-position: 200% 0;
+  }
+}
+
+.premium-glow {
+  animation: premium-glow 2s ease-in-out infinite;
+}
+
+.crypto-pulse {
+  animation: crypto-pulse 1.5s ease-in-out infinite;
+}
+
+.nsfw-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(236, 72, 153, 0.1) 0%,
+    rgba(236, 72, 153, 0.3) 50%,
+    rgba(236, 72, 153, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: nsfw-shimmer 3s linear infinite;
+}
+
+/* Content reveal animations */
+@keyframes content-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.content-reveal {
+  animation: content-reveal 0.6s ease-out forwards;
+}
+
+/* Magnetic hover effect */
+.magnetic-hover {
+  transition: transform 0.2s ease-out;
+}
+
+.magnetic-hover:hover {
+  transform: translateY(-3px) scale(1.02);
+}
   .text-gradient,
   .text-gradient-soft,
   .text-gradient-warm {
@@ -209,6 +344,256 @@
     -webkit-background-clip: initial;
     background-clip: initial;
   }
+}
+
+/* Rainbow Border Utilities */
+.rainbow-border {
+  position: relative;
+  background: linear-gradient(90deg, 
+    rgba(52, 211, 153, 0.3), 
+    rgba(6, 182, 212, 0.4), 
+    rgba(139, 92, 246, 0.4), 
+    rgba(236, 72, 153, 0.3)
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: top;
+  border-top: 1px solid transparent;
+}
+
+.rainbow-border::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 0, 128, 0.4), 
+    transparent
+  );
+  animation: rainbow-pulse 2s ease-in-out infinite;
+}
+
+.rainbow-border-full {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, 
+    rgba(52, 211, 153, 0.2), 
+    rgba(6, 182, 212, 0.3), 
+    rgba(139, 92, 246, 0.3), 
+    rgba(236, 72, 153, 0.2),
+    rgba(251, 191, 36, 0.2)
+  ) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: exclude;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.rainbow-border-animated {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, 
+    #34d399, #06b6d4, #8b5cf6, #ec4899, #fbbf24, #34d399
+  ) border-box;
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: exclude;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: rainbow-rotate 3s linear infinite;
+}
+
+.rainbow-glow {
+  position: relative;
+}
+
+.rainbow-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  background: linear-gradient(45deg, 
+    #34d399, #06b6d4, #8b5cf6, #ec4899, #fbbf24, #34d399
+  );
+  background-size: 300% 300%;
+  border-radius: inherit;
+  opacity: 0.6;
+  filter: blur(8px);
+  animation: rainbow-rotate 4s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rainbow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scaleX(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scaleX(1.2);
+  }
+}
+
+@keyframes rainbow-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* NOWE kolorowe tęczowe obramowania dla kart social media - WERSJA 2.0 */
+.social-card-rainbow-border {
+  position: relative !important;
+  border: none !important;
+  background: linear-gradient(45deg, 
+    #ff6b6b, 
+    #4ecdc4, 
+    #45b7d1, 
+    #96ceb4, 
+    #feca57, 
+    #ff9ff3,
+    #54a0ff,
+    #ff6b6b
+  ) !important;
+  background-size: 400% 400% !important;
+  border-radius: 16px !important;
+  padding: 2px !important;
+  animation: rainbow-flow 6s ease-in-out infinite !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.social-card-rainbow-border > * {
+  background: rgba(17, 24, 39, 0.98) !important;
+  border-radius: 14px !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.social-card-glow-effect {
+  position: relative !important;
+  filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.3)) !important;
+}
+
+.social-card-glow-effect::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: -6px !important;
+  background: linear-gradient(45deg, 
+    rgba(255, 107, 107, 0.4), 
+    rgba(78, 205, 196, 0.4), 
+    rgba(69, 183, 209, 0.4), 
+    rgba(150, 206, 180, 0.4), 
+    rgba(254, 202, 87, 0.4), 
+    rgba(255, 159, 243, 0.4),
+    rgba(84, 160, 255, 0.4),
+    rgba(255, 107, 107, 0.4)
+  ) !important;
+  background-size: 400% 400% !important;
+  border-radius: 20px !important;
+  opacity: 0.7 !important;
+  filter: blur(12px) !important;
+  animation: rainbow-flow 6s ease-in-out infinite !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+.social-card-glow-effect:hover::before {
+  opacity: 1 !important;
+  filter: blur(16px) !important;
+}
+
+/* DODATKOWE STYLE ABY USUNĄĆ WSZYSTKIE BIAŁE OBRAMOWANIA */
+.social-card-rainbow-border *,
+.social-card-rainbow-border *::before,
+.social-card-rainbow-border *::after {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.social-card-glow-effect *,
+.social-card-glow-effect *::before,
+.social-card-glow-effect *::after {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+@keyframes rainbow-flow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes rainbow-rotate-slow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Live Activity Widget - Enhanced Text Readability */
+.activity-text-enhanced {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.95), rgba(168, 85, 247, 0.95));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.activity-text-secondary {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.75), rgba(168, 85, 247, 0.75));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.activity-header-text {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.9), rgba(168, 85, 247, 0.9));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+/* Subtle background for better text contrast */
+.activity-content-bg {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  backdrop-filter: blur(2px);
+}
+
+/* Enhanced border for Live Activity Widget */
+.activity-border-subtle {
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.05) inset;
 }
 
 /* Print styles */
@@ -227,6 +612,19 @@
   .bg-aurora-soft,
   .bg-aurora-intense,
   .bg-grain::after {
+    display: none;
+  }
+  
+  .rainbow-border,
+  .rainbow-border-full,
+  .rainbow-border-animated,
+  .rainbow-glow {
+    border: 1px solid #ccc;
+    background: none;
+  }
+  
+  .rainbow-border::after,
+  .rainbow-glow::before {
     display: none;
   }
 }

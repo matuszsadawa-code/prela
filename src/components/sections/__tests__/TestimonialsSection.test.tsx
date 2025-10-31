@@ -10,16 +10,6 @@ vi.mock('framer-motion', () => ({
   AnimatePresence: ({ children }: any) => <>{children}</>,
 }))
 
-// Mock AudioPlayer component
-vi.mock('../../ui/AudioPlayer', () => ({
-  default: ({ title, description }: any) => (
-    <div data-testid="audio-player">
-      <div>{title}</div>
-      <div>{description}</div>
-    </div>
-  )
-}))
-
 describe('TestimonialsSection', () => {
   beforeEach(() => {
     vi.useFakeTimers()
@@ -75,19 +65,6 @@ describe('TestimonialsSection', () => {
     
     await waitFor(() => {
       // Should show different content after rotation
-      const section = screen.getByText('Co mówią o mnie').closest('section')
-      expect(section).toBeTruthy()
-    })
-  })
-
-  it('renders audio testimonials with AudioPlayer', async () => {
-    render(<TestimonialsSection />)
-    
-    // Fast-forward to potentially show an audio testimonial
-    vi.advanceTimersByTime(4000)
-    
-    await waitFor(() => {
-      // Check if AudioPlayer might be rendered
       const section = screen.getByText('Co mówią o mnie').closest('section')
       expect(section).toBeTruthy()
     })

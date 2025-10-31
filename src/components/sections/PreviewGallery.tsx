@@ -2,17 +2,13 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Lock, Play, Image, Video } from 'lucide-react'
 
-// Import gallery images
-import img1 from '../../assets/gallery/ig_00008_.png'
-import img2 from '../../assets/gallery/ig_00019_.png'
-import img3 from '../../assets/gallery/ig_00028_.png'
-import img4 from '../../assets/gallery/ig_00049_.png'
-import img5 from '../../assets/gallery/ig_00051_.png'
-import img6 from '../../assets/gallery/ig_00057_.png'
-import img7 from '../../assets/gallery/ig_00093_.png'
-import img8 from '../../assets/gallery/ig_00098_.png'
-import img9 from '../../assets/gallery/ig_00120_.png'
-import img10 from '../../assets/gallery/ig_00148_.png'
+// Import new gallery images
+import newImg1 from '../../assets/gallery/550356917_24256911460671885_5800828560684937416_n.jpg'
+import newImg2 from '../../assets/gallery/550372666_1905971153666919_4016956151902033765_n.jpg'
+import newImg3 from '../../assets/gallery/550784987_1197507292423767_2731495334881486222_n.jpg'
+import newImg4 from '../../assets/gallery/550874721_1204005315093003_6627928048095184566_n.jpg'
+import newImg5 from '../../assets/gallery/551512832_1348450783573678_9108959535084188996_n.jpg'
+import newImg6 from '../../assets/gallery/552150357_1262415842297978_7194948604814903546_n.jpg'
 
 interface GalleryItem {
   id: string
@@ -35,101 +31,61 @@ const PreviewGallery: React.FC = () => {
       id: '1',
       type: 'image',
       category: 'lifestyle',
-      title: 'Słodkie chwile',
-      preview: 'Naturalne piękno',
+      title: 'Lifestyle Photo 1',
+      preview: 'Exclusive lifestyle content',
       isBlurred: false,
-      imageUrl: img1,
-      thumbnailUrl: img1,
+      imageUrl: newImg1,
+      thumbnailUrl: newImg1,
     },
     {
       id: '2',
       type: 'image',
-      category: 'nsfw',
-      title: 'Intymne spojrzenie',
-      preview: 'Tylko dla subskrybentów',
-      isBlurred: true,
-      imageUrl: img2,
-      thumbnailUrl: img2,
+      category: 'lifestyle',
+      title: 'Lifestyle Photo 2',
+      preview: 'Premium lifestyle content',
+      isBlurred: false,
+      imageUrl: newImg2,
+      thumbnailUrl: newImg2,
     },
     {
       id: '3',
       type: 'image',
-      category: 'lifestyle',
-      title: 'Spontaniczny moment',
-      preview: 'Prawdziwa ja',
-      isBlurred: false,
-      imageUrl: img3,
-      thumbnailUrl: img3,
+      category: 'nsfw',
+      title: 'Exclusive Content 1',
+      preview: 'Premium exclusive content',
+      isBlurred: true,
+      imageUrl: newImg3,
+      thumbnailUrl: newImg3,
     },
     {
       id: '4',
       type: 'image',
       category: 'nsfw',
-      title: 'Zmysłowe kadry',
-      preview: 'Ekskluzywna zawartość',
+      title: 'Exclusive Content 2',
+      preview: 'Premium exclusive content',
       isBlurred: true,
-      imageUrl: img4,
-      thumbnailUrl: img4,
+      imageUrl: newImg4,
+      thumbnailUrl: newImg4,
     },
     {
       id: '5',
       type: 'image',
       category: 'lifestyle',
-      title: 'Codzienne życie',
-      preview: 'Za kulisami',
+      title: 'Lifestyle Photo 3',
+      preview: 'Beautiful lifestyle moments',
       isBlurred: false,
-      imageUrl: img5,
-      thumbnailUrl: img5,
+      imageUrl: newImg5,
+      thumbnailUrl: newImg5,
     },
     {
       id: '6',
       type: 'image',
       category: 'nsfw',
-      title: 'Prywatne chwile',
-      preview: 'Tylko dla VIP',
+      title: 'Exclusive Content 3',
+      preview: 'Premium exclusive content',
       isBlurred: true,
-      imageUrl: img6,
-      thumbnailUrl: img6,
-    },
-    {
-      id: '7',
-      type: 'image',
-      category: 'lifestyle',
-      title: 'Naturalne ujęcia',
-      preview: 'Bez retuszu',
-      isBlurred: false,
-      imageUrl: img7,
-      thumbnailUrl: img7,
-    },
-    {
-      id: '8',
-      type: 'image',
-      category: 'nsfw',
-      title: 'Gorące kadry',
-      preview: 'Treść dla dorosłych',
-      isBlurred: true,
-      imageUrl: img8,
-      thumbnailUrl: img8,
-    },
-    {
-      id: '9',
-      type: 'image',
-      category: 'lifestyle',
-      title: 'Szczere momenty',
-      preview: 'Autentyczne zdjęcia',
-      isBlurred: false,
-      imageUrl: img9,
-      thumbnailUrl: img9,
-    },
-    {
-      id: '10',
-      type: 'image',
-      category: 'nsfw',
-      title: 'Ekskluzywne treści',
-      preview: 'Premium content',
-      isBlurred: true,
-      imageUrl: img10,
-      thumbnailUrl: img10,
+      imageUrl: newImg6,
+      thumbnailUrl: newImg6,
     },
   ]
 
@@ -173,36 +129,18 @@ const PreviewGallery: React.FC = () => {
 
   const handleItemClick = (item: GalleryItem) => {
     if (item.isBlurred) {
-      // Show unlock modal/redirect to payment
-      alert('To tylko zajawka. Pokażę Ci więcej za zamkniętymi drzwiami.')
+      // Redirect to subscription comparison section
+      const subscriptionSection = document.getElementById('subscription-comparison')
+      if (subscriptionSection) {
+        subscriptionSection.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   }
 
   return (
-    <section id="preview-gallery" className="py-20 px-4 relative overflow-hidden">
-      {/* Background Effects - subtle aurora */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-900/30 via-dark-800/20 to-dark-900/30"></div>
-      
-      <div className="container mx-auto relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-display font-bold text-white mb-6"
-          >
-            Moja <span className="text-gradient">Galeria</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-300 max-w-2xl mx-auto"
-          >
-            Zajrzyj do mojego świata pełnego autentycznych momentów i ekskluzywnych treści
-          </motion.p>
-        </div>
+    <section id="preview-gallery" className="py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto relative z-10">
+
 
         {/* Gallery Horizontal Scroll */}
         <div className="relative">
@@ -224,8 +162,8 @@ const PreviewGallery: React.FC = () => {
                 onClick={() => handleItemClick(item)}
                 className="relative group cursor-pointer flex-shrink-0"
               >
-                {/* Image/Video Container - glass design */}
-                <div className="relative w-64 aspect-[4/5] rounded-2xl overflow-hidden glass">
+                {/* Image/Video Container */}
+                <div className="relative w-64 aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-dark-800 to-dark-700">
                   {/* Actual Image */}
                   {item.imageUrl && (
                     <img
@@ -250,22 +188,22 @@ const PreviewGallery: React.FC = () => {
                     </div>
                   )}
 
-                {/* Blur Overlay for NSFW - glass design */}
+                {/* Blur Overlay for NSFW */}
                 {item.isBlurred && (
-                  <div className="absolute inset-0 backdrop-blur-xl bg-black/30 flex items-center justify-center glass-pink">
+                  <div className="absolute inset-0 backdrop-blur-xl bg-black/30 flex items-center justify-center">
                     <div className="text-center">
-                      <Lock className="w-12 h-12 text-brand-400 mx-auto mb-4 drop-shadow-lg" />
-                      <p className="text-white font-semibold mb-2">Treść dla dorosłych</p>
-                      <p className="text-white/80 text-sm">Kliknij aby odblokować</p>
+                      <Lock className="w-12 h-12 text-neon-pink mx-auto mb-4" />
+                      <p className="text-white font-semibold mb-2">Treści VIP</p>
+                      <p className="text-gray-300 text-sm">Kliknij aby odblokować</p>
                     </div>
                   </div>
                 )}
 
-                {/* Play Button for Videos - glass design */}
+                {/* Play Button for Videos */}
                 {item.type === 'video' && !item.isBlurred && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="glass-pink w-16 h-16 rounded-full flex items-center justify-center shadow-glow-pink">
-                      <Play className="w-8 h-8 text-white ml-1 drop-shadow-lg" />
+                    <div className="w-16 h-16 bg-neon-pink/80 rounded-full flex items-center justify-center">
+                      <Play className="w-8 h-8 text-white ml-1" />
                     </div>
                   </div>
                 )}
@@ -282,26 +220,13 @@ const PreviewGallery: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Category Badge */}
-                <div className={`
-                  absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold
-                  ${item.category === 'nsfw' 
-                    ? 'bg-red-500/80 text-white' 
-                    : item.category === 'lifestyle'
-                      ? 'bg-blue-500/80 text-white'
-                      : 'bg-purple-500/80 text-white'
-                  }
-                `}>
-                  {item.category.toUpperCase()}
-                </div>
-
-                {/* Glow Effect - nowe kolory */}
+                {/* Glow Effect */}
                 <div className={`
                   absolute -inset-1 rounded-2xl blur-lg transition-opacity duration-300 -z-10
-                  ${hoveredItem === item.id ? 'opacity-40' : 'opacity-0'}
+                  ${hoveredItem === item.id ? 'opacity-30' : 'opacity-0'}
                   ${item.isBlurred 
-                    ? 'bg-gradient-to-r from-brand-600 to-brand-500' 
-                    : 'bg-gradient-to-r from-brand-500 to-lavender-400'
+                    ? 'bg-gradient-to-r from-red-500 to-pink-500' 
+                    : 'bg-gradient-to-r from-neon-pink to-neon-purple'
                   }
                 `}></div>
                 </div>

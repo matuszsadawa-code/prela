@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Users, Clock, UserPlus, Wifi, MessageSquare, Crown } from 'lucide-react'
+import { X, Users, Clock, UserPlus, Wifi, Crown } from 'lucide-react'
 
 interface ActivityMessage {
   id: string
-  type: 'online' | 'viewers' | 'lastActive' | 'newSubscriber' | 'newMessage' | 'vipUpgrade'
+  type: 'online' | 'viewers' | 'lastActive' | 'newSubscriber' | 'vipUpgrade' | 'newMessage'
   message: string
   icon: React.ReactNode
   color: string
@@ -21,7 +21,7 @@ const RealTimeActivityWidget: React.FC = () => {
   const [nextInterval, setNextInterval] = useState(45000) // Następny interwał w ms (45s)
   const [isSilentPeriod, setIsSilentPeriod] = useState(false)
   const [silentDuration, setSilentDuration] = useState(0)
-  const [isLauraOnline, setIsLauraOnline] = useState(true)
+  const [isMajaOnline, setIsMajaOnline] = useState(true)
   const [lastActivityTime, setLastActivityTime] = useState(new Date())
 
   // Generowanie realistycznych danych
@@ -153,8 +153,8 @@ const RealTimeActivityWidget: React.FC = () => {
 
     const shouldBeOnline = Math.random() < onlineProbability
 
-    if (shouldBeOnline !== isLauraOnline) {
-      setIsLauraOnline(shouldBeOnline)
+    if (shouldBeOnline !== isMajaOnline) {
+        setIsMajaOnline(shouldBeOnline)
       if (!shouldBeOnline) {
         setLastActivityTime(new Date())
       }
@@ -176,18 +176,7 @@ const RealTimeActivityWidget: React.FC = () => {
     return messages[Math.floor(Math.random() * messages.length)]
   }
 
-  const getNewMessageText = () => {
-    const name = getRandomName()
-    const messages = [
-      `${name} wysłał nową wiadomość 💬`,
-      `Nowa wiadomość od ${name} 📩`,
-      `${name} napisał do Ciebie 💌`,
-      `${name} czeka na odpowiedź 💭`,
-      `Wiadomość prywatna od ${name} 🔒`,
-      `${name} przesłał zdjęcie 📸`
-    ]
-    return messages[Math.floor(Math.random() * messages.length)]
-  }
+
 
   const getVipUpgradeMessage = () => {
     const name = getRandomName()
@@ -216,9 +205,9 @@ const RealTimeActivityWidget: React.FC = () => {
   }
 
   const getLastActiveMessage = () => {
-    if (isLauraOnline) {
+    if (isMajaOnline) {
       const messages = [
-        `Laura jest aktywna teraz 🟢`,
+        `Maja jest aktywna teraz 🟢`,
         `Online w tej chwili ✅`,
         `Aktywna teraz 💚`,
         `Dostępna online 🌟`,
@@ -232,7 +221,7 @@ const RealTimeActivityWidget: React.FC = () => {
 
       const messages = [
         `Ostatnio aktywna: ${minutes} min temu ⏰`,
-        `Laura była online ${minutes} min temu 💚`,
+        `Maja była online ${minutes} min temu 💚`,
         `Aktywność: ${minutes} minut temu 📱`,
         `Ostatnia aktywność: ${minutes} min 🕐`,
         `Online ${minutes} min temu ✅`,
@@ -247,9 +236,9 @@ const RealTimeActivityWidget: React.FC = () => {
     {
       id: 'online',
       type: 'online',
-      message: isLauraOnline ? 'Laura jest teraz online 🟢' : 'Laura jest offline 🔴',
+      message: isMajaOnline ? 'Maja jest teraz online 🟢' : 'Maja jest offline 🔴',
       icon: <Wifi className="w-4 h-4" />,
-      color: isLauraOnline ? 'text-green-400' : 'text-red-400',
+      color: isMajaOnline ? 'text-green-400' : 'text-red-400',
       priority: 'high',
       probability: 0.8 // Często pokazywane
     },
@@ -279,15 +268,6 @@ const RealTimeActivityWidget: React.FC = () => {
       color: 'text-green-400',
       priority: 'high',
       probability: 0.6
-    },
-    {
-      id: 'newMessage',
-      type: 'newMessage',
-      message: getNewMessageText(),
-      icon: <MessageSquare className="w-4 h-4" />,
-      color: 'text-blue-400',
-      priority: 'medium',
-      probability: 0.8 // Często pokazywane
     },
     {
       id: 'vipUpgrade',
@@ -358,13 +338,8 @@ const RealTimeActivityWidget: React.FC = () => {
           const message = messages[nextIndex]
           isLogicallyValid = true
 
-          // Jeśli Laura jest offline, nie pokazuj powiadomień o nowych wiadomościach
-          if (!isLauraOnline && (message.type === 'newMessage')) {
-            isLogicallyValid = false
-          }
-
           // Jeśli Laura jest online, nie pokazuj "ostatnia aktywność" z dużym opóźnieniem
-          if (isLauraOnline && message.type === 'lastActive') {
+          if (isMajaOnline && message.type === 'lastActive') {
             isLogicallyValid = false
           }
 
@@ -393,17 +368,14 @@ const RealTimeActivityWidget: React.FC = () => {
             if (msg.type === 'newSubscriber') {
               return { ...msg, message: getNewSubscriberMessage() }
             }
-            if (msg.type === 'newMessage') {
-              return { ...msg, message: getNewMessageText() }
-            }
             if (msg.type === 'vipUpgrade') {
               return { ...msg, message: getVipUpgradeMessage() }
             }
             if (msg.type === 'online') {
               return {
                 ...msg,
-                message: isLauraOnline ? 'Laura jest teraz online 🟢' : 'Laura jest offline 🔴',
-                color: isLauraOnline ? 'text-green-400' : 'text-red-400'
+                message: isMajaOnline ? 'Maja jest teraz online 🟢' : 'Maja jest offline 🔴',
+                color: isMajaOnline ? 'text-green-400' : 'text-red-400'
               }
             }
             return msg
@@ -418,7 +390,7 @@ const RealTimeActivityWidget: React.FC = () => {
 
     const timeout = scheduleNextMessage()
     return () => clearTimeout(timeout)
-  }, [isVisible, isMinimized, currentMessageIndex, nextInterval, isBurstMode, burstCount, isSilentPeriod, silentDuration, isLauraOnline, lastActivityTime, messages])
+  }, [isVisible, isMinimized, currentMessageIndex, nextInterval, isBurstMode, burstCount, isSilentPeriod, silentDuration, isMajaOnline, lastActivityTime, messages])
 
   // Animacje dla komponentu
   const widgetVariants = {
@@ -507,14 +479,17 @@ const RealTimeActivityWidget: React.FC = () => {
           variants={minimizedVariants}
           animate={isMinimized ? "minimized" : "expanded"}
           className={`
-            bg-dark-800/95 backdrop-blur-sm border border-neon-pink/30
-            shadow-2xl shadow-neon-pink/20 overflow-hidden
+            glass-activity activity-border-subtle backdrop-blur-xl overflow-hidden relative
+            shadow-lg shadow-purple-500/15
             ${isMinimized
               ? 'cursor-pointer flex items-center justify-center'
               : 'min-w-[280px] max-w-[320px] md:min-w-[300px] md:max-w-[350px]'
             }
           `}
           onClick={() => isMinimized && setIsMinimized(false)}
+          style={{
+            borderRadius: isMinimized ? '50%' : '1rem',
+          }}
         >
           {isMinimized ? (
             // Minimized state - tylko ikona
@@ -530,20 +505,34 @@ const RealTimeActivityWidget: React.FC = () => {
             <div className="p-3 md:p-4">
               {/* Header z przyciskami */}
               <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <div className={`
-                    w-2 h-2 rounded-full
-                    ${isSilentPeriod
-                      ? 'bg-gray-400 animate-pulse'
-                      : isBurstMode
-                        ? 'bg-red-400 animate-ping'
-                        : 'bg-green-400 animate-pulse'
-                    }
-                  `}></div>
-                  <span className="text-xs font-semibold text-gray-300 uppercase tracking-wide">
-                    {isSilentPeriod ? 'Quiet Time' : isBurstMode ? 'High Activity' : 'Live Activity'}
-                  </span>
-                </div>
+                  <div className="flex items-center gap-2">
+                    <motion.div 
+                      className={`
+                        w-2 h-2 rounded-full
+                        ${isSilentPeriod
+                          ? 'bg-gray-400'
+                          : isBurstMode
+                            ? 'bg-red-400'
+                            : 'bg-green-400'
+                        }
+                      `}
+                      animate={
+                        isSilentPeriod
+                          ? { opacity: [0.5, 1, 0.5] }
+                          : isBurstMode
+                            ? { scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }
+                            : { opacity: [0.7, 1, 0.7] }
+                      }
+                      transition={{
+                        duration: isBurstMode ? 0.6 : 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                    <span className="text-xs font-semibold activity-header-text uppercase tracking-wide">
+                      {isSilentPeriod ? 'Quiet Time' : isBurstMode ? 'High Activity' : 'Live Activity'}
+                    </span>
+                  </div>
                 <div className="flex items-center gap-1">
                   <button
                     onClick={(e) => {
@@ -621,19 +610,26 @@ const RealTimeActivityWidget: React.FC = () => {
                   </div>
 
                   {/* Treść wiadomości */}
-                  <div className="flex-1 min-w-0">
+                  <motion.div 
+                    className="flex-1 min-w-0 activity-content-bg"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
                     <motion.p
-                      className="text-sm text-white font-medium leading-relaxed break-words"
-                      animate={currentMessage.priority === 'high' ? {
-                        textShadow: [
-                          '0 0 0 rgba(255, 255, 255, 0)',
-                          '0 0 8px rgba(255, 255, 255, 0.3)',
-                          '0 0 0 rgba(255, 255, 255, 0)'
-                        ]
-                      } : {}}
-                      transition={{ duration: 3, repeat: Infinity }}
+                      className="text-sm activity-text-enhanced font-medium leading-tight"
+                      initial={{ opacity: 0.8 }}
+                      animate={{ opacity: 1 }}
                     >
                       {currentMessage.message}
+                    </motion.p>
+                    <motion.p 
+                      className="text-xs activity-text-secondary mt-1"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      Teraz
                     </motion.p>
 
                     {/* Znacznik priorytetu */}
@@ -647,7 +643,7 @@ const RealTimeActivityWidget: React.FC = () => {
                         <span className="text-xs text-neon-pink font-medium">HOT</span>
                       </motion.div>
                     )}
-                  </div>
+                  </motion.div>
                 </motion.div>
               </AnimatePresence>
 
@@ -670,8 +666,27 @@ const RealTimeActivityWidget: React.FC = () => {
           )}
         </motion.div>
 
-        {/* Glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/20 to-neon-purple/20 rounded-2xl blur-xl -z-10 opacity-50"></div>
+        {/* Animated Rainbow Glow Effect - More Subtle */}
+        <motion.div 
+          className="absolute inset-0 rounded-2xl opacity-30 blur-lg -z-10"
+          animate={{
+            background: [
+              'linear-gradient(45deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15), rgba(251, 191, 36, 0.1))',
+              'linear-gradient(45deg, rgba(236, 72, 153, 0.15), rgba(251, 191, 36, 0.1), rgba(52, 211, 153, 0.15))',
+              'linear-gradient(45deg, rgba(251, 191, 36, 0.1), rgba(52, 211, 153, 0.15), rgba(139, 92, 246, 0.2))',
+              'linear-gradient(45deg, rgba(52, 211, 153, 0.15), rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15))',
+              'linear-gradient(45deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15), rgba(251, 191, 36, 0.1))',
+            ]
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+
+        {/* Inner Glow Effect - More Subtle */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-pink-500/5 to-orange-500/5 rounded-2xl opacity-60"></div>
       </motion.div>
     </AnimatePresence>
   )
