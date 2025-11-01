@@ -78,7 +78,7 @@ const HeroSection: React.FC = () => {
   return (
     <header
       role="banner"
-      className="relative min-h-[90vh] md:min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden py-6 sm:py-8 md:py-10 lg:py-12"
+      className="relative min-h-[85vh] sm:min-h-[80vh] md:min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden py-4 sm:py-6 md:py-8 lg:py-12"
     >
 
         {/* Reduced floating particles for better performance */}
@@ -96,7 +96,7 @@ const HeroSection: React.FC = () => {
         {/* Hero Section - Enhanced responsive layout */}
         <section
           aria-labelledby="hero-title"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 items-center mb-10 sm:mb-12 md:mb-16 lg:mb-20"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center mb-6 sm:mb-8 md:mb-12 lg:mb-20"
         >
           {/* Photo Column - Improved responsive behavior */}
           <motion.div
@@ -111,7 +111,7 @@ const HeroSection: React.FC = () => {
               <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-pink rounded-3xl blur-xl opacity-40 group-hover:opacity-60 animate-pulse-slow transition-opacity duration-500"></div>
 
               {/* Responsive photo frame with improved sizing */}
-              <div className="relative w-44 h-56 sm:w-52 sm:h-66 md:w-60 md:h-76 lg:w-64 lg:h-80 xl:w-72 xl:h-88 rounded-3xl bg-gradient-to-br from-neon-pink via-purple-500 to-neon-purple p-1.5 group-hover:scale-105 transition-all duration-500 shadow-2xl shadow-neon-pink/25">
+              <div className="relative w-36 h-48 sm:w-44 sm:h-56 md:w-52 md:h-66 lg:w-64 lg:h-80 xl:w-72 xl:h-88 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-neon-pink via-purple-500 to-neon-purple p-1 sm:p-1.5 group-hover:scale-105 transition-all duration-500 shadow-2xl shadow-neon-pink/25">
                 <div className="w-full h-full rounded-3xl bg-gradient-to-br from-dark-900 to-dark-800 flex items-center justify-center overflow-hidden relative border border-gray-700/25">
                   <video
                     src={heroVideo}
@@ -176,12 +176,12 @@ const HeroSection: React.FC = () => {
             >
               <h1
                 id="hero-title"
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold glow-text relative z-10 bg-gradient-to-r from-white via-neon-pink to-white bg-clip-text text-transparent leading-tight mb-3 sm:mb-4"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-playfair font-bold glow-text relative z-10 bg-gradient-to-r from-white via-neon-pink to-white bg-clip-text text-transparent leading-tight mb-2 sm:mb-3 md:mb-4"
               >
                 Maja Czereśnia
               </h1>
               {/* Optimized text shadow effect */}
-              <h1 className="absolute inset-0 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-neon-pink/12 blur-sm leading-tight" aria-hidden="true">
+              <h1 className="absolute inset-0 text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-playfair font-bold text-neon-pink/12 blur-sm leading-tight" aria-hidden="true">
                 Maja Czereśnia
               </h1>
 
@@ -190,7 +190,7 @@ const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.3 }}
-                className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 font-medium mt-3 sm:mt-4"
+                className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-300 font-medium mt-2 sm:mt-3"
               >
                 Zweryfikowany profil • Pełnoletnia • Dyskretna
               </motion.p>
@@ -204,18 +204,18 @@ const HeroSection: React.FC = () => {
               className="relative mb-8 sm:mb-10 md:mb-12 lg:mb-14"
             >
               {/* Section title with improved typography */}
-              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-4 sm:mb-5 md:mb-6 text-center lg:text-left">
+              <h2 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-3 sm:mb-4 md:mb-5 text-center lg:text-left">
                 Podstawowe informacje
               </h2>
 
               {/* Optimized background glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/4 via-neon-purple/4 to-green-400/4 rounded-2xl blur-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/4 via-neon-purple/4 to-green-400/4 rounded-xl sm:rounded-2xl blur-xl"></div>
 
               {/* Enhanced container with better responsive spacing */}
-              <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 bg-gradient-to-r from-dark-800/60 via-dark-700/60 to-dark-800/60 backdrop-blur-lg rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-xl shadow-neon-pink/8 rainbow-border-animated">
+              <div className="relative grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6 bg-gradient-to-r from-dark-800/60 via-dark-700/60 to-dark-800/60 backdrop-blur-lg rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-8 shadow-xl shadow-neon-pink/8 rainbow-border-animated">
                 {/* Age Card - Enhanced responsive design */}
                 <div
-                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-neon-pink/10 to-neon-pink/20 hover:bg-neon-pink/30 focus:bg-neon-pink/30 focus:ring-2 focus:ring-neon-pink/30 focus:outline-none transition-all duration-300 group cursor-pointer rainbow-border"
+                  className="flex flex-col items-center text-center p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br from-neon-pink/10 to-neon-pink/20 hover:bg-neon-pink/30 focus:bg-neon-pink/30 focus:ring-2 focus:ring-neon-pink/30 focus:outline-none transition-all duration-300 group cursor-pointer rainbow-border min-h-[60px] sm:min-h-[70px] md:min-h-[80px]"
                   role="button"
                   tabIndex={0}
                   aria-label="Wiek: 22 lata"
@@ -225,16 +225,16 @@ const HeroSection: React.FC = () => {
                     }
                   }}
                 >
-                  <div className="relative p-2 sm:p-3 md:p-3.5 rounded-full bg-gradient-to-br from-neon-pink/30 to-neon-pink/50 group-hover:from-neon-pink/40 group-hover:to-neon-pink/60 group-focus:from-neon-pink/40 group-focus:to-neon-pink/60 transition-all duration-300 shadow-lg shadow-neon-pink/25 mb-2 sm:mb-3">
-                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white group-hover:scale-110 group-focus:scale-110 transition-transform duration-300" />
+                  <div className="relative p-1.5 sm:p-2 md:p-2.5 rounded-full bg-gradient-to-br from-neon-pink/30 to-neon-pink/50 group-hover:from-neon-pink/40 group-hover:to-neon-pink/60 group-focus:from-neon-pink/40 group-focus:to-neon-pink/60 transition-all duration-300 shadow-lg shadow-neon-pink/25 mb-1 sm:mb-2">
+                    <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white group-hover:scale-110 group-focus:scale-110 transition-transform duration-300" />
                   </div>
-                  <span className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl bg-gradient-to-r from-neon-pink via-pink-400 to-neon-pink bg-clip-text text-transparent mb-1">22</span>
-                  <span className="text-xs sm:text-sm text-gray-300 font-medium">lat</span>
+                  <span className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl bg-gradient-to-r from-neon-pink via-pink-400 to-neon-pink bg-clip-text text-transparent mb-0.5 sm:mb-1">22</span>
+                  <span className="text-[10px] sm:text-xs text-gray-300 font-medium">lat</span>
                 </div>
 
                 {/* Location Card - Enhanced responsive design */}
                 <div
-                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-neon-purple/10 to-neon-purple/20 hover:bg-neon-purple/30 focus:bg-neon-purple/30 focus:ring-2 focus:ring-neon-purple/30 focus:outline-none transition-all duration-300 group cursor-pointer rainbow-border"
+                  className="flex flex-col items-center text-center p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br from-neon-purple/10 to-neon-purple/20 hover:bg-neon-purple/30 focus:bg-neon-purple/30 focus:ring-2 focus:ring-neon-purple/30 focus:outline-none transition-all duration-300 group cursor-pointer rainbow-border min-h-[60px] sm:min-h-[70px] md:min-h-[80px]"
                   role="button"
                   tabIndex={0}
                   aria-label="Lokalizacja: Polska"
@@ -244,16 +244,16 @@ const HeroSection: React.FC = () => {
                     }
                   }}
                 >
-                  <div className="relative p-2 sm:p-3 md:p-3.5 rounded-full bg-gradient-to-br from-neon-purple/30 to-neon-purple/50 group-hover:from-neon-purple/40 group-hover:to-neon-purple/60 group-focus:from-neon-purple/40 group-focus:to-neon-purple/60 transition-all duration-300 shadow-lg shadow-neon-purple/25 mb-2 sm:mb-3">
-                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white group-hover:scale-110 group-focus:scale-110 transition-transform duration-300" />
+                  <div className="relative p-1.5 sm:p-2 md:p-2.5 rounded-full bg-gradient-to-br from-neon-purple/30 to-neon-purple/50 group-hover:from-neon-purple/40 group-hover:to-neon-purple/60 group-focus:from-neon-purple/40 group-focus:to-neon-purple/60 transition-all duration-300 shadow-lg shadow-neon-purple/25 mb-1 sm:mb-2">
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white group-hover:scale-110 group-focus:scale-110 transition-transform duration-300" />
                   </div>
-                  <span className="font-bold text-sm sm:text-base md:text-lg lg:text-xl bg-gradient-to-r from-neon-purple via-blue-400 to-neon-purple bg-clip-text text-transparent mb-1">Polska</span>
-                  <span className="text-xs sm:text-sm text-gray-300 font-medium">lokalizacja</span>
+                  <span className="font-bold text-xs sm:text-sm md:text-base lg:text-lg bg-gradient-to-r from-neon-purple via-blue-400 to-neon-purple bg-clip-text text-transparent mb-0.5 sm:mb-1">Polska</span>
+                  <span className="text-[10px] sm:text-xs text-gray-300 font-medium">lokalizacja</span>
                 </div>
 
                 {/* Online Status Card - Enhanced responsive design */}
                 <div
-                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-green-400/10 to-green-400/20 hover:bg-green-400/30 focus:bg-green-400/30 focus:ring-2 focus:ring-green-400/30 focus:outline-none transition-all duration-300 group cursor-pointer rainbow-border"
+                  className="flex flex-col items-center text-center p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br from-green-400/10 to-green-400/20 hover:bg-green-400/30 focus:bg-green-400/30 focus:ring-2 focus:ring-green-400/30 focus:outline-none transition-all duration-300 group cursor-pointer rainbow-border min-h-[60px] sm:min-h-[70px] md:min-h-[80px]"
                   role="button"
                   tabIndex={0}
                   aria-label="Status: Online"
@@ -263,11 +263,11 @@ const HeroSection: React.FC = () => {
                     }
                   }}
                 >
-                  <div className="relative p-2 sm:p-3 md:p-3.5 rounded-full bg-gradient-to-br from-green-400/30 to-green-400/50 group-hover:from-green-400/40 group-hover:to-green-400/60 group-focus:from-green-400/40 group-focus:to-green-400/60 transition-all duration-300 shadow-lg shadow-green-400/25 mb-2 sm:mb-3">
-                    <Circle className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white fill-current group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 animate-pulse" />
+                  <div className="relative p-1.5 sm:p-2 md:p-2.5 rounded-full bg-gradient-to-br from-green-400/30 to-green-400/50 group-hover:from-green-400/40 group-hover:to-green-400/60 group-focus:from-green-400/40 group-focus:to-green-400/60 transition-all duration-300 shadow-lg shadow-green-400/25 mb-1 sm:mb-2">
+                    <Circle className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white fill-current group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 animate-pulse" />
                   </div>
-                  <span className="font-bold text-sm sm:text-base md:text-lg lg:text-xl bg-gradient-to-r from-green-400 via-emerald-400 to-green-400 bg-clip-text text-transparent mb-1">Online</span>
-                  <span className="text-xs sm:text-sm text-gray-300 font-medium">dostępna teraz</span>
+                  <span className="font-bold text-xs sm:text-sm md:text-base lg:text-lg bg-gradient-to-r from-green-400 via-emerald-400 to-green-400 bg-clip-text text-transparent mb-0.5 sm:mb-1">Online</span>
+                  <span className="text-[10px] sm:text-xs text-gray-300 font-medium">dostępna teraz</span>
                 </div>
               </div>
             </motion.div>
@@ -325,14 +325,14 @@ const HeroSection: React.FC = () => {
             </div>
 
             {/* Enhanced trust boosters grid with better responsive behavior */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 max-w-6xl mx-auto">
               {trustBoosters.map((booster, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 2.6 + index * 0.1 }}
-                  className="flex flex-col items-center text-center p-4 sm:p-5 md:p-6 lg:p-7 rounded-xl bg-gradient-to-br from-dark-800/60 to-dark-700/60 backdrop-blur-lg hover:border-neon-pink/40 focus:border-neon-pink/50 focus:ring-2 focus:ring-neon-pink/30 focus:outline-none transition-all duration-300 group cursor-pointer shadow-lg hover:shadow-xl hover:shadow-neon-pink/15 min-h-[120px] sm:min-h-[140px] md:min-h-[160px]"
+                  className="flex flex-col items-center text-center p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl bg-gradient-to-br from-dark-800/60 to-dark-700/60 backdrop-blur-lg hover:border-neon-pink/40 focus:border-neon-pink/50 focus:ring-2 focus:ring-neon-pink/30 focus:outline-none transition-all duration-300 group cursor-pointer shadow-lg hover:shadow-xl hover:shadow-neon-pink/15 min-h-[90px] sm:min-h-[110px] md:min-h-[130px] touch-manipulation"
                   role="button"
                   tabIndex={0}
                   aria-label={booster.ariaLabel}
@@ -343,10 +343,10 @@ const HeroSection: React.FC = () => {
                     }
                   }}
                 >
-                  <div className={`${booster.color} ${booster.bgColor} p-3 sm:p-3.5 md:p-4 rounded-full flex-shrink-0 group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 mb-3 sm:mb-4 md:mb-5 shadow-lg`}>
-                    <booster.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                  <div className={`${booster.color} ${booster.bgColor} p-2 sm:p-2.5 md:p-3 rounded-full flex-shrink-0 group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 mb-2 sm:mb-3 shadow-lg`}>
+                    <booster.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5" />
                   </div>
-                  <span className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-200 font-medium leading-relaxed group-hover:text-white group-focus:text-white transition-colors duration-300 px-2">
+                  <span className="text-[10px] sm:text-xs md:text-sm text-gray-200 font-medium leading-tight group-hover:text-white group-focus:text-white transition-colors duration-300 px-1">
                     {booster.text}
                   </span>
                 </motion.div>
@@ -354,19 +354,19 @@ const HeroSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Enhanced CTA Buttons with better responsive design */}
+            {/* Enhanced CTA Buttons with better responsive design */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="flex flex-col sm:flex-row gap-5 sm:gap-6 md:gap-8 lg:gap-10 justify-center items-center px-4"
+            className="flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8 justify-center items-center px-4"
           >
             {/* Primary CTA - Enhanced responsive design */}
             <motion.button
               onClick={() => scrollToSection('preview-gallery')}
-              whileHover={{ scale: 1.05, y: -2 }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative px-6 sm:px-8 md:px-10 lg:px-12 py-4 sm:py-5 md:py-6 rounded-full text-sm sm:text-base md:text-lg lg:text-xl font-bold flex items-center gap-3 sm:gap-4 overflow-hidden focus:outline-none focus:ring-2 focus:ring-neon-pink focus:ring-offset-2 focus:ring-offset-dark-900 min-h-[48px] sm:min-h-[56px] md:min-h-[64px] w-full sm:w-auto max-w-sm sm:max-w-none"
+              className="group relative px-6 sm:px-8 md:px-10 lg:px-12 py-3.5 sm:py-4 md:py-5 rounded-full text-sm sm:text-base md:text-lg font-bold flex items-center justify-center gap-2 sm:gap-3 overflow-hidden focus:outline-none focus:ring-2 focus:ring-neon-pink focus:ring-offset-2 focus:ring-offset-dark-900 min-h-[44px] sm:min-h-[48px] md:min-h-[52px] w-full sm:w-auto max-w-sm sm:max-w-none touch-manipulation"
               aria-label="Zobacz galerię zdjęć i filmów"
             >
               {/* Optimized animated background */}
@@ -377,9 +377,9 @@ const HeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300 scale-110"></div>
 
               {/* Content with improved responsive sizing */}
-              <div className="relative z-10 flex items-center gap-2 sm:gap-3 md:gap-4 text-white">
-                <Heart className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:animate-pulse flex-shrink-0" />
-                <span className="text-xs sm:text-sm md:text-base lg:text-lg leading-tight">Zobacz co robię za zamkniętymi drzwiami</span>
+              <div className="relative z-10 flex items-center gap-2 sm:gap-3 text-white">
+                <Heart className="w-4 h-4 sm:w-5 sm:h-5 group-hover:animate-pulse flex-shrink-0" />
+                <span className="text-xs sm:text-sm md:text-base leading-tight">Zobacz co robię za zamkniętymi drzwiami</span>
               </div>
 
               {/* Optimized shine effect */}
@@ -389,9 +389,9 @@ const HeroSection: React.FC = () => {
             {/* Secondary CTA - Enhanced responsive design */}
             <motion.button
               onClick={() => scrollToSection('social-hub')}
-              whileHover={{ scale: 1.05, y: -2 }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative px-6 sm:px-8 md:px-10 lg:px-12 py-4 sm:py-5 md:py-6 rounded-full text-sm sm:text-base md:text-lg lg:text-xl font-bold border-2 border-neon-pink text-neon-pink hover:text-white transition-all duration-500 flex items-center gap-3 sm:gap-4 overflow-hidden backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-neon-pink focus:ring-offset-2 focus:ring-offset-dark-900 min-h-[48px] sm:min-h-[56px] md:min-h-[64px] w-full sm:w-auto max-w-sm sm:max-w-none"
+              className="group relative px-6 sm:px-8 md:px-10 lg:px-12 py-3.5 sm:py-4 md:py-5 rounded-full text-sm sm:text-base md:text-lg font-bold border-2 border-neon-pink text-neon-pink hover:text-white transition-all duration-500 flex items-center justify-center gap-2 sm:gap-3 overflow-hidden backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-neon-pink focus:ring-offset-2 focus:ring-offset-dark-900 min-h-[44px] sm:min-h-[48px] md:min-h-[52px] w-full sm:w-auto max-w-sm sm:max-w-none touch-manipulation"
               aria-label="Przejdź do sekcji kontaktu i social media"
             >
               {/* Enhanced animated background fill */}
@@ -401,9 +401,9 @@ const HeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-neon-pink/12 rounded-full blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-300 scale-110"></div>
 
               {/* Content with improved responsive sizing */}
-              <div className="relative z-10 flex items-center gap-2 sm:gap-3 md:gap-4">
-                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:rotate-12 transition-transform duration-300 flex-shrink-0" />
-                <span className="text-xs sm:text-sm md:text-base lg:text-lg leading-tight">Zacznij rozmowę ze mną</span>
+              <div className="relative z-10 flex items-center gap-2 sm:gap-3">
+                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 transition-transform duration-300 flex-shrink-0" />
+                <span className="text-xs sm:text-sm md:text-base leading-tight">Zacznij rozmowę ze mną</span>
               </div>
             </motion.button>
           </motion.div>

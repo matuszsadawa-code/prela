@@ -138,7 +138,7 @@ const PreviewGallery: React.FC = () => {
   }
 
   return (
-    <section id="preview-gallery" className="py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
+    <section id="preview-gallery" className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
 
 
@@ -163,7 +163,7 @@ const PreviewGallery: React.FC = () => {
                 className="relative group cursor-pointer flex-shrink-0"
               >
                 {/* Image/Video Container */}
-                <div className="relative w-64 aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-dark-800 to-dark-700">
+                <div className="relative w-48 sm:w-56 md:w-64 aspect-[4/5] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-dark-800 to-dark-700 touch-manipulation">
                   {/* Actual Image */}
                   {item.imageUrl && (
                     <img

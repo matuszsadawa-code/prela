@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Users, Clock, UserPlus, Wifi, Crown } from 'lucide-react'
+import { X, Users, UserPlus, Wifi, BookOpen, Crown } from 'lucide-react'
 
 interface ActivityMessage {
   id: string
-  type: 'online' | 'viewers' | 'lastActive' | 'newSubscriber' | 'vipUpgrade' | 'newMessage'
+  type: 'online' | 'viewers' | 'ebookPurchase' | 'fanvueSubscription' | 'newFan' | 'fanvueSubscriptionMonths'
   message: string
   icon: React.ReactNode
   color: string
-  priority: 'low' | 'medium' | 'high' // Priorytet powiadomienia
-  probability: number // Prawdopodobieństwo wystąpienia (0-1)
+  priority: 'low' | 'medium' | 'high'
+  probability: number
 }
 
 const RealTimeActivityWidget: React.FC = () => {
@@ -76,12 +76,10 @@ const RealTimeActivityWidget: React.FC = () => {
   const getRandomName = () => allPolishNames[Math.floor(Math.random() * allPolishNames.length)]
   const getRandomCity = () => polishCities[Math.floor(Math.random() * polishCities.length)]
 
-  // Funkcja do generowania inicjałów dla avatarów
   const getInitials = (name: string) => {
     return name.split(' ').map(n => n[0]).join('').toUpperCase()
   }
 
-  // Funkcja do generowania koloru avatara na podstawie imienia
   const getAvatarColor = (name: string) => {
     const colors = [
       'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500',
@@ -91,47 +89,41 @@ const RealTimeActivityWidget: React.FC = () => {
     return colors[index]
   }
 
-  // Funkcje dla realistycznej logiki czasowej
   const getTimeBasedActivityMultiplier = () => {
     const hour = new Date().getHours()
-    // Więcej aktywności wieczorem (18-24) i w nocy (0-2)
     if ((hour >= 18 && hour <= 23) || (hour >= 0 && hour <= 2)) {
-      return 1.5 // 50% więcej aktywności
+      return 1.5
     }
-    // Mniej aktywności rano (6-12)
     if (hour >= 6 && hour <= 12) {
-      return 0.7 // 30% mniej aktywności
+      return 0.7
     }
-    // Normalna aktywność popołudniu (12-18)
     return 1.0
   }
 
   const getRandomInterval = () => {
-    const baseInterval = 30000 + Math.random() * 90000 // 30-120 sekund
+    const baseInterval = 30000 + Math.random() * 90000
     const timeMultiplier = getTimeBasedActivityMultiplier()
     return Math.floor(baseInterval / timeMultiplier)
   }
 
   const shouldTriggerBurst = () => {
-    return Math.random() < 0.05 // 5% szansy na burst aktywności (rzadziej)
+    return Math.random() < 0.05
   }
 
   const shouldTriggerSilentPeriod = () => {
     const hour = new Date().getHours()
-    // Większa szansa na ciszę rano (6-10) i późno w nocy (2-6)
     if ((hour >= 2 && hour <= 6) || (hour >= 6 && hour <= 10)) {
-      return Math.random() < 0.25 // 25% szansy
+      return Math.random() < 0.25
     }
-    return Math.random() < 0.1 // 10% szansy w innych godzinach
+    return Math.random() < 0.1
   }
 
   const getSilentPeriodDuration = () => {
     const hour = new Date().getHours()
-    // Dłuższe okresy ciszy rano i w nocy
     if ((hour >= 2 && hour <= 6) || (hour >= 6 && hour <= 10)) {
-      return 30000 + Math.random() * 60000 // 30-90 sekund
+      return 30000 + Math.random() * 60000
     }
-    return 15000 + Math.random() * 30000 // 15-45 sekund
+    return 15000 + Math.random() * 30000
   }
 
   const shouldShowMessage = (probability: number) => {
@@ -139,11 +131,9 @@ const RealTimeActivityWidget: React.FC = () => {
     return Math.random() < (probability * timeMultiplier)
   }
 
-  // Funkcja do zarządzania statusem online/offline
   const updateOnlineStatus = () => {
     const hour = new Date().getHours()
 
-    // Większe prawdopodobieństwo bycia online wieczorem i w nocy
     let onlineProbability = 0.8
     if ((hour >= 18 && hour <= 23) || (hour >= 0 && hour <= 2)) {
       onlineProbability = 0.95
@@ -161,77 +151,49 @@ const RealTimeActivityWidget: React.FC = () => {
     }
   }
 
-  // Funkcje do generowania różnorodnych tekstów wiadomości
-  const getNewSubscriberMessage = () => {
-    const name = getRandomName()
-    const city = getRandomCity()
+  const getEbookPurchaseMessage = () => {
+    const name = getRandomName();
+    const city = getRandomCity();
     const messages = [
-      `${name} z ${city} właśnie się zapisał! 🎉`,
-      `Nowy subskrybent: ${name} (${city}) 💕`,
-      `${name} dołączył do VIP z ${city}! ✨`,
-      `Witamy ${name} z ${city}! 🔥`,
-      `${name} (${city}) rozpoczął subskrypcję 💖`,
-      `Nowy fan: ${name} z ${city} 🌟`
-    ]
-    return messages[Math.floor(Math.random() * messages.length)]
-  }
+      `🔥 ${name} z ${city} zakupił e-book! Gratulacje!`, `🚀 ${name} (${city}) zainwestował w wiedzę!`, `📚 ${name} kupił przewodnik o krypto!`, `✨ Nowy czytelnik: ${name} z ${city}!`
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  };
 
-
-
-  const getVipUpgradeMessage = () => {
-    const name = getRandomName()
+  const getFanvueSubscriptionMessage = () => {
+    const name = getRandomName();
     const messages = [
-      `${name} przeszedł na VIP! 👑`,
-      `${name} wykupił dostęp Premium! 💎`,
-      `Nowy VIP: ${name} 🌟`,
-      `${name} dołączył do ekskluzywnego grona! ✨`,
-      `${name} odblokował treści VIP 🔓`,
-      `Premium upgrade: ${name} 🚀`
-    ]
-    return messages[Math.floor(Math.random() * messages.length)]
-  }
+      `💖 ${name} zasubskrybował do Fanvue! Witamy!`, `🎉 ${name} dołączył do Fanvue!`, `🌟 Nowy subskrybent: ${name}!`, `💕 ${name} został fanem!`, `🔥 ${name} wykupił dostęp Fanvue!`
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  };
+
+  const getFanvueSubscriptionMonthsMessage = () => {
+    const name = getRandomName();
+    const months = [1, 3, 6, 12];
+    const randomMonths = months[Math.floor(Math.random() * months.length)];
+    const messages = [
+      `👑 ${name} wykupił subskrypcję Fanvue na ${randomMonths} miesiące!`, `💎 ${name} subskrybuje Fanvue przez ${randomMonths} miesiące!`, `✨ ${name} wybrał plan ${randomMonths}-miesięczny Fanvue!`
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  };
+
+  const getNewFanMessage = () => {
+    const name = getRandomName();
+    const messages = [
+      `❤️ ${name} dołączył do grona fanów!`, `👋 ${name} został nowym fanem!`, `🌟 ${name} jest teraz moim fanem!`
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  };
 
   const getViewersMessage = () => {
-    const count = generateRandomViewers()
+    const count = generateRandomViewers();
     const messages = [
-      `${count} osób ogląda tę stronę teraz 👀`,
-      `Aktualnie online: ${count} fanów 🔥`,
-      `${count} użytkowników przeglądają profil 💕`,
-      `Na stronie: ${count} osób 🌟`,
-      `${count} fanów aktywnych teraz ✨`,
-      `Live: ${count} oglądających 📱`
-    ]
-    return messages[Math.floor(Math.random() * messages.length)]
-  }
+      `👀 W tej chwili profil ogląda ${count} osób.`, `🔥 Obecnie online: ${count} fanów.`, `📱 Teraz ogląda nas ${count} widzów.`
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+  };
 
-  const getLastActiveMessage = () => {
-    if (isMajaOnline) {
-      const messages = [
-        `Maja jest aktywna teraz 🟢`,
-        `Online w tej chwili ✅`,
-        `Aktywna teraz 💚`,
-        `Dostępna online 🌟`,
-        `W tej chwili online 📱`
-      ]
-      return messages[Math.floor(Math.random() * messages.length)]
-    } else {
-      const now = new Date()
-      const diffMinutes = Math.floor((now.getTime() - lastActivityTime.getTime()) / (1000 * 60))
-      const minutes = Math.max(1, diffMinutes) // Minimum 1 minuta
-
-      const messages = [
-        `Ostatnio aktywna: ${minutes} min temu ⏰`,
-        `Maja była online ${minutes} min temu 💚`,
-        `Aktywność: ${minutes} minut temu 📱`,
-        `Ostatnia aktywność: ${minutes} min 🕐`,
-        `Online ${minutes} min temu ✅`,
-        `Widziana: ${minutes} minut temu 👁️`
-      ]
-      return messages[Math.floor(Math.random() * messages.length)]
-    }
-  }
-
-  // Komunikaty z dynamicznymi wartościami, priorytetami i prawdopodobieństwami
   const [messages, setMessages] = useState<ActivityMessage[]>([
     {
       id: 'online',
@@ -240,7 +202,7 @@ const RealTimeActivityWidget: React.FC = () => {
       icon: <Wifi className="w-4 h-4" />,
       color: isMajaOnline ? 'text-green-400' : 'text-red-400',
       priority: 'high',
-      probability: 0.8 // Często pokazywane
+      probability: 0.8
     },
     {
       id: 'viewers',
@@ -249,34 +211,43 @@ const RealTimeActivityWidget: React.FC = () => {
       icon: <Users className="w-4 h-4" />,
       color: 'text-neon-pink',
       priority: 'medium',
-      probability: 0.7
+      probability: 0.9
     },
     {
-      id: 'lastActive',
-      type: 'lastActive',
-      message: getLastActiveMessage(),
-      icon: <Clock className="w-4 h-4" />,
-      color: 'text-neon-purple',
-      priority: 'low',
-      probability: 0.4 // Rzadziej pokazywane
+      id: 'ebookPurchase',
+      type: 'ebookPurchase',
+      message: getEbookPurchaseMessage(),
+      icon: <BookOpen className="w-4 h-4" />,
+      color: 'text-yellow-400',
+      priority: 'high',
+      probability: 0.4
     },
     {
-      id: 'newSubscriber',
-      type: 'newSubscriber',
-      message: getNewSubscriberMessage(),
+      id: 'fanvueSubscription',
+      type: 'fanvueSubscription',
+      message: getFanvueSubscriptionMessage(),
       icon: <UserPlus className="w-4 h-4" />,
       color: 'text-green-400',
       priority: 'high',
-      probability: 0.6
+      probability: 0.7
     },
     {
-      id: 'vipUpgrade',
-      type: 'vipUpgrade',
-      message: getVipUpgradeMessage(),
+      id: 'fanvueSubscriptionMonths',
+      type: 'fanvueSubscriptionMonths',
+      message: getFanvueSubscriptionMonthsMessage(),
       icon: <Crown className="w-4 h-4" />,
-      color: 'text-yellow-400',
+      color: 'text-purple-400',
       priority: 'high',
-      probability: 0.2 // Rzadko pokazywane
+      probability: 0.3
+    },
+    {
+      id: 'newFan',
+      type: 'newFan',
+      message: getNewFanMessage(),
+      icon: <UserPlus className="w-4 h-4" />,
+      color: 'text-pink-400',
+      priority: 'medium',
+      probability: 0.6
     }
   ])
 
@@ -339,7 +310,7 @@ const RealTimeActivityWidget: React.FC = () => {
           isLogicallyValid = true
 
           // Jeśli Laura jest online, nie pokazuj "ostatnia aktywność" z dużym opóźnieniem
-          if (isMajaOnline && message.type === 'lastActive') {
+          if (isMajaOnline && (message.type === 'online' && message.message.includes('offline'))) {
             isLogicallyValid = false
           }
 
@@ -362,14 +333,17 @@ const RealTimeActivityWidget: React.FC = () => {
             if (msg.type === 'viewers') {
               return { ...msg, message: getViewersMessage() }
             }
-            if (msg.type === 'lastActive') {
-              return { ...msg, message: getLastActiveMessage() }
+            if (msg.type === 'ebookPurchase') {
+              return { ...msg, message: getEbookPurchaseMessage() }
             }
-            if (msg.type === 'newSubscriber') {
-              return { ...msg, message: getNewSubscriberMessage() }
+            if (msg.type === 'fanvueSubscription') {
+              return { ...msg, message: getFanvueSubscriptionMessage() }
             }
-            if (msg.type === 'vipUpgrade') {
-              return { ...msg, message: getVipUpgradeMessage() }
+            if (msg.type === 'fanvueSubscriptionMonths') {
+              return { ...msg, message: getFanvueSubscriptionMonthsMessage() }
+            }
+            if (msg.type === 'newFan') {
+              return { ...msg, message: getNewFanMessage() }
             }
             if (msg.type === 'online') {
               return {
@@ -473,7 +447,7 @@ const RealTimeActivityWidget: React.FC = () => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-50 max-w-[calc(100vw-2rem)] md:max-w-none"
+        className="fixed bottom-16 sm:bottom-4 left-4 md:bottom-6 md:left-6 z-40 max-w-[calc(100vw-2rem)] md:max-w-none"
       >
         <motion.div
           variants={minimizedVariants}
@@ -569,9 +543,10 @@ const RealTimeActivityWidget: React.FC = () => {
                 >
                   {/* Avatar lub ikona */}
                   <div className="flex-shrink-0">
-                    {(currentMessage.type === 'newSubscriber' ||
-                      currentMessage.type === 'newMessage' ||
-                      currentMessage.type === 'vipUpgrade') ? (
+                    {(currentMessage.type === 'ebookPurchase' ||
+                      currentMessage.type === 'fanvueSubscription' ||
+                      currentMessage.type === 'fanvueSubscriptionMonths' ||
+                      currentMessage.type === 'newFan') ? (
                       // Avatar dla powiadomień z użytkownikami
                       <motion.div
                         animate={currentMessage.priority === 'high' ? {

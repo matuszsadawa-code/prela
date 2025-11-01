@@ -1,14 +1,12 @@
 // Social Media Links
 export const SOCIAL_LINKS = {
-  instagram: 'https://instagram.com/mayalubicz',
-  tiktok: 'https://tiktok.com/@mayalubicz',
-  twitter: 'https://twitter.com/mayalubicz',
-  telegram_free: 'https://t.me/mayalubicz_free',
-  telegram_vip: 'https://t.me/mayalubicz_vip',
-  whatsapp: 'https://wa.me/1234567890',
-  onlyfans: 'https://onlyfans.com/mayalubicz',
-  fanvue: 'https://www.fanvue.com/mayalubicz',
+  instagram: "https://instagram.com/mayalubicz",
+  tiktok: "https://tiktok.com/@mayalubicz",
+  telegram: "https://t.me/mayalubicz",
+  fanvue: "https://www.fanvue.com/mayalubicz",
 }
+
+export const EBOOK_SALE_URL = "https://example.com/ebook-maja-lubicz";
 
 // Pricing
 export const PRICING = {
@@ -39,25 +37,24 @@ export const PERSONAL_INFO = {
 
 // Subscription Features
 export const SUBSCRIPTION_FEATURES = {
-  free: [
-    'Podstawowe zdjęcia z mediów społecznościowych',
-    'Publiczne posty i stories',
-    'Ograniczone wiadomości (5/dzień)',
-    'Standardowa jakość zdjęć',
-    'Brak dostępu do ekskluzywnych treści'
-  ],
   vip: [
-    'Ekskluzywne treści premium w najwyższej jakości',
-    'Behind-the-scenes content i kulisy sesji',
-    'Treści w rozdzielczości 4K/8K bez kompresji',
-    'Wczesny dostęp do nowych materiałów',
-    'Bezpośrednie wiadomości prywatne bez limitów',
-    'Ekskluzywne live streamy dla subskrybentów',
+    'Codzienne, ekskluzywne treści foto/wideo',
+    'Girlfriend Experience (GFE)',
+    'Nieograniczony sexting i live wideo',
+    'Prywatny numer telefonu i WhatsApp',
+    'Ekskluzywne live streamy i sesje Q&A',
     'Personalizowane treści na zamówienie',
-    'Możliwośc Poznanie Się Bliżej nie tylko online',
-    'Pełny dostęp do archiwum wszystkich treści',
-    'Priorytetowe odpowiedzi w ciągu 1h',
-    'Możliwość pobierania treści offline',
-    'Powiadomienia o nowych postach'
+    'Dostęp do pełnego archiwum treści (2018-teraz)',
+    'Wczesny dostęp do nowych materiałów',
+    'Priorytetowe odpowiedzi na wiadomości',
+    'Udział w ankietach i decydowanie o treściach',
+    'Prywatne sesje 1-na-1 (za dodatkową opłatą)',
+    'Zaproszenia na ekskluzywne wydarzenia (offline)'
+  ],
+  premium: [
+    'Dostęp do wszystkich treści premium (oprócz VIP)',
+    'Codzienne zdjęcia i filmy',
+    'Szybkie odpowiedzi na wiadomości prywatne',
+    'Możliwość zamawiania treści (ograniczone)'
   ]
 }

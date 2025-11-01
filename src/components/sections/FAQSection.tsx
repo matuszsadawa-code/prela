@@ -59,7 +59,7 @@ const FAQSection: React.FC = () => {
   }
 
   return (
-    <section className="py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
       
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
@@ -69,20 +69,20 @@ const FAQSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-3 mb-6">
-            <HelpCircle className="w-8 h-8 text-neon-pink" />
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold glow-text">
+          <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <HelpCircle className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-neon-pink" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold glow-text">
               Często zadawane pytania
             </h2>
           </div>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto px-4">
             Masz pytania dotyczące Fanvue, e-booka lub moich treści? Odpowiedzi na najczęstsze pytania znajdziesz poniżej.
             Jeśli nie znalazłeś odpowiedzi, napisz do mnie bezpośrednio!
           </p>
         </motion.div>
 
         {/* FAQ Items */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {faqItems.map((item, index) => (
             <motion.div
               key={item.id}
@@ -90,13 +90,13 @@ const FAQSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-dark-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 overflow-hidden hover:border-neon-pink/30 transition-all duration-300"
+              className="bg-dark-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-700/50 overflow-hidden hover:border-neon-pink/30 transition-all duration-300"
             >
               <button
                 onClick={() => toggleItem(item.id)}
-                className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-dark-700/30 transition-colors duration-200"
+                className="w-full px-4 sm:px-5 md:px-6 py-4 sm:py-5 md:py-6 text-left flex items-center justify-between hover:bg-dark-700/30 transition-colors duration-200 touch-manipulation min-h-[60px] sm:min-h-[70px]"
               >
-                <h3 className="text-lg font-semibold text-white pr-4">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-white pr-3 sm:pr-4 leading-tight">
                   {item.question}
                 </h3>
                 <motion.div
@@ -104,7 +104,7 @@ const FAQSection: React.FC = () => {
                   transition={{ duration: 0.3 }}
                   className="flex-shrink-0"
                 >
-                  <ChevronDown className="w-6 h-6 text-neon-pink" />
+                  <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-neon-pink" />
                 </motion.div>
               </button>
 
@@ -117,9 +117,9 @@ const FAQSection: React.FC = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6">
-                      <div className="border-t border-gray-600/50 pt-4">
-                        <p className="text-gray-300 leading-relaxed">
+                    <div className="px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6">
+                      <div className="border-t border-gray-600/50 pt-3 sm:pt-4">
+                        <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
                           {item.answer}
                         </p>
                       </div>

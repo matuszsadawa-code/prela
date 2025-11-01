@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PersonalIntro from './components/sections/PersonalIntro'
 import SocialHub from './components/sections/SocialHub'
-import EbookSection from './components/sections/EbookSection'
 import PreviewGallery from './components/sections/PreviewGallery'
 import PremiumContentSection from './components/sections/PremiumContentSection'
 import PaywallSection from './components/sections/PaywallSection'
@@ -59,10 +58,9 @@ function HomePage() {
       <InteractiveHearts />
 
       {/* Główna zawartość z marginesem na górze dla paska */}
-      <div className="relative z-10 pt-20">
+      <div className="relative z-10 pt-16 sm:pt-20 md:pt-20">
         <PersonalIntro />
         <SocialHub />
-        <EbookSection />
         <VerificationSection />
         <PreviewGallery />
         <PremiumContentSection />

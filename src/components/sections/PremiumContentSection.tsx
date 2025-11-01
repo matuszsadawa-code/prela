@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
-  Zap, 
   Crown, 
-  Eye, 
   Star,
   Flame,
   Heart,
   Sparkles,
   Check,
   XIcon,
-  Calendar
+  Calendar,
+  MessageCircle,
+  Video,
+  Phone,
+  Lock,
+  Gift
 } from 'lucide-react'
 import { SUBSCRIPTION_FEATURES } from '../../utils/constants'
 
@@ -44,99 +47,99 @@ const PremiumContentSection: React.FC = () => {
     // Funkcje Platformy - Poznanie się bliżej (PIERWSZY KAFELEK)
     {
       id: 'ad-free',
-      title: 'Możliwośc Poznanie Się Bliżej nie tylko online',
-      description: 'Poznajmy się bliżej — w prywatnym kontakcie, nie tylko online.',
+      title: 'Poznaj Mnie Prawdziwie - Spotkania Na Żywo',
+      description: 'Wyjdźmy poza internet! Możliwość spotkań na żywo, realne znajomości i prawdziwe emocje. Więcej niż tylko online - doświadcz pełnej bliskości.',
       type: 'bonus',
       icon: <Heart className="w-6 h-6" />,
-      preview: 'Poznajmy się bliżej — więcej niż internet...',
+      preview: 'Spotkania na żywo i prawdziwa bliskość...',
       isHot: true,
-      value: 'Premium'
+      value: 'VIP'
     },
 
     // Ekskluzywne Treści Premium
     {
       id: 'premium-content',
-      title: 'Ekskluzywne treści premium',
-      description: 'Codzienne zdjęcia i filmy w najwyższej jakości, dostępne tylko dla subskrybentów.',
+      title: 'Ekskluzywne Treści - Codziennie Nowe',
+      description: 'Świeże, ekskluzywne zdjęcia i filmy każdego dnia! Najwyższa jakość, intymne momenty i treści, których nie zobaczysz nigdzie indziej. Twoja prywatna kolekcja rośnie każdego dnia.',
       type: 'exclusive',
-      icon: <Eye className="w-6 h-6" />,
-      preview: 'Nowe treści premium codziennie...',
+      icon: <Gift className="w-6 h-6" />,
+      preview: 'Codzienna dawka ekskluzywnych treści...',
       isHot: true,
       value: 'Codziennie'
     },
     {
       id: 'behind-scenes',
-      title: 'Behind-the-scenes content',
-      description: 'Kulisy sesji zdjęciowych, prywatne momenty i nieoficjalne materiały.',
+      title: 'Mój Prywatny Numer - Bezpośredni Kontakt',
+      description: 'Masz mój prywatny numer telefonu i WhatsApp! Rozmawiaj ze mną osobiście, kiedy chcesz. Najbardziej intymna i bezpośrednia forma kontaktu - jak z prawdziwą dziewczyną.',
       type: 'exclusive',
-      icon: <Heart className="w-6 h-6" />,
-      preview: 'Kulisy i prywatne momenty...',
+      icon: <Phone className="w-6 h-6" />,
+      preview: 'Bezpośredni kontakt w każdej chwili...',
       isNew: true,
-      value: 'Ekskluzywnie'
+      value: 'VIP'
     },
     {
       id: 'hd-content',
-      title: 'Treści w wysokiej rozdzielczości',
-      description: 'Wszystkie materiały w jakości 4K/8K bez kompresji i znaków wodnych.',
+      title: 'Sexting Premium z Live Video',
+      description: 'Gorące wiadomości z ekskluzywnymi materiałami wideo i zdjęciami na żywo! Real-time sexting dostosowany do Twoich fantazji. Najintymniejsza forma komunikacji - tylko dla Ciebie.',
       type: 'exclusive',
-      icon: <Star className="w-6 h-6" />,
-      preview: 'Najwyższa jakość obrazu...',
+      icon: <Video className="w-6 h-6" />,
+      preview: 'Live video sexting w czasie rzeczywistym...',
       isHot: true,
-      value: '4K/8K'
+      value: 'Na żywo'
     },
     {
       id: 'early-access',
-      title: 'Wczesny dostęp do treści',
-      description: 'Oglądaj nowe materiały jako pierwszy, przed ich publikacją.',
+      title: 'Girlfriend Experience - Prawdziwa Relacja',
+      description: 'Autentyczna relacja jak z prawdziwą dziewczyną! Codzienne rozmowy, zainteresowanie Twoim życiem, wspólne chwile i prawdziwe emocjonalne połączenie. Doświadcz pełni GFE.',
       type: 'exclusive',
-      icon: <Zap className="w-6 h-6" />,
-      preview: 'Pierwszy dostęp do nowości...',
+      icon: <Sparkles className="w-6 h-6" />,
+      preview: 'Prawdziwa relacja pełna emocji...',
       isNew: true,
-      value: 'Priorytet'
+      value: 'GFE'
     },
 
     // Interakcja Premium
     {
       id: 'direct-messages',
-      title: 'Bezpośrednie wiadomości prywatne',
-      description: 'Nieograniczona komunikacja prywatna z szybkimi odpowiedziami.',
+      title: 'Nieograniczona Prywatna Komunikacja',
+      description: 'Piszę do Ciebie sama, zawsze i wszędzie! Nieograniczone wiadomości, szybkie odpowiedzi i autentyczna rozmowa. Każda wiadomość to osobista uwaga tylko dla Ciebie.',
       type: 'interaction',
-      icon: <Heart className="w-6 h-6" />,
-      preview: 'Prywatne rozmowy bez limitów...',
+      icon: <MessageCircle className="w-6 h-6" />,
+      preview: 'Autentyczne wiadomości bezpośrednio ode mnie...',
       isHot: true,
-      value: 'Bez limitów'
+      value: '24/7'
     },
     {
       id: 'live-streams',
-      title: 'Ekskluzywne live streamy',
-      description: 'Prywatne transmisje na żywo tylko dla subskrybentów z interakcją.',
+      title: 'Ekskluzywne Live Streamy - Tylko Dla Ciebie',
+      description: 'Prywatne transmisje na żywo tylko dla moich subskrybentów! Interaktywne sesje, gdzie jesteś w centrum uwagi. Real-time show dostosowany do Twoich preferencji.',
       type: 'interaction',
-      icon: <Sparkles className="w-6 h-6" />,
-      preview: 'Live streamy tylko dla Ciebie...',
+      icon: <Video className="w-6 h-6" />,
+      preview: 'Prywatne live show specjalnie dla Ciebie...',
       isNew: true,
-      value: 'Interaktywne'
+      value: 'Live'
     },
     {
       id: 'custom-requests',
-      title: 'Personalizowane treści',
-      description: 'Możliwość zamówienia treści według Twoich preferencji i pomysłów.',
+      title: 'Treści Na Twoje Zamówienie',
+      description: 'Spełniam Twoje fantazje! Zamów personalizowane zdjęcia, filmy i treści dokładnie według Twoich preferencji. Każda prośba to wyjątkowa okazja do stworzenia czegoś specjalnego dla Ciebie.',
       type: 'interaction',
       icon: <Crown className="w-6 h-6" />,
-      preview: 'Treści szyte na miarę...',
+      preview: 'Personalizowane treści na Twoje zamówienie...',
       isHot: true,
-      value: 'Na zamówienie'
+      value: 'Custom'
     },
 
     // Funkcje Platformy - Archiwum
     {
       id: 'archive-access',
-      title: 'Pełny dostęp do archiwum',
-      description: 'Nieograniczony dostęp do wszystkich wcześniejszych treści i materiałów.',
+      title: 'Nieograniczone Archiwum - Cała Historia',
+      description: 'Masz dostęp do całej mojej historii treści! Tysiące zdjęć, setki filmów - wszystko w jednym miejscu. Od pierwszych dni do teraz - pełna kolekcja tylko dla Ciebie.',
       type: 'bonus',
-      icon: <Star className="w-6 h-6" />,
-      preview: 'Cała historia treści...',
+      icon: <Lock className="w-6 h-6" />,
+      preview: 'Cała kolekcja treści w jednym miejscu...',
       isNew: true,
-      value: 'Kompletne'
+      value: 'Pełne'
     }
   ]
 
@@ -244,7 +247,7 @@ const PremiumContentSection: React.FC = () => {
   }
 
   return (
-    <section className="py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
 
       <div className="container mx-auto relative z-10">
         {/* Header */}
@@ -262,7 +265,7 @@ const PremiumContentSection: React.FC = () => {
           
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-orange-400 bg-clip-text text-transparent">
-              BENEFITY SUBSKRYPCJI FANVUE
+              BENEFITY SUBSKRYBENTA
             </span>
             <br />
           </h2>
@@ -280,7 +283,7 @@ const PremiumContentSection: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
         >
           <AnimatePresence mode="wait">
             {filteredItems.map((item) => (
@@ -295,7 +298,7 @@ const PremiumContentSection: React.FC = () => {
                 }}
                 className="group relative"
               >
-                <div className={`relative p-6 rounded-2xl bg-gradient-to-br ${getTypeColor(item.type)} backdrop-blur-xl transition-all duration-500 hover:transform hover:scale-[1.02] magnetic-hover rainbow-border-animated`}>
+                <div className={`relative p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br ${getTypeColor(item.type)} backdrop-blur-xl transition-all duration-500 hover:transform hover:scale-[1.02] magnetic-hover rainbow-border-animated touch-manipulation`}>
                   {/* Badges */}
                   <div className="flex items-center gap-2 mb-4">
                     {item.isNew && (
@@ -318,9 +321,9 @@ const PremiumContentSection: React.FC = () => {
                         {item.icon}
                       </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                      <p className="text-gray-300 text-sm leading-relaxed">{item.description}</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-2">{item.title}</h3>
+                      <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">{item.description}</p>
                     </div>
                   </div>
 

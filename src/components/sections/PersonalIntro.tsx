@@ -52,7 +52,7 @@ const PersonalIntro: React.FC = () => {
   ]
 
   return (
-    <section className="py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
       
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -104,12 +104,12 @@ const PersonalIntro: React.FC = () => {
                 </div>
               </motion.div>
               
-              <motion.div variants={itemVariants} className="space-y-6 text-lg text-gray-300">
-                <div className="flex items-start gap-4">
+              <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-gray-300">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <motion.div
-                    className="relative p-3 rounded-full glass-crypto backdrop-blur-md"
+                    className="relative p-2 sm:p-3 rounded-full glass-crypto backdrop-blur-md flex-shrink-0"
                     whileHover={{ 
-                      scale: 1.1, 
+                      scale: 1.05, 
                       rotate: 360,
                       boxShadow: "0 0 30px rgba(255, 79, 216, 0.4)"
                     }}
@@ -117,49 +117,49 @@ const PersonalIntro: React.FC = () => {
                   >
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-pink/30 to-purple-500/30 blur-sm animate-pulse"></div>
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-cyan-400/20 blur-md"></div>
-                    <Cpu className="w-8 h-8 text-cyan-400 relative z-10 drop-shadow-lg" style={{filter: 'drop-shadow(0 0 8px rgba(34, 211, 238, 0.6))'}} />
+                    <Cpu className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cyan-400 relative z-10 drop-shadow-lg" style={{filter: 'drop-shadow(0 0 8px rgba(34, 211, 238, 0.6))'}} />
                   </motion.div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-cyan-400 mb-2" style={{filter: 'drop-shadow(0 0 6px rgba(34, 211, 238, 0.5))'}}>STUDENTKA BLOCKCHAIN</h3>
-                    <p>Studiuję technologie blockchain na jednej z najlepszych uczelni w Polsce. Dzień spędzam nad kodowaniem, ale wieczory... to już inna historia.</p>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-cyan-400 mb-1 sm:mb-2" style={{filter: 'drop-shadow(0 0 6px rgba(34, 211, 238, 0.5))'}}>STUDENTKA BLOCKCHAIN</h3>
+                    <p className="leading-relaxed">Studiuję technologie blockchain na jednej z najlepszych uczelni w Polsce. Dzień spędzam nad kodowaniem, ale wieczory... to już inna historia.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <motion.div
-                    className="relative p-3 rounded-full glass-trading backdrop-blur-md"
+                    className="relative p-2 sm:p-3 rounded-full glass-trading backdrop-blur-md flex-shrink-0"
                     whileHover={{ 
-                      scale: 1.1, 
+                      scale: 1.05, 
                       rotate: 360,
                       boxShadow: "0 0 30px rgba(201, 182, 255, 0.4)"
                     }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-neon-pink/20 blur-sm"></div>
-                    <TrendingUp className="w-8 h-8 text-purple-400 relative z-10" />
+                    <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-purple-400 relative z-10" />
                   </motion.div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-purple-400 mb-2" style={{filter: 'drop-shadow(0 0 6px rgba(168, 85, 247, 0.5))'}}>FANKA CRYPTO & TRADINGU</h3>
-                    <p>Pasjonuję się kryptowalutami i tradingiem. Moja pewność siebie w inwestycjach może być... zaraźliwa.</p>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-purple-400 mb-1 sm:mb-2" style={{filter: 'drop-shadow(0 0 6px rgba(168, 85, 247, 0.5))'}}>FANKA CRYPTO & TRADINGU</h3>
+                    <p className="leading-relaxed">Pasjonuję się kryptowalutami i tradingiem. Moja pewność siebie w inwestycjach może być... zaraźliwa.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <motion.div
-                    className="relative p-3 rounded-full glass-nsfw backdrop-blur-md"
+                    className="relative p-2 sm:p-3 rounded-full glass-nsfw backdrop-blur-md flex-shrink-0"
                     whileHover={{ 
-                      scale: 1.1, 
+                      scale: 1.05, 
                       rotate: 360,
                       boxShadow: "0 0 30px rgba(236, 72, 153, 0.4)"
                     }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500/20 to-neon-pink/20 blur-sm"></div>
-                    <Zap className="w-8 h-8 text-pink-400 relative z-10" />
+                    <Zap className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-pink-400 relative z-10" />
                   </motion.div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-pink-400 mb-2" style={{filter: 'drop-shadow(0 0 6px rgba(244, 114, 182, 0.5))'}}>AKTYWNA I SUMIENNA</h3>
-                    <p>Codziennie aktywna, zawsze odpowiadam na wiadomości. Moi fani wiedzą, że mogą na mnie liczyć.</p>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-pink-400 mb-1 sm:mb-2" style={{filter: 'drop-shadow(0 0 6px rgba(244, 114, 182, 0.5))'}}>AKTYWNA I SUMIENNA</h3>
+                    <p className="leading-relaxed">Codziennie aktywna, zawsze odpowiadam na wiadomości. Moi fani wiedzą, że mogą na mnie liczyć.</p>
                   </div>
                 </div>
               </motion.div>
@@ -168,7 +168,7 @@ const PersonalIntro: React.FC = () => {
             {/* Stats */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 relative"
+              className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-6 sm:pt-8 relative"
               style={{
                 borderTop: '1px solid transparent',
                 backgroundImage: 'linear-gradient(90deg, rgba(52, 211, 153, 0.3), rgba(6, 182, 212, 0.4), rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.3))',
@@ -208,13 +208,13 @@ const PersonalIntro: React.FC = () => {
                     </div>
                   </motion.div>
                 </div>
-                <div className="text-3xl font-bold mb-2 drop-shadow-lg animate-pulse" style={{
+                <div className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 drop-shadow-lg animate-pulse" style={{
                   background: 'linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   textShadow: '0 0 15px rgba(236, 72, 153, 0.6), 0 0 30px rgba(147, 51, 234, 0.4)'
                 }}>25</div>
-                <div className="text-sm text-gray-400 font-medium group-hover:text-pink-400 transition-colors duration-300">Wiek</div>
+                <div className="text-xs sm:text-sm text-gray-400 font-medium group-hover:text-pink-400 transition-colors duration-300">Wiek</div>
               </div>
               <div className="text-center group">
                 <div className="flex items-center justify-center mb-3">
@@ -245,14 +245,14 @@ const PersonalIntro: React.FC = () => {
                     </div>
                   </motion.div>
                 </div>
-                <div className="text-3xl font-bold mb-2 drop-shadow-lg animate-pulse" style={{
+                <div className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 drop-shadow-lg animate-pulse" style={{
                   background: 'linear-gradient(45deg, #22c55e, #10b981, #14b8a6)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   textShadow: '0 0 15px rgba(34, 197, 94, 0.6), 0 0 30px rgba(16, 185, 129, 0.4)',
                   animationDelay: '0.5s'
                 }}>56kg</div>
-                <div className="text-sm text-gray-400 font-medium group-hover:text-green-400 transition-colors duration-300">Waga</div>
+                <div className="text-xs sm:text-sm text-gray-400 font-medium group-hover:text-green-400 transition-colors duration-300">Waga</div>
               </div>
               <div className="text-center group">
                 <div className="flex items-center justify-center mb-3">
@@ -283,14 +283,14 @@ const PersonalIntro: React.FC = () => {
                     </div>
                   </motion.div>
                 </div>
-                <div className="text-3xl font-bold mb-2 drop-shadow-lg animate-pulse" style={{
+                <div className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 drop-shadow-lg animate-pulse" style={{
                   background: 'linear-gradient(45deg, #f97316, #ef4444, #ec4899)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   textShadow: '0 0 15px rgba(249, 115, 22, 0.6), 0 0 30px rgba(239, 68, 68, 0.4)',
                   animationDelay: '1s'
                 }}>170cm</div>
-                <div className="text-sm text-gray-400 font-medium group-hover:text-orange-400 transition-colors duration-300">Wzrost</div>
+                <div className="text-xs sm:text-sm text-gray-400 font-medium group-hover:text-orange-400 transition-colors duration-300">Wzrost</div>
               </div>
               <div className="text-center group">
                 <div className="flex items-center justify-center mb-3">
@@ -322,7 +322,7 @@ const PersonalIntro: React.FC = () => {
                   </motion.div>
                 </div>
                 <motion.div 
-                  className="text-3xl font-bold mb-2 drop-shadow-lg"
+                  className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 drop-shadow-lg"
                   animate={{ 
                     textShadow: [
                       "0 0 15px rgba(147, 51, 234, 0.6)",
@@ -345,7 +345,7 @@ const PersonalIntro: React.FC = () => {
                 >
                   WWA
                 </motion.div>
-                <div className="text-sm text-gray-400 font-medium group-hover:text-purple-400 transition-colors duration-300">Lokalizacja</div>
+                <div className="text-xs sm:text-sm text-gray-400 font-medium group-hover:text-purple-400 transition-colors duration-300">Lokalizacja</div>
               </div>
             </motion.div>
 
@@ -365,14 +365,14 @@ const PersonalIntro: React.FC = () => {
               <div className="absolute -top-2 left-0 right-0 h-4 bg-gradient-to-r from-transparent via-gold/20 to-transparent blur-sm"></div>
        
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                 {trustCertificates.map((certificate, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                    className="flex flex-col items-center text-center p-3 md:p-4 rounded-xl bg-gradient-to-br from-dark-800/80 to-dark-700/80 backdrop-blur-xl hover:border-gold/60 transition-all duration-500 group cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-gold/25 min-h-[100px] md:min-h-[120px] relative overflow-hidden"
+                    className="flex flex-col items-center text-center p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br from-dark-800/80 to-dark-700/80 backdrop-blur-xl hover:border-gold/60 transition-all duration-500 group cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-gold/25 min-h-[85px] sm:min-h-[100px] md:min-h-[120px] relative overflow-hidden touch-manipulation"
                     role="button"
                     tabIndex={0}
                     aria-label={certificate.ariaLabel}
@@ -389,7 +389,7 @@ const PersonalIntro: React.FC = () => {
                     {/* Content wrapper with higher z-index */}
                     <div className="relative z-10 flex flex-col items-center w-full h-full">
                     <div 
-                      className={`${certificate.color} ${certificate.bgColor} p-2.5 md:p-3 rounded-full flex-shrink-0 group-hover:scale-110 transition-transform duration-300 mb-2 md:mb-3 shadow-lg`}
+                      className={`${certificate.color} ${certificate.bgColor} p-2 sm:p-2.5 md:p-3 rounded-full flex-shrink-0 group-hover:scale-110 transition-transform duration-300 mb-1.5 sm:mb-2 md:mb-3 shadow-lg`}
                       style={
                         certificate.text === "Bezpieczne Płatności" 
                           ? {
@@ -399,9 +399,9 @@ const PersonalIntro: React.FC = () => {
                           : {}
                       }
                     >
-                      <certificate.icon className="w-4 h-4 md:w-5 md:h-5" />
+                      <certificate.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                     </div>
-                    <span className="text-xs md:text-sm text-gray-200 font-medium leading-relaxed group-hover:text-white transition-colors duration-300 px-1">
+                    <span className="text-[10px] sm:text-xs md:text-sm text-gray-200 font-medium leading-tight group-hover:text-white transition-colors duration-300 px-1">
                       {certificate.text}
                     </span>
                     </div>

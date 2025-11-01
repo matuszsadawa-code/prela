@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative mt-16 py-8 px-4 md:px-6 lg:px-8"
+      className="relative mt-16 py-8 px-4 md:px-6 lg:px-8 pb-20 sm:pb-8"
     >
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">

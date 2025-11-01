@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Instagram, Twitter, Facebook, ArrowUpRight, Star } from 'lucide-react'
+import { Instagram, MessageCircle, ArrowUpRight, Star } from 'lucide-react'
 import { SOCIAL_LINKS } from '../../utils/constants'
 
 interface SocialLink {
@@ -39,21 +39,21 @@ const SocialHub: React.FC = () => {
       specialBadge: ''
     },
     {
-      id: 'twitter',
-      name: 'X (Twitter)',
-      icon: <Twitter className="w-8 h-8" />,
-      description: 'Mój profil na X.',
-      preview: 'Mój profil na X.',
-      url: SOCIAL_LINKS.twitter,
+      id: 'telegram',
+      name: 'Telegram',
+      icon: <MessageCircle className="w-8 h-8" />,
+      description: 'Mój profil na Telegram.',
+      preview: 'Mój profil na Telegram.',
+      url: SOCIAL_LINKS.telegram,
       specialBadge: ''
     },
     {
-      id: 'facebook',
-      name: 'Facebook',
-      icon: <Facebook className="w-8 h-8" />,
-      description: 'Mój profil na Facebooku',
-      preview: 'Mój profil na Facebooku',
-      url: 'https://facebook.com/mayalubicz',
+      id: 'fanvue',
+      name: 'Fanvue',
+      icon: <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg">FV</div>,
+      description: 'Mój profil na Fanvue',
+      preview: 'Mój profil na Fanvue',
+      url: SOCIAL_LINKS.fanvue,
       specialBadge: ''
     },
   ]
@@ -76,7 +76,7 @@ const SocialHub: React.FC = () => {
   }
 
   return (
-    <section id="social-hub" className="py-20 px-4 relative overflow-hidden">
+    <section id="social-hub" className="py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
 
 
@@ -97,7 +97,7 @@ const SocialHub: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6"
           >
                 {socialMediaLinks.map((link, index) => (
                   <motion.div
@@ -110,12 +110,12 @@ const SocialHub: React.FC = () => {
                   >
                     {/* Enhanced Card - Updated to match new sections */}
                     <div className={`
-                      relative p-8 rounded-2xl transition-all duration-500 text-center
+                      relative p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl transition-all duration-500 text-center
                       bg-dark-800/80 backdrop-blur-xl
                       social-card-rainbow-border social-card-glow-effect
-                      scale-105 shadow-2xl
-                      ${hoveredCard === link.id ? 'scale-110 shadow-3xl' : ''}
-                      transform-gpu
+                      shadow-xl sm:shadow-2xl
+                      ${hoveredCard === link.id ? 'scale-105 shadow-3xl' : ''}
+                      transform-gpu touch-manipulation
                     `}>
                       {/* Special Badge */}
                       {link.specialBadge && (
@@ -132,9 +132,9 @@ const SocialHub: React.FC = () => {
 
                       {/* Enhanced Icon without background */}
                       <motion.div
-                        className="mb-6 flex items-center justify-center mx-auto"
+                        className="mb-4 sm:mb-5 md:mb-6 flex items-center justify-center mx-auto"
                         whileHover={{
-                          scale: 1.15,
+                          scale: 1.1,
                           rotate: [0, -5, 5, 0]
                         }}
                         transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
@@ -144,9 +144,9 @@ const SocialHub: React.FC = () => {
                             ? 'text-pink-400'
                             : link.id === 'tiktok'
                               ? 'text-white'
-                              : link.id === 'twitter'
-                                ? 'text-blue-400'
-                                : 'text-blue-400'
+                              : link.id === 'telegram'
+                                ? 'text-sky-400'
+                                : 'text-white'
                           }
                         `}>
                           {link.icon}
@@ -154,12 +154,12 @@ const SocialHub: React.FC = () => {
                       </motion.div>
 
                       {/* Content */}
-      <h3 className="text-2xl font-bold text-white mb-3 font-playfair">{link.name}</h3>
+      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 font-playfair">{link.name}</h3>
       {/* Preview Quote - Always Visible */}
-                      <div className={`p-4 rounded-xl mb-4 ${
+                      <div className={`p-3 sm:p-4 rounded-lg sm:rounded-xl mb-3 sm:mb-4 ${
                         'bg-gradient-to-r from-black/20 to-black/10 rainbow-border-subtle'
                       }`}>
-                        <p className={`text-sm italic leading-relaxed ${'text-neon-pink'}`}>"{link.preview}"</p>
+                        <p className={`text-xs sm:text-sm italic leading-relaxed ${'text-neon-pink'}`}>"{link.preview}"</p>
                       </div>
 
                       {/* Arrow link button */}
@@ -176,9 +176,9 @@ const SocialHub: React.FC = () => {
                             ? 'bg-pink-500/20 text-pink-400 hover:bg-pink-500/30'
                             : link.id === 'tiktok'
                               ? 'bg-pink-500/20 text-white hover:bg-pink-500/30'
-                              : link.id === 'twitter'
-                                ? 'bg-blue-500/20 text-blue-400 hover:bg-blue-500/30'
-                                : 'bg-blue-600/20 text-blue-400 hover:bg-blue-600/30'
+                              : link.id === 'telegram'
+                                ? 'bg-sky-500/20 text-sky-400 hover:bg-sky-500/30'
+                                : 'bg-pink-500/20 text-white hover:bg-pink-500/30'
                           }
                         `}
                         onClick={() => window.open(link.url, '_blank')}
@@ -198,8 +198,8 @@ const SocialHub: React.FC = () => {
                         background: `linear-gradient(135deg, ${
                           link.id === 'instagram' ? '#E4405F, #F56040' :
                           link.id === 'tiktok' ? '#FF0050, #00F2EA' :
-                          link.id === 'twitter' ? '#1DA1F2, #14171A' :
-                          '#4267B2, #898F9C'
+                          link.id === 'telegram' ? '#0088cc, #0088cc' :
+                          '#E91E63, #9C27B0'
                         })`
                       }}
                     />

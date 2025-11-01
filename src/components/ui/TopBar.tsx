@@ -1,14 +1,39 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { User, CheckCircle } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { User, CheckCircle, ArrowRight, BookOpen } from 'lucide-react'
+import { trackCTAClick } from '../../utils/analytics'
+import { EBOOK_SALE_URL } from '../../utils/constants'
 
-const TopBar: React.FC = () => {
+interface TopBarProps {
+  showEbookCTA?: boolean;
+}
+
+const TopBar: React.FC<TopBarProps> = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) { // Show CTA after scrolling 100px
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleBuyClick = () => {
+    trackCTAClick('ebook_buy', 'top_bar');
+    window.open(EBOOK_SALE_URL, '_blank');
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:py-3 md:px-6 lg:px-8"
+      className="fixed top-0 left-0 right-0 z-50 py-3 px-4 sm:py-3 md:px-6 lg:px-8"
     >
       {/* Enhanced Glassmorphism background with better mobile visibility */}
       <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-purple-500/10 to-neon-pink/10 backdrop-blur-xl rainbow-border-subtle"></div>
@@ -68,8 +93,35 @@ const TopBar: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-gold/20 via-neon-pink/20 to-purple-400/20 blur-xl opacity-50 -z-10"></div>
           </motion.div>
 
-          {/* Right side - Spacer to balance layout */}
-          <div className="flex-shrink-0 w-16 sm:w-20 md:w-24"></div>
+          {/* Right side - Ebook CTA (mobile only, visible on scroll) */}
+          <AnimatePresence>
+            {scrolled && (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+                className="lg:hidden flex-shrink-0"
+              >
+                <motion.button
+                  onClick={handleBuyClick}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-bold shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 flex items-center gap-1"
+                  aria-label="Kup teraz e-book - mobilny CTA w TopBar"
+                >
+                  <BookOpen className="w-3 h-3" />
+                  <span>E-book</span>
+                  <ArrowRight className="w-3 h-3" />
+                </motion.button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {/* Spacer if Ebook CTA is hidden to maintain layout */}
+          {!scrolled && <div className="flex-shrink-0 w-16 sm:w-20 md:w-24 lg:hidden"></div>}
+
+          {/* Right side - Spacer to balance layout (desktop) */}
+          <div className="flex-shrink-0 w-16 sm:w-20 md:w-24 hidden lg:block"></div>
         </div>
 
         {/* Decorative elements */}
