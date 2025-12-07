@@ -33,7 +33,7 @@ export const PERSONAL_INFO = {
   name: 'Maja',
   age: 22,
   location: 'Warszawa',
-  profession: 'Studentka Blockchain',
+  profession: 'Content Creator & Blockchain Enthusiast',
   onlyfans_rank: 'Online',
 }
 
@@ -44,18 +44,18 @@ export const SUBSCRIPTION_FEATURES = {
     'Stories i Updates'
   ],
   vip: [
-    'Nielimitowane treści +18 (foto + video)',
-    'Prywatne DM - piszę sama!',
-    'Live Video Sexting',
-    'Custom Content na zamówienie',
-    'GFE (Girlfriend Experience)',
+    'Ekskluzywne treści premium (foto + video)',
+    'Prywatne wiadomości - bezpośredni kontakt',
+    'Live Sessions & Video Chats',
+    'Spersonalizowane porady i wsparcie',
+    'Dostęp do prywatnej społeczności VIP',
     '🎁 BONUS: Darmowy Crypto E-book'
   ],
   diamond: [
     'Wszystko z VIP Access',
     'Priorytetowe odpowiedzi',
-    'Ekskluzywne live streamy',
-    'Mój prywatny numer WhatsApp',
-    'Możliwość spotkań IRL (Warszawa)'
+    'Ekskluzywne live streamy 1-on-1',
+    'Dedykowany kanał wsparcia',
+    'Możliwość umówienia konsultacji 1-1'
   ]
 }

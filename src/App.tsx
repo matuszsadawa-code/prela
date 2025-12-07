@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PersonalIntro from './components/sections/PersonalIntro'
 import SocialHub from './components/sections/SocialHub'
-import PreviewGallery from './components/sections/PreviewGallery'
+// import PreviewGallery from './components/sections/PreviewGallery' // Hidden per user request
 import CryptoEbookSection from './components/sections/CryptoEbookSection'
 import PremiumContentSection from './components/sections/PremiumContentSection'
-import PaywallSection from './components/sections/PaywallSection'
+// import PaywallSection from './components/sections/PaywallSection' // Temporarily hidden for Stripe compliance
 import FAQSection from './components/sections/FAQSection'
 import StickyCTA from './components/sections/StickyCTA'
 import Footer from './components/sections/Footer'
@@ -77,9 +77,9 @@ function HomePage() {
         <SocialHub />
         <CryptoEbookSection />
         <VerificationSection />
-        <PreviewGallery />
+        {/* <PreviewGallery /> */} {/* Hidden per user request */}
         <PremiumContentSection />
-        <PaywallSection />
+        {/* <PaywallSection /> */} {/* Temporarily hidden for Stripe compliance */}
         <TestimonialsSection />
         <FAQSection />
         <StickyCTA />

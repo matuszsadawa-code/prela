@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import {
     TrendingUp,
     Zap,
-    Check,
     ArrowRight,
     Star,
     Users,
@@ -116,7 +115,7 @@ const CryptoEbookSection: React.FC = () => {
                                     <div>
                                         <h3 className="text-2xl md:text-3xl font-bold text-white">Trading Lewarowany: Od Zera do Mistrza</h3>
                                         <p className="mt-2 text-gray-300 text-sm md:text-base">
-                                            Poznaj profesjonalne metody tradingu wykorzystywane przez największych graczy rynku. Smart Money Concept i Fair Value Gaps to strategie, które odróżniają profesjonalistów od amatorów.
+                                            Poznaj Smart Money Concept i Fair Value Gaps - strategie profesjonalistów rynku crypto.
                                         </p>
                                     </div>
                                     <div className="flex items-center">
@@ -148,69 +147,6 @@ const CryptoEbookSection: React.FC = () => {
                                     ))}
                                 </div>
 
-                                {/* Why it works - Advanced concepts */}
-                                <motion.div
-                                    data-testid="why-it-works"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.3 }}
-                                    className="mt-8 rounded-2xl bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-4 md:p-5 border border-purple-500/30 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300"
-                                    aria-label="Dlaczego te metody działają"
-                                >
-                                    <h4 className="text-white text-base md:text-lg font-semibold bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">Dlaczego Smart Money i FVG to przyszłość tradingu</h4>
-                                    <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                        {[
-                                            { icon: <Brain className="w-5 h-5 text-purple-400 flex-shrink-0" />, text: 'Działasz w zgodzie z wielkim kapitałem – widzisz ruchy „smart money" zanim rynek zareaguje.' },
-                                            { icon: <Target className="w-5 h-5 text-pink-400 flex-shrink-0" />, text: 'FVG to nieefektywności cenowe dające przewagę statystyczną i precyzyjne entry points.' },
-                                            { icon: <Shield className="w-5 h-5 text-blue-400 flex-shrink-0" />, text: 'Minimalizujesz ryzyko likwidacji dzięki regułom zarządzania pozycją i dźwignią.' }
-                                        ].map((item, idx) => (
-                                            <motion.div
-                                                key={idx}
-                                                whileHover={{ scale: 1.02 }}
-                                                className="flex items-start gap-2 p-3 rounded-lg bg-black/20 hover:bg-black/30 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300"
-                                            >
-                                                {item.icon}
-                                                <p className="text-sm text-gray-200">{item.text}</p>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                </motion.div>
-
-                                {/* What you'll learn - Comprehensive breakdown */}
-                                <motion.div
-                                    data-testid="learning-outcomes"
-                                    className="mt-8 rounded-2xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 p-4 md:p-5 border border-pink-500/30 backdrop-blur-sm hover:border-pink-500/50 transition-all duration-300"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.4 }}
-                                    aria-label="Czego się nauczysz"
-                                >
-                                    <h4 className="text-white text-base md:text-lg font-semibold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent mb-3">Co dokładnie zdobędziesz</h4>
-                                    <div className="space-y-2">
-                                        {[
-                                            'Identyfikacja Order Blocks i Breaker Blocks na wykresach real-time',
-                                            'Rozpoznawanie Liquidity Sweeps i Stop Hunt Patterns',
-                                            'Mapowanie Fair Value Gaps (FVG) dla high-probability setups',
-                                            'Zaawansowane techniki zarządzania dźwignią (leverage management)',
-                                            'Strategie scalowania pozycji (pyramiding) i exit strategies',
-                                            'Psychologia tradingu: kontrola emocji na rynku lewarowanym',
-                                            'Case studies: 10+ praktycznych przykładów z BTC, ETH i altcoinów',
-                                            'Checklisty pre-trade i risk management frameworks'
-                                        ].map((item, idx) => (
-                                            <motion.div
-                                                key={idx}
-                                                whileHover={{ x: 4 }}
-                                                className="flex items-start gap-2 text-gray-200 text-sm"
-                                            >
-                                                <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                                                <span>{item}</span>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                </motion.div>
-
                                 {/* Social Proof: Stats */}
                                 <motion.div
                                     data-testid="social-proof-stats"
@@ -241,49 +177,13 @@ const CryptoEbookSection: React.FC = () => {
                                     ))}
                                 </motion.div>
 
-                                {/* Social Proof: Testimonials */}
-                                <motion.div
-                                    className="mt-6"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.5 }}
-                                >
-                                    <h4 className="text-white text-sm font-semibold mb-3 bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">Co mówią czytelnicy</h4>
-                                    <div
-                                        data-testid="social-proof-testimonials"
-                                        className="flex gap-4 overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-3 sm:overflow-visible pb-2"
-                                        aria-label="Opinie czytelników — przewijane na urządzeniach mobilnych"
-                                    >
-                                        {[
-                                            { name: 'Piotr K.', text: 'Wreszcie zrozumiałem SMC! FVG dały mi przewagę, którą czułem na rynku. Pierwszy tydzień: +15% ROI.' },
-                                            { name: 'Anna M.', text: 'Praktyczne podejście bez teorii lania wody. Order blocks zmieniły moje entry points o 180°.' },
-                                            { name: 'Tomasz W.', text: 'Najlepsze €50 w krypto jakie wydałem. Risk management uratował mnie przed 3 likwidacjami!' }
-                                        ].map((opinion, idx) => (
-                                            <motion.div
-                                                key={idx}
-                                                whileHover={{ scale: 1.02, y: -4 }}
-                                                className="min-w-[260px] sm:min-w-0 snap-start rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-4 border border-purple-500/30 hover:border-purple-500/50 transition-all duration-300 cursor-pointer"
-                                                aria-label={`Opinia czytelnika ${opinion.name}`}
-                                            >
-                                                <div className="flex items-center gap-2 text-yellow-400">
-                                                    <Star className="w-4 h-4" aria-hidden="true" />
-                                                    <span className="text-xs">Potwierdzone</span>
-                                                </div>
-                                                <p className="mt-2 text-sm text-gray-200">"{opinion.text}"</p>
-                                                <p className="mt-2 text-xs text-gray-400">— {opinion.name}</p>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                </motion.div>
-
                                 {/* Pricing & CTA */}
                                 <motion.div
                                     className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 hover:border-purple-500/50 transition-all duration-300"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ delay: 0.6 }}
+                                    transition={{ delay: 0.3 }}
                                 >
                                     <div className="flex items-baseline gap-3">
                                         <span className="text-gray-400 line-through text-lg" aria-label={`Cena oryginalna ${originalPrice}`}>{originalPrice}</span>
@@ -310,7 +210,7 @@ const CryptoEbookSection: React.FC = () => {
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ delay: 0.7 }}
+                                    transition={{ delay: 0.4 }}
                                 >
                                     <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-black/20 border border-purple-500/20"><Shield className="w-4 h-4 text-purple-400" /><span>Bezpieczne płatności</span></div>
                                     <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-black/20 border border-pink-500/20"><Zap className="w-4 h-4 text-pink-400" /><span>Natychmiastowy dostęp</span></div>

@@ -26,8 +26,8 @@ const StickyCTA: React.FC = () => {
             <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-white fill-white" />
           </motion.div>
           <div>
-            <p className="text-white font-bold text-sm sm:text-lg">Maja jest teraz Online 💋</p>
-            <p className="text-pink-100 text-xs sm:text-sm hidden sm:block">Dołącz i poznaj mnie bliżej...</p>
+            <p className="text-white font-bold text-sm sm:text-lg">Nowe treści premium dostępne! ✨</p>
+            <p className="text-pink-100 text-xs sm:text-sm hidden sm:block">Dołącz do społeczności VIP</p>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ const StickyCTA: React.FC = () => {
         >
           <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
           <span className="hidden sm:inline">Zobacz Więcej</span>
-          <span className="sm:hidden">Zobacz Więcej</span>
+          <span className="sm:hidden">Dołącz</span>
         </motion.a>
       </div>
     </motion.div>

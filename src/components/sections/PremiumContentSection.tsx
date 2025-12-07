@@ -4,7 +4,6 @@ import {
   Flame,
   Heart,
   Gift,
-  Phone,
   Video,
   Sparkles,
   MessageCircle,
@@ -27,19 +26,9 @@ interface ContentItem {
 const PremiumContentSection: React.FC = () => {
   const contentItems: ContentItem[] = [
     {
-      id: 'ad-free',
-      title: 'Spotkania Na Żywo',
-      description: 'Wyjdźmy poza internet! Możliwość spotkań na żywo, realne znajomości i prawdziwe emocje.',
-      type: 'bonus',
-      icon: <Heart className="w-6 h-6" />,
-      preview: 'Prawdziwa bliskość...',
-      isHot: true,
-      value: 'VIP'
-    },
-    {
       id: 'premium-content',
-      title: 'Ekskluzywne Treści',
-      description: 'Świeże, ekskluzywne zdjęcia i filmy każdego dnia! Najwyższa jakość, intymne momenty.',
+      title: 'Ekskluzywne Treści Premium',
+      description: 'Świeże, ekskluzywne zdjęcia i filmy każdego dnia! Najwyższa jakość, unikalne materiały tylko dla członków.',
       type: 'exclusive',
       icon: <Gift className="w-6 h-6" />,
       preview: 'Codziennie nowe...',
@@ -48,43 +37,53 @@ const PremiumContentSection: React.FC = () => {
     },
     {
       id: 'behind-scenes',
-      title: 'Prywatny Numer',
-      description: 'Masz mój prywatny numer telefonu i WhatsApp! Rozmawiaj ze mną osobiście, kiedy chcesz.',
+      title: 'Behind The Scenes',
+      description: 'Zobacz kulisy mojego życia! Ekskluzywne materiały zza kulis, których nie zobaczysz nigdzie indziej.',
       type: 'exclusive',
-      icon: <Phone className="w-6 h-6" />,
-      preview: 'Bezpośredni kontakt...',
+      icon: <Video className="w-6 h-6" />,
+      preview: 'Tylko dla VIP...',
       isNew: true,
       value: 'VIP'
     },
     {
       id: 'hd-content',
-      title: 'Sexting & Live Video',
-      description: 'Gorące wiadomości z ekskluzywnymi materiałami wideo i zdjęciami na żywo!',
+      title: 'Live Sessions & Video Chats',
+      description: 'Regularne sesje live na żywo! Interaktywne spotkania, Q&A i ekskluzywne transmisje tylko dla członków.',
       type: 'exclusive',
       icon: <Video className="w-6 h-6" />,
-      preview: 'Real-time action...',
+      preview: 'Real-time connection...',
       isHot: true,
       value: 'Live'
     },
     {
       id: 'early-access',
-      title: 'Girlfriend Experience',
-      description: 'Autentyczna relacja jak z prawdziwą dziewczyną! Codzienne rozmowy i wspólne chwile.',
+      title: 'Priorytetowy Dostęp',
+      description: 'Bądź pierwszy! Wcześniejszy dostęp do nowych treści, pierwszeństwo w odpowiedziach i ekskluzywne ogłoszenia.',
       type: 'exclusive',
       icon: <Sparkles className="w-6 h-6" />,
-      preview: 'Prawdziwa relacja...',
+      preview: 'Bądź pierwszy...',
       isNew: true,
-      value: 'GFE'
+      value: 'VIP+'
     },
     {
       id: 'direct-messages',
-      title: 'Prywatny Chat 24/7',
-      description: 'Piszę do Ciebie sama! Nieograniczone wiadomości, szybkie odpowiedzi i autentyczna rozmowa.',
+      title: 'Prywatny Chat & Community',
+      description: 'Bezpośredni kontakt ze mną! Nieograniczone wiadomości, szybkie odpowiedzi i dostęp do prywatnej społeczności VIP.',
       type: 'interaction',
       icon: <MessageCircle className="w-6 h-6" />,
-      preview: 'Zawsze dostępna...',
+      preview: 'Zawsze w kontakcie...',
       isHot: true,
       value: '24/7'
+    },
+    {
+      id: 'personalized',
+      title: 'Spersonalizowane Wsparcie',
+      description: 'Indywidualne podejście do każdego członka społeczności. Porady, wsparcie i personalizowane odpowiedzi.',
+      type: 'bonus',
+      icon: <Heart className="w-6 h-6" />,
+      preview: 'Dla Ciebie...',
+      isNew: false,
+      value: 'VIP'
     }
   ]
 

@@ -15,32 +15,32 @@ const FAQSection: React.FC = () => {
     {
       id: '1',
       question: 'Jakie treści znajdę w VIP?',
-      answer: 'W VIP czeka na Ciebie ponad 500+ ekskluzywnych materiałów - profesjonalne sesje zdjęciowe w wysokiej jakości, gorące filmiki, spontaniczne stories z mojego życia i specjalne niespodzianki tylko dla subskrybentów. Regularnie dodaję nowe treści (3-4 razy w tygodniu), więc zawsze znajdziesz coś świeżego. Plus oczywiście masz bezpośredni kontakt ze mną w wiadomościach - to miejsce, gdzie mogę być prawdziwą sobą i dzielić się tym, czego nie zobaczysz nigdzie indziej.'
+      answer: 'W VIP czeka na Ciebie ponad 500+ ekskluzywnych materiałów - profesjonalne sesje zdjęciowe w wysokiej jakości, unikalne materiały wideo, spontaniczne stories z mojego życia i specjalne niespodzianki tylko dla członków społeczności. Regularnie dodaję nowe treści (3-4 razy w tygodniu), więc zawsze znajdziesz coś świeżego. Plus oczywiście masz bezpośredni kontakt ze mną w wiadomościach - to miejsce, gdzie mogę być prawdziwą sobą i dzielić się tym, czego nie zobaczysz nigdzie indziej. Otrzymujesz również dostęp do live sessions, Q&A i prywatnej społeczności VIP.'
     },
     {
       id: '2',
       question: 'Czy to naprawdę Ty odpisujesz na wiadomości?',
-      answer: 'Tak, każda wiadomość jest ode mnie! 💕 Nie mam żadnego managera czy bota - jak piszesz do mnie, to rozmawiasz ze mną osobiście. Staram się odpowiadać jak najszybciej, ale czasem może minąć kilka godzin (szczególnie w nocy albo gdy jestem na treningu). Uwielbiam poznawać moich fanów i budować prawdziwe relacje, dlatego odpisuję każdemu samodzielnie.'
+      answer: 'Tak, każda wiadomość jest ode mnie! 💕 Nie mam żadnego managera czy bota - jak piszesz do mnie, to rozmawiasz ze mną osobiście. Staram się odpowiadać jak najszybciej, ale czasem może minąć kilka godzin (szczególnie w nocy albo gdy jestem zajęta). Uwielbiam poznawać członków mojej społeczności i budować prawdziwe relacje, dlatego odpisuję każdemu samodzielnie.'
     },
     {
       id: '3',
       question: 'Jak działa subskrypcja?',
-      answer: 'Super prosto! Wybierasz plan (mam VIP Access za 89,99 zł/msc lub Diamond VIP za 149,99 zł/msc), płacisz bezpiecznie i od razu otrzymujesz pełny dostęp do wszystkich moich treści. Subskrypcja odnawia się automatycznie co miesiąc, ale możesz ją anulować kiedy chcesz - zachowasz dostęp do końca opłaconego okresu. Zero ukrytych opłat, zero zobowiązań na lata. Wszystko jest bezpieczne i dyskretne.'
+      answer: 'Super prosto! Wybierasz plan (mam VIP Access za 100 zł/msc lub Diamond VIP za 250 zł/msc), płacisz bezpiecznie i od razu otrzymujesz pełny dostęp do wszystkich moich treści i społeczności. Subskrypcja odnawia się automatycznie co miesiąc, ale możesz ją anulować kiedy chcesz - zachowasz dostęp do końca opłaconego okresu. Zero ukrytych opłat, zero zobowiązań na lata. Wszystko jest bezpieczne i dyskretne.'
     },
     {
       id: '4',
       question: 'Kiedy robisz live streamy?',
-      answer: 'Robię live sessions 2-3 razy w miesiącu, najczęściej wieczorami w weekendy! 🎥 Zawsze informuję z wyprzedzeniem w VIP, żebyś nie przegapił. To mój ulubiony moment - możemy pogadać na żywo, odpowiadam na Twoje pytania i pokazuję coś ekstra. Każdy live jest spontaniczny i autentyczny, bez scenariusza. To naprawdę wyjątkowe chwile!'
+      answer: 'Robię live sessions 2-3 razy w miesiącu, najczęściej wieczorami w weekendy! 🎥 Zawsze informuję z wyprzedzeniem w VIP, żebyś nie przegapił. To mój ulubiony moment - możemy pogadać na żywo, odpowiadam na Twoje pytania i pokazuję ekskluzywne materiały. Każdy live jest spontaniczny i autentyczny, bez scenariusza. To naprawdę wyjątkowe chwile dla społeczności!'
     },
     {
       id: '5',
       question: 'Czy mogę anulować subskrypcję kiedy chcę?',
-      answer: 'Jasne! Żadnych zobowiązań na pół roku czy rok - możesz anulować w dowolnym momencie bezpośrednio w ustawieniach. Twój dostęp pozostanie aktywny do końca opłaconego miesiąca, więc nie tracisz ani złotówki. To bardzo proste i bez żadnych ukrytych haczyków. Chcę, żebyś był ze mną, bo naprawdę tego chcesz, a nie z przymusu! 😊'
+      answer: 'Jasne! Żadnych zobowiązań na pół roku czy rok - możesz anulować w dowolnym momencie bezpośrednio w ustawieniach. Twój dostęp pozostanie aktywny do końca opłaconego miesiąca, więc nie tracisz ani złotówki. To bardzo proste i bez żadnych ukrytych haczyków. Chcę, żebyś był członkiem społeczności, bo naprawdę tego chcesz, a nie z przymusu! 😊'
     },
     {
       id: '6',
-      question: 'Czy robisz treści na zamówienie?',
-      answer: 'Tak, uwielbiam takie wyzwania! 😍 Dla moich subskrybentów mogę przygotować spersonalizowane zdjęcia czy filmiki - oczywiście w granicach rozsądku i tego, co czuję się komfortowo robić. Napisz do mnie prywatnie w VIP z pomysłem, a ustalimy szczegóły i cenę. To super sposób, żeby dostać coś naprawdę unikalnego, stworzonego specjalnie dla Ciebie!'
+      question: 'Czy oferujesz spersonalizowane materiały?',
+      answer: 'Tak, dla moich członków VIP mogę przygotować spersonalizowane materiały i dedykowane odpowiedzi - oczywiście w granicach rozsądku i tego, z czego czuję się komfortowo. Napisz do mnie prywatnie w VIP z pomysłem, a ustalimy szczegóły. To super sposób, żeby otrzymać coś naprawdę unikalnego, stworzonego specjalnie dla Ciebie jako członka społeczności!'
     },
     {
       id: '7',

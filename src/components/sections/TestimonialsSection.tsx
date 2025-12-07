@@ -23,8 +23,8 @@ const TestimonialsSection: React.FC = () => {
       id: '1',
       platform: 'whatsapp',
       name: "Michał",
-      message: "Nie wierzyłem, że odpisujesz, aż dostałem to wideo o 3 w nocy... 🔥 Jesteś niesamowita!",
-      time: "03:24",
+      message: "Najlepsze treści premium jakie widziałem! Jakość materiałów jest niesamowita, naprawdę warto 🔥",
+      time: "15:24",
       avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80",
       rating: 5
     },
@@ -32,7 +32,7 @@ const TestimonialsSection: React.FC = () => {
       id: '2',
       platform: 'telegram',
       name: "Kamil_Crypto",
-      message: "Maja, twoje treści to coś niesamowitego! Każdy dzień z VIP to nowa przygoda 😍",
+      message: "Maja, twoje treści to coś niesamowitego! Każdy dzień z VIP to nowa niespodzianka 😍 Społeczność jest super!",
       time: "23:45",
       avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
       rating: 5
@@ -41,7 +41,7 @@ const TestimonialsSection: React.FC = () => {
       id: '3',
       platform: 'onlyfans',
       name: "Anonim",
-      message: "Najlepsza inwestycja tego roku. Maja, jesteś wyjątkowa ❤️",
+      message: "Najlepsza subskrypcja tego roku. Ekskluzywny content i świetna komunikacja ❤️ Maja jest wyjątkowa",
       time: "14:15",
       avatarUrl: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=100&q=80",
       rating: 5,
@@ -51,7 +51,7 @@ const TestimonialsSection: React.FC = () => {
       id: '4',
       platform: 'whatsapp',
       name: "Piotr",
-      message: "Twoje nocne wiadomości to najlepszy sposób na zakończenie dnia 🌙",
+      message: "Regularnie nowe materiały, zawsze coś świeżego. Społeczność VIP jest naprawdę zaangażowana 🌙",
       time: "21:30",
       avatarUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80",
       rating: 5
@@ -60,7 +60,7 @@ const TestimonialsSection: React.FC = () => {
       id: '5',
       platform: 'telegram',
       name: "Bartek",
-      message: "VIP kanał to najlepsze co mi się przytrafiło. Worth every penny!",
+      message: "VIP kanał to najlepsze co mi się przytrafiło. Premium content w najwyższej jakości. Worth every penny!",
       time: "07:22",
       avatarUrl: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=100&q=80",
       rating: 5
