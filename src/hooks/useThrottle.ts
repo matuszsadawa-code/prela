@@ -9,31 +9,31 @@ import { useRef, useCallback } from 'react'
  * @returns Throttled function
  */
 export function useThrottle<T extends (...args: any[]) => any>(
-  callback: T,
-  delay: number = 16 // ~60fps
+    callback: T,
+    delay: number = 16 // ~60fps
 ): (...args: Parameters<T>) => void {
-  const lastRun = useRef(Date.now())
-  const timeoutRef = useRef<number>()
+    const lastRun = useRef(Date.now())
+    const timeoutRef = useRef<number | undefined>(undefined)
 
-  return useCallback(
-    (...args: Parameters<T>) => {
-      const now = Date.now()
-      const timeSinceLastRun = now - lastRun.current
+    return useCallback(
+        (...args: Parameters<T>) => {
+            const now = Date.now()
+            const timeSinceLastRun = now - lastRun.current
 
-      if (timeSinceLastRun >= delay) {
-        callback(...args)
-        lastRun.current = now
-      } else {
-        // Schedule the next call
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current)
-        }
-        timeoutRef.current = window.setTimeout(() => {
-          callback(...args)
-          lastRun.current = Date.now()
-        }, delay - timeSinceLastRun)
-      }
-    },
-    [callback, delay]
-  )
+            if (timeSinceLastRun >= delay) {
+                callback(...args)
+                lastRun.current = now
+            } else {
+                // Schedule the next call
+                if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current)
+                }
+                timeoutRef.current = window.setTimeout(() => {
+                    callback(...args)
+                    lastRun.current = Date.now()
+                }, delay - timeSinceLastRun)
+            }
+        },
+        [callback, delay]
+    )
 }
