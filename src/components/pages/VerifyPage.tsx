@@ -2,7 +2,6 @@ import React from 'react';
 import VerificationSection from '../sections/VerificationSection';
 import FloatingHearts from '../animations/FloatingHearts';
 import FloatingCryptoIcons from '../animations/FloatingCryptoIcons';
-import RealTimeActivityWidget from '../ui/RealTimeActivityWidget';
 
 const VerifyPage: React.FC = () => {
     return (
@@ -18,9 +17,6 @@ const VerifyPage: React.FC = () => {
                 <VerificationSection />
                 {/* <TrustBadgesSection /> */}
             </div>
-
-            {/* Widget powiadomień */}
-            <RealTimeActivityWidget />
         </div>
     );
 };

@@ -24,6 +24,10 @@ body {
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 25%, #2a0a2a 50%, #1a0a1a 75%, #0a0a0a 100%);
   overflow-x: hidden;
+  /* GPU ACCELERATION for better performance */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective:1000px;
 }
 
 /* Custom scrollbar */
@@ -296,3 +300,33 @@ body {
   animation: gradient 4s ease infinite;
   background-size: 200% 200%;
 }
+
+/* Shimmer Text Animation for "Maja Lubicz" */
+@keyframes shimmer-text {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer-text {
+  background-size: 200% auto;
+  animation: shimmer-text 3s linear infinite;
+}
+
+/* Skeleton loader animation */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-skeleton {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+

@@ -103,8 +103,11 @@ const ExitIntentPopup: React.FC = () => {
                             onClick={handleClaim}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="block w-full py-4 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-lg mb-3 shadow-lg hover:shadow-pink-500/50 transition-all flex items-center justify-center gap-2"
+                            className="block w-full py-4 rounded-xl bg-gradient-to-r from-[#229ED9] to-[#0088cc] text-white font-bold text-lg mb-3 shadow-lg hover:shadow-blue-500/50 transition-all flex items-center justify-center gap-2 relative overflow-hidden group"
                         >
+                            {/* Shine effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+
                             <Send className="w-5 h-5" />
                             Dołącz do Telegrama
                         </motion.a>

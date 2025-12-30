@@ -4,7 +4,11 @@ import { Shield, Calendar, MapPin, Star, Award, Verified, Mic, X, ZoomIn, Eye } 
 import weryfikacjaImage from '../../assets/weryfikacja.jpg';
 import voiceVerification from '../../assets/weryfikacja.mp3';
 
-const VerificationSection: React.FC = () => {
+interface VerificationSectionProps {
+  isModal?: boolean;
+}
+
+const VerificationSection: React.FC<VerificationSectionProps> = ({ isModal = false }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const hasPlayedRef = useRef(false);
@@ -105,23 +109,23 @@ const VerificationSection: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
+    <section ref={sectionRef} className={`${isModal ? 'py-8 px-4' : 'py-16 md:py-20 lg:py-24 px-4'} relative overflow-hidden`}>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
+        {/* Header - Conditional Rendering for Modal */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className={`text-center ${isModal ? 'mb-8' : 'mb-16'}`}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500/20 to-blue-500/20 mb-6 hover:from-green-500/30 hover:to-blue-500/30 transition-all duration-300 rainbow-border-animated"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500/20 to-blue-500/20 mb-4 hover:from-green-500/30 hover:to-blue-500/30 transition-all duration-300 rainbow-border-animated"
           >
             <Verified className="w-5 h-5 text-green-400" />
             <span className="text-sm font-medium text-white">Verified Identity</span>
@@ -132,21 +136,12 @@ const VerificationSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className={`${isModal ? 'text-3xl md:text-4xl' : 'text-4xl md:text-5xl'} font-bold mb-4`}
           >
             <span className="bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-gradient">
               TOŻSAMOŚĆ ZWERYFIKOWANA
             </span>
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-          >
-          </motion.p>
 
           {/* Trust badges */}
           <motion.div
@@ -154,7 +149,7 @@ const VerificationSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-wrap justify-center gap-4 mt-8"
+            className="flex flex-wrap justify-center gap-3 mt-4"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}

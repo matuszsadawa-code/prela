@@ -1,12 +1,12 @@
 // Social Media Links
 export const SOCIAL_LINKS = {
-  instagram: "https://instagram.com/mayalubicz",
+  instagram: "https://www.instagram.com/lubiczmaja/",
   tiktok: "https://tiktok.com/@mayalubicz",
-  telegram: "https://t.me/MayaLubicz_Bot",
+  telegram: "https://t.me/+VT55zfE0n4o1MWY0",
   twitter: "https://x.com/mayalubicz",
 }
 
-export const EBOOK_SALE_URL = "https://example.com/ebook-maja-lubicz";
+export const EBOOK_SALE_URL = "https://t.me/+VT55zfE0n4o1MWY0";
 
 // Pricing
 export const PRICING = {

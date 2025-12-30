@@ -1,449 +1,923 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { CheckCircle, Shield, Lock, CreditCard, Cake, Scale, Ruler, Cpu, TrendingUp, Zap, MapPin } from 'lucide-react'
-import heroImage from '../../assets/hero.png'
+import React, { useState, useEffect } from 'react'
+import { motion, type Variants } from 'framer-motion'
+import SecretMessage from './SecretMessage'
+import ChatPopup from './ChatPopup'
+import { Sparkles, Heart, Instagram, MessageCircle, Flame, MapPin, User, ShieldCheck } from 'lucide-react'
+import { SOCIAL_LINKS } from '../../utils/constants'
+import heroVideo from '../../assets/kling_20251210_Image_to_Video_The_subjec_1306_0.mp4'
+import VerificationModal from '../modals/VerificationModal'
+import SoundToggle from '../ui/SoundToggle'
+import useSoundEffects from '../../hooks/useSoundEffects'
+import { LottieHeart } from '../ui/LottieIcons'
 
 const PersonalIntro: React.FC = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
+  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false)
+  const [isNaughtyMode, setIsNaughtyMode] = useState(false)
+  const [viewerCount, setViewerCount] = useState(47)
+  const { isSoundEnabled, toggleSound, playClickSound } = useSoundEffects()
+
+  // Animate viewer count realistically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setViewerCount(prev => {
+        const change = Math.floor(Math.random() * 5) - 2 // -2 to +2
+        const newCount = prev + change
+        return Math.max(35, Math.min(65, newCount)) // Keep between 35-65
+      })
+    }, 3000 + Math.random() * 2000) // Every 3-5 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
+
+
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
-        staggerChildren: 0.3
+        duration: 0.6,
+        ease: "easeOut"
       }
     }
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 }
+  const scaleIn: Variants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
   }
 
-  // Trust certificates data
-  const trustCertificates = [
+  const stats = [
     {
-      icon: CheckCircle,
-      text: "Zweryfikowany Twórca",
-      color: "text-green-400",
-      bgColor: "bg-green-400/10",
-      ariaLabel: "Profil zweryfikowany przez platformę"
+      value: "56kg",
+      label: "Waga",
+      gradient: "from-blue-400 to-cyan-400",
+      link: SOCIAL_LINKS.telegram,
+      icon: MessageCircle,
+      platform: "Telegram"
     },
     {
-      icon: Shield,
-      text: "Wiek zweryfikowany",
-      color: "text-blue-400",
-      bgColor: "bg-blue-400/10",
-      ariaLabel: "Wiek potwierdzony dokumentem tożsamości"
+      value: "25",
+      label: "Lat",
+      gradient: "from-pink-400 to-purple-400",
+      link: SOCIAL_LINKS.instagram,
+      icon: Instagram,
+      platform: "Instagram"
     },
     {
-      icon: Lock,
-      text: "Gwarancja dyskrecji",
-      color: "text-purple-400",
-      bgColor: "bg-purple-400/10",
-      ariaLabel: "Pełna dyskrecja i prywatność gwarantowana"
+      value: "170cm",
+      label: "Wzrost",
+      gradient: "from-purple-400 to-blue-400",
+      link: SOCIAL_LINKS.tiktok,
+      icon: null, // TikTok custom
+      platform: "TikTok"
     },
     {
-      icon: CreditCard,
-      text: "Bezpieczne Płatności",
-      color: "text-yellow-400",
-      bgColor: "bg-gradient-to-br from-yellow-400/10 via-neon-pink/10 to-purple-400/10",
-      ariaLabel: "Szyfrowane i bezpieczne metody płatności"
+      value: "WWA",
+      label: "Lokalizacja",
+      gradient: "from-cyan-400 to-green-400",
+      link: SOCIAL_LINKS.twitter,
+      icon: null, // X custom SVG
+      platform: "X"
     }
   ]
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 relative overflow-hidden">
+    <>
+      <section className="relative min-h-screen flex items-center justify-center px-4 py-12 sm:py-16 md:py-20 overflow-hidden transition-colors duration-1000">
+        {/* Background gradient effects - Dynamic */}
+        <div className={`absolute inset-0 bg-gradient-to-b from-transparent to-transparent pointer-events-none transition-colors duration-1000 ${isNaughtyMode ? 'via-red-900/20' : 'via-purple-500/5'
+          }`} />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
-        >
-          {/* Text Content */}
-          <motion.div variants={itemVariants} className="space-y-8 order-1 lg:order-1">
-            <div>
+        {/* Switch Toggle & Sound Toggle - Floating Top Right */}
+        <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-50 flex items-center gap-2">
+          <SoundToggle isSoundEnabled={isSoundEnabled} onToggle={toggleSound} />
+          <button
+            onClick={() => setIsNaughtyMode(!isNaughtyMode)}
+            className={`group relative flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border backdrop-blur-md transition-all duration-300 ${isNaughtyMode
+              ? "bg-red-950/40 border-red-500/50 hover:bg-red-900/50"
+              : "bg-white/10 border-white/20 hover:bg-white/20"
+              }`}
+          >
+            <span className={`text-xl sm:text-2xl transition-transform duration-500 ${isNaughtyMode ? 'rotate-180' : 'rotate-0'}`}>
+              {isNaughtyMode ? "😈" : "😇"}
+            </span>
+            <span className={`text-xs sm:text-sm font-semibold transition-colors duration-300 ${isNaughtyMode ? "text-red-200" : "text-white"
+              }`}>
+              {isNaughtyMode ? "Tryb Niegrzeczny" : "Tryb Grzeczny"}
+            </span>
 
+            {/* Glow effect for toggle */}
+            {isNaughtyMode && (
+              <div className="absolute inset-0 rounded-full bg-red-500/20 blur-md -z-10 animate-pulse" />
+            )}
+          </button>
+        </div>
 
-              {/* Mobile Image - pokazuje się tylko na mobile pod nagłówkiem */}
-              <motion.div
-                variants={itemVariants}
-                className="lg:hidden mb-8"
-              >
-                <div className="relative group max-w-sm mx-auto">
-                  {/* Simple Image Container without border */}
-                  <div className="relative">
-                    <div className="aspect-[3/4] rounded-3xl overflow-hidden relative">
-                      <img
-                        src={heroImage}
-                        alt="Maja Czereśnia"
-                        className="w-full h-full object-cover object-center rounded-3xl transform scale-110"
-                      />
-                    </div>
-
-                    {/* Verification Text Label with Icon */}
-                    <div className="absolute top-2 right-2 bg-gradient-to-r from-pink-500/90 to-rose-500/90 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg shadow-pink-500/30 border border-pink-400/30 animate-bounce-slow">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 drop-shadow-lg" />
-                        <span className="bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent">
-                          Profil Zweryfikowany
-                        </span>
-                      </div>
-                      <div className="absolute inset-0 bg-pink-400/15 rounded-full blur-md animate-pulse"></div>
-                    </div>
-                  </div>
-
-                  {/* Hero-style floating particles */}
-                  <div className="absolute -top-1 -left-1 w-2 h-2 bg-neon-pink rounded-full animate-float opacity-50 shadow-lg shadow-neon-pink/40" role="img" aria-label="Dekoracyjny element"></div>
-                  <div className="absolute bottom-1/4 -right-2 w-2 h-2 bg-neon-purple rounded-full animate-float delay-1500 opacity-50 shadow-lg shadow-neon-purple/40" role="img" aria-label="Dekoracyjny element"></div>
-                </div>
-              </motion.div>
-
-              <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-gray-300">
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <motion.div
-                    className="relative p-2 sm:p-3 rounded-full glass-crypto backdrop-blur-md flex-shrink-0"
-                    whileHover={{
-                      scale: 1.05,
-                      rotate: 360,
-                      boxShadow: "0 0 30px rgba(255, 79, 216, 0.4)"
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-pink/30 to-purple-500/30 blur-sm animate-pulse"></div>
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-cyan-400/20 blur-md"></div>
-                    <Cpu className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cyan-400 relative z-10 drop-shadow-lg" style={{ filter: 'drop-shadow(0 0 8px rgba(34, 211, 238, 0.6))' }} />
-                  </motion.div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-cyan-400 mb-1 sm:mb-2" style={{ filter: 'drop-shadow(0 0 6px rgba(34, 211, 238, 0.5))' }}>STUDENTKA BLOCKCHAIN</h3>
-                    <p className="leading-relaxed">Studiuję technologie blockchain na jednej z najlepszych uczelni w Polsce. Dzień spędzam nad kodowaniem, ale wieczory... to już inna historia.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <motion.div
-                    className="relative p-2 sm:p-3 rounded-full glass-trading backdrop-blur-md flex-shrink-0"
-                    whileHover={{
-                      scale: 1.05,
-                      rotate: 360,
-                      boxShadow: "0 0 30px rgba(201, 182, 255, 0.4)"
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-neon-pink/20 blur-sm"></div>
-                    <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-purple-400 relative z-10" />
-                  </motion.div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-purple-400 mb-1 sm:mb-2" style={{ filter: 'drop-shadow(0 0 6px rgba(168, 85, 247, 0.5))' }}>FANKA CRYPTO & TRADINGU</h3>
-                    <p className="leading-relaxed">Pasjonuję się kryptowalutami i tradingiem. Moja pewność siebie w inwestycjach może być... zaraźliwa.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <motion.div
-                    className="relative p-2 sm:p-3 rounded-full glass-nsfw backdrop-blur-md flex-shrink-0"
-                    whileHover={{
-                      scale: 1.05,
-                      rotate: 360,
-                      boxShadow: "0 0 30px rgba(236, 72, 153, 0.4)"
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500/20 to-neon-pink/20 blur-sm"></div>
-                    <Zap className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-pink-400 relative z-10" />
-                  </motion.div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-pink-400 mb-1 sm:mb-2" style={{ filter: 'drop-shadow(0 0 6px rgba(244, 114, 182, 0.5))' }}>AKTYWNA I SUMIENNA</h3>
-                    <p className="leading-relaxed">Codziennie aktywna, zawsze odpowiadam na wiadomości. Moi fani wiedzą, że mogą na mnie liczyć.</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Stats */}
+        <div className="max-w-5xl w-full mx-auto relative z-10">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col items-center text-center space-y-6 sm:space-y-8 relative"
+          >
+            {/* Avatar */}
             <motion.div
-              variants={itemVariants}
-              className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-6 sm:pt-8 relative"
-              style={{
-                borderTop: '1px solid transparent',
-                backgroundImage: 'linear-gradient(90deg, rgba(52, 211, 153, 0.3), rgba(6, 182, 212, 0.4), rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.3))',
-                backgroundSize: '100% 1px',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'top'
-              }}
+              variants={scaleIn}
+              className="relative group"
             >
-              {/* Animated glow effect for the border */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-pink/40 to-transparent animate-pulse"></div>
-              <div className="text-center group">
-                <div className="flex items-center justify-center mb-3">
-                  <motion.div
-                    className="bg-gradient-to-br from-pink-500/20 via-purple-500/20 to-blue-500/20 p-3 rounded-full group-hover:from-pink-500/30 group-hover:via-purple-500/30 group-hover:to-blue-500/30 transition-all duration-300 shadow-lg"
-                    style={{
-                      boxShadow: '0 0 20px rgba(236, 72, 153, 0.3), 0 0 40px rgba(147, 51, 234, 0.2), 0 0 60px rgba(59, 130, 246, 0.1)'
-                    }}
-                    whileHover={{
-                      scale: 1.15,
-                      rotate: [0, -15, 15, -15, 0],
-                      boxShadow: "0 0 30px rgba(236, 72, 153, 0.5), 0 0 50px rgba(147, 51, 234, 0.4), 0 0 70px rgba(59, 130, 246, 0.3)"
-                    }}
-                    transition={{
-                      rotate: { duration: 0.8, ease: "easeInOut" },
-                      scale: { duration: 0.3 },
-                      boxShadow: { duration: 0.4 }
-                    }}
-                  >
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 rounded-full blur-sm opacity-60"></div>
-                      <Cake className="w-6 h-6 relative z-10" style={{
-                        background: 'linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        filter: 'drop-shadow(0 0 8px rgba(236, 72, 153, 0.6))'
-                      }} />
-                    </div>
-                  </motion.div>
-                </div>
-                <div className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 drop-shadow-lg animate-pulse" style={{
-                  background: 'linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textShadow: '0 0 15px rgba(236, 72, 153, 0.6), 0 0 30px rgba(147, 51, 234, 0.4)'
-                }}>25</div>
-                <div className="text-xs sm:text-sm text-gray-400 font-medium group-hover:text-pink-400 transition-colors duration-300">Wiek</div>
-              </div>
-              <div className="text-center group">
-                <div className="flex items-center justify-center mb-3">
-                  <motion.div
-                    className="bg-gradient-to-br from-green-500/20 via-emerald-500/20 to-teal-500/20 p-3 rounded-full group-hover:from-green-500/30 group-hover:via-emerald-500/30 group-hover:to-teal-500/30 transition-all duration-300 shadow-lg"
-                    style={{
-                      boxShadow: '0 0 20px rgba(34, 197, 94, 0.3), 0 0 40px rgba(16, 185, 129, 0.2), 0 0 60px rgba(20, 184, 166, 0.1)'
-                    }}
-                    whileHover={{
-                      scale: 1.15,
-                      y: [-3, 3, -3, 3, 0],
-                      boxShadow: "0 0 30px rgba(34, 197, 94, 0.5), 0 0 50px rgba(16, 185, 129, 0.4), 0 0 70px rgba(20, 184, 166, 0.3)"
-                    }}
-                    transition={{
-                      y: { duration: 1, ease: "easeInOut" },
-                      scale: { duration: 0.3 },
-                      boxShadow: { duration: 0.4 }
-                    }}
-                  >
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 rounded-full blur-sm opacity-60"></div>
-                      <Scale className="w-6 h-6 relative z-10" style={{
-                        background: 'linear-gradient(45deg, #22c55e, #10b981, #14b8a6)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        filter: 'drop-shadow(0 0 8px rgba(34, 197, 94, 0.6))'
-                      }} />
-                    </div>
-                  </motion.div>
-                </div>
-                <div className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 drop-shadow-lg animate-pulse" style={{
-                  background: 'linear-gradient(45deg, #22c55e, #10b981, #14b8a6)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textShadow: '0 0 15px rgba(34, 197, 94, 0.6), 0 0 30px rgba(16, 185, 129, 0.4)',
-                  animationDelay: '0.5s'
-                }}>56kg</div>
-                <div className="text-xs sm:text-sm text-gray-400 font-medium group-hover:text-green-400 transition-colors duration-300">Waga</div>
-              </div>
-              <div className="text-center group">
-                <div className="flex items-center justify-center mb-3">
-                  <motion.div
-                    className="bg-gradient-to-br from-orange-500/20 via-red-500/20 to-pink-500/20 p-3 rounded-full group-hover:from-orange-500/30 group-hover:via-red-500/30 group-hover:to-pink-500/30 transition-all duration-300 shadow-lg"
-                    style={{
-                      boxShadow: '0 0 20px rgba(249, 115, 22, 0.3), 0 0 40px rgba(239, 68, 68, 0.2), 0 0 60px rgba(236, 72, 153, 0.1)'
-                    }}
-                    whileHover={{
-                      scale: 1.15,
-                      rotate: [0, 20, -20, 0],
-                      boxShadow: "0 0 30px rgba(249, 115, 22, 0.5), 0 0 50px rgba(239, 68, 68, 0.4), 0 0 70px rgba(236, 72, 153, 0.3)"
-                    }}
-                    transition={{
-                      rotate: { duration: 0.6, ease: "easeInOut" },
-                      scale: { duration: 0.3 },
-                      boxShadow: { duration: 0.4 }
-                    }}
-                  >
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-red-400 to-pink-400 rounded-full blur-sm opacity-60"></div>
-                      <Ruler className="w-6 h-6 relative z-10" style={{
-                        background: 'linear-gradient(45deg, #f97316, #ef4444, #ec4899)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        filter: 'drop-shadow(0 0 8px rgba(249, 115, 22, 0.6))'
-                      }} />
-                    </div>
-                  </motion.div>
-                </div>
-                <div className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 drop-shadow-lg animate-pulse" style={{
-                  background: 'linear-gradient(45deg, #f97316, #ef4444, #ec4899)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textShadow: '0 0 15px rgba(249, 115, 22, 0.6), 0 0 30px rgba(239, 68, 68, 0.4)',
-                  animationDelay: '1s'
-                }}>170cm</div>
-                <div className="text-xs sm:text-sm text-gray-400 font-medium group-hover:text-orange-400 transition-colors duration-300">Wzrost</div>
-              </div>
-              <div className="text-center group">
-                <div className="flex items-center justify-center mb-3">
-                  <motion.div
-                    className="bg-gradient-to-br from-purple-500/20 via-indigo-500/20 to-green-500/20 p-3 rounded-full group-hover:from-purple-500/30 group-hover:via-indigo-500/30 group-hover:to-green-500/30 transition-all duration-300 shadow-lg"
-                    style={{
-                      boxShadow: '0 0 20px rgba(147, 51, 234, 0.3), 0 0 40px rgba(99, 102, 241, 0.2), 0 0 60px rgba(34, 197, 94, 0.1)'
-                    }}
-                    whileHover={{
-                      scale: 1.2,
-                      rotate: [0, 360],
-                      boxShadow: "0 0 35px rgba(147, 51, 234, 0.6), 0 0 55px rgba(99, 102, 241, 0.5), 0 0 75px rgba(34, 197, 94, 0.4)"
-                    }}
-                    transition={{
-                      rotate: { duration: 1.2, ease: "easeInOut" },
-                      scale: { duration: 0.3 },
-                      boxShadow: { duration: 0.4 }
-                    }}
-                  >
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-indigo-400 to-green-400 rounded-full blur-sm opacity-70"></div>
-                      <MapPin className="w-6 h-6 relative z-10" style={{
-                        background: 'linear-gradient(45deg, #8b5cf6, #6366f1, #22c55e)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        filter: 'drop-shadow(0 0 10px rgba(147, 51, 234, 0.8))'
-                      }} />
-                    </div>
-                  </motion.div>
-                </div>
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
+
+                {/* Pulsing LIVE ring indicator */}
                 <motion.div
-                  className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 drop-shadow-lg"
+                  className="absolute -inset-2 rounded-full border-2 border-pink-500/50"
                   animate={{
-                    textShadow: [
-                      "0 0 15px rgba(147, 51, 234, 0.6)",
-                      "0 0 25px rgba(99, 102, 241, 0.8)",
-                      "0 0 35px rgba(34, 197, 94, 0.6)",
-                      "0 0 25px rgba(99, 102, 241, 0.8)",
-                      "0 0 15px rgba(147, 51, 234, 0.6)"
-                    ]
+                    scale: [1, 1.05, 1],
+                    opacity: [0.5, 1, 0.5],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div
+                  className="absolute -inset-4 rounded-full border border-purple-500/30"
+                  animate={{
+                    scale: [1, 1.08, 1],
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5
+                  }}
+                />
+
+                {/* LIVE Badge */}
+                <motion.div
+                  className="absolute -top-1 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center gap-1.5 shadow-lg z-20"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                  <span className="text-xs font-bold text-white tracking-wider">LIVE</span>
+                </motion.div>
+
+                {/* Avatar container */}
+                <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-56 lg:h-56 rounded-full overflow-hidden border-4 border-white/10 backdrop-blur-sm shadow-2xl">
+                  <video
+                    src={heroVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover scale-110"
+                  />
+                </div>
+
+                {/* Viewer count overlay */}
+                <motion.div
+                  className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full flex items-center gap-1.5 border border-white/10 shadow-lg z-20"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 }}
+                >
+                  <span className="text-base">👀</span>
+                  <motion.span
+                    key={viewerCount}
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-xs font-semibold text-white"
+                  >
+                    {viewerCount} osób ogląda
+                  </motion.span>
+                </motion.div>
+
+
+
+                {/* Floating particles */}
+                <motion.div
+                  className="absolute -top-4 -left-4 text-pink-400"
+                  animate={{
+                    y: [0, -10, 0],
+                    rotate: [0, 10, 0]
                   }}
                   transition={{
                     duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                  style={{
-                    background: 'linear-gradient(45deg, #8b5cf6, #6366f1, #22c55e)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
+                >
+                  <Sparkles className="w-5 h-5" />
+                </motion.div>
+
+                <motion.div
+                  className="absolute -bottom-4 -right-4 text-purple-400"
+                  animate={{
+                    y: [0, 10, 0],
+                    rotate: [0, -10, 0]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1.5
                   }}
                 >
-                  WWA
+                  <Heart className="w-5 h-5" />
                 </motion.div>
-                <div className="text-xs sm:text-sm text-gray-400 font-medium group-hover:text-purple-400 transition-colors duration-300">Lokalizacja</div>
               </div>
             </motion.div>
 
-            {/* Trust Certificates */}
+            {/* Name & Title */}
             <motion.div
-              variants={itemVariants}
-              className="pt-8 mt-8 relative"
+              variants={fadeInUp}
+              className="space-y-3"
             >
-              {/* Enhanced glassmorphism border with multiple layers */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/60 to-transparent"></div>
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-purple-400/40 via-neon-pink/60 to-cyan-400/40 animate-pulse"></div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold">
+                <span className={`bg-clip-text text-transparent animate-shimmer-text transition-all duration-700 bg-gradient-to-r ${isNaughtyMode
+                  ? "from-red-500 via-rose-400 via-pink-300 via-rose-400 to-red-500"
+                  : "from-pink-400 via-purple-300 via-blue-300 via-purple-300 to-pink-400"
+                  }`}>
+                  Maja Lubicz
+                </span>
+              </h1>
 
-              {/* Animated flowing border effect */}
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/80 to-transparent animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-
-              {/* Glow effect behind the border */}
-              <div className="absolute -top-2 left-0 right-0 h-4 bg-gradient-to-r from-transparent via-gold/20 to-transparent blur-sm"></div>
-
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-                {trustCertificates.map((certificate, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                    className="flex flex-col items-center text-center p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br from-dark-800/80 to-dark-700/80 backdrop-blur-xl hover:border-gold/60 transition-all duration-500 group cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-gold/25 min-h-[85px] sm:min-h-[100px] md:min-h-[120px] relative overflow-hidden touch-manipulation"
-                    role="button"
-                    tabIndex={0}
-                    aria-label={certificate.ariaLabel}
-                  >
-                    {/* Enhanced glassmorphism border glow */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-gold/10 via-transparent to-neon-pink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    {/* Animated border shimmer effect */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-gold/30 to-transparent opacity-0 group-hover:opacity-100 animate-pulse transition-opacity duration-500"></div>
-
-                    {/* Inner glow effect */}
-                    <div className="absolute inset-[1px] rounded-xl bg-gradient-to-br from-dark-800/90 to-dark-700/90 backdrop-blur-xl"></div>
-
-                    {/* Content wrapper with higher z-index */}
-                    <div className="relative z-10 flex flex-col items-center w-full h-full">
-                      <div
-                        className={`${certificate.color} ${certificate.bgColor} p-2 sm:p-2.5 md:p-3 rounded-full flex-shrink-0 group-hover:scale-110 transition-transform duration-300 mb-1.5 sm:mb-2 md:mb-3 shadow-lg`}
-                        style={
-                          certificate.text === "Bezpieczne Płatności"
-                            ? {
-                              filter: 'drop-shadow(0 0 8px rgba(255, 212, 0, 0.4)) drop-shadow(0 0 16px rgba(236, 72, 153, 0.3))',
-                              animation: 'pulse 2s infinite'
-                            }
-                            : {}
-                        }
-                      >
-                        <certificate.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-                      </div>
-                      <span className="text-[10px] sm:text-xs md:text-sm text-gray-200 font-medium leading-tight group-hover:text-white transition-colors duration-300 px-1">
-                        {certificate.text}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Desktop Image - ukryte na mobile */}
-          <motion.div
-            variants={itemVariants}
-            className="relative hidden lg:block order-2 lg:order-2"
-          >
-            <div className="relative group">
-              {/* Simple Image Container without border */}
-              <div className="relative">
-                <div className="aspect-[3/4] rounded-3xl overflow-hidden relative">
-                  <img
-                    src={heroImage}
-                    alt="Maja Czereśnia"
-                    className="w-full h-full object-cover object-center rounded-3xl transform scale-90"
-                  />
+              <div className="flex flex-col items-center gap-2">
+                {/* Age & Location */}
+                <div className="flex items-center justify-center gap-2 text-gray-300 text-base sm:text-lg md:text-xl">
+                  <User className={`w-4 h-4 sm:w-5 sm:h-5 ${isNaughtyMode ? "text-red-500" : "text-pink-400"}`} />
+                  <p>25</p>
+                  <span className="text-gray-600">|</span>
+                  <MapPin className={`w-4 h-4 sm:w-5 sm:h-5 ${isNaughtyMode ? "text-rose-500" : "text-purple-400"}`} />
+                  <p>Warszawa</p>
                 </div>
 
-                {/* Verification Text Label with Icon */}
-                <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-gradient-to-r from-pink-500/90 to-rose-500/90 backdrop-blur-md text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg shadow-pink-500/30 border border-pink-400/30 animate-bounce-slow">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 drop-shadow-lg" />
-                    <span className="bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent">
-                      Profil Zweryfikowany
+                {/* Verification Badge - Vibrating */}
+                <motion.button
+                  onClick={() => setIsVerificationModalOpen(true)}
+                  className={`group relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-sm shadow-lg transition-all duration-300 cursor-pointer border ${isNaughtyMode
+                    ? "bg-gradient-to-r from-red-500/20 via-rose-500/20 to-pink-500/20 border-red-400/40 hover:border-red-300/60"
+                    : "bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-teal-500/20 border-green-400/40 hover:border-green-300/60"
+                    }`}
+                  animate={{
+                    x: [-1, 1, -1, 1, 0],
+                    rotate: [-1, 1, -1, 1, 0]
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                    ease: "easeInOut"
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {/* Glow effect */}
+                  <div className={`absolute inset-0 rounded-full bg-gradient-to-r opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-300 ${isNaughtyMode ? "from-red-400 to-rose-400" : "from-green-400 to-emerald-400"
+                    }`}></div>
+
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.2, 1]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <ShieldCheck className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isNaughtyMode ? "text-red-400" : "text-green-400"}`} />
+                  </motion.div>
+                  <span className={`text-xs sm:text-sm font-semibold bg-gradient-to-r bg-clip-text text-transparent ${isNaughtyMode ? "from-red-300 to-rose-300" : "from-green-300 to-emerald-300"
+                    }`}>
+                    SPRAWDŹ WERYFIKACJĘ
+                  </span>
+                </motion.button>
+              </div>
+            </motion.div>
+
+            {/* Tagline */}
+            <motion.p
+              variants={fadeInUp}
+              className="text-gray-400 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed px-2 transition-all duration-500"
+            >
+              {isNaughtyMode ? (
+                <>
+                  Kiedy zachodzi słońce, grzeczna studentka idzie spać...<br />
+                  a budzi się <span className="text-red-500 font-semibold font-serif italic">Twoja najskrytsza fantazja</span> 😈
+                </>
+              ) : (
+                <>
+                  Dzień spędzam nad książkami i studiami,<br />
+                  wieczory... to już <span className="text-pink-400 font-semibold">inna historia</span> 💋
+                </>
+              )}
+            </motion.p>
+
+            {/* Stats Grid */}
+            <motion.div
+              variants={fadeInUp}
+              className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 w-full max-w-3xl pt-4 sm:pt-6"
+            >
+              {stats.map((stat, index) => (
+                <motion.a
+                  key={index}
+                  href={stat.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 + index * 0.1 }}
+                  whileHover={{ scale: 1.03, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative group cursor-pointer"
+                >
+                  {/* HOT Badge for Telegram */}
+                  {stat.platform === "Telegram" && (
+                    <motion.div
+                      className="absolute -top-2 -right-2 px-2.5 py-1 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center gap-1 shadow-lg z-20"
+                      animate={{
+                        scale: [1, 1.1, 1],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <Flame className="w-3 h-3 text-white" />
+                      <span className="text-xs font-bold text-white">HOT</span>
+                    </motion.div>
+                  )}
+
+                  {/* Glassmorphism card with elegant background */}
+                  <div className={`relative p-3.5 sm:p-4 md:p-5 rounded-2xl backdrop-blur-xl transition-all duration-500 shadow-lg hover:shadow-xl overflow-hidden ${stat.platform === "Telegram"
+                    ? "bg-gradient-to-br from-blue-900/30 via-blue-800/20 to-cyan-900/30 border-2 border-blue-400/40 hover:border-blue-300/60 shadow-blue-500/20"
+                    : "bg-gradient-to-br from-purple-900/20 via-purple-800/10 to-pink-900/20 border border-white/10 hover:border-white/25"
+                    }`}>
+                    {/* Subtle animated gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    {/* Glow effect behind card */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500 -z-10`} />
+
+                    <div className="relative flex flex-col items-center text-center gap-1.5 sm:gap-2 md:gap-2.5">
+                      {/* Icon Container with platform-specific styling */}
+                      <div className="relative">
+                        {stat.platform === "Telegram" && (
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-blue-400/40 rounded-xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#2AABEE] to-[#229ED9] rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+                              {/* Inner glow */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                              {/* Telegram Plane Icon */}
+                              <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white relative z-10" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
+
+                        {stat.platform === "Instagram" && (
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-pink-500/40 rounded-xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+                              {/* Instagram gradient background */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737]"></div>
+                              <div className="absolute inset-0 bg-gradient-to-br from-[#833AB4] via-[#E1306C] to-[#FCAF45]"></div>
+                              {/* Inner glow */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                              {/* Instagram Camera Icon */}
+                              <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
+
+                        {stat.platform === "TikTok" && (
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/40 via-pink-400/40 to-purple-400/40 rounded-xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+                              {/* Premium gradient background */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-[#00F2EA] via-[#00D9E8] to-[#EE1D52]"></div>
+                              {/* Inner glow */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                              {/* Simplified Musical Note Icon */}
+                              <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white relative z-10" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3v15.5c0 1.38-1.12 2.5-2.5 2.5S14 19.88 14 18.5s1.12-2.5 2.5-2.5c.54 0 1.04.18 1.5.48V7h-10v11.5c0 1.38-1.12 2.5-2.5 2.5S3 19.88 3 18.5 4.12 16 5.5 16c.54 0 1.04.18 1.5.48V5h12v-2z" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
+
+                        {stat.platform === "X" && (
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-white/30 rounded-xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-black rounded-xl flex items-center justify-center shadow-lg border border-white/10 overflow-hidden">
+                              {/* Inner shine */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+                              {/* X Logo */}
+                              <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white relative z-10" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Platform name with gradient */}
+                      <div className={`text-xs sm:text-sm md:text-base font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300`}>
+                        {stat.platform}
+                      </div>
+                    </div>
+
+                    {/* Decorative corner accent */}
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-white/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                </motion.a>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons - Premium Enhanced Design */}
+            <motion.div
+              variants={fadeInUp}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 w-full max-w-3xl pt-6 sm:pt-8"
+            >
+              {/* E-book Button */}
+              <motion.a
+                href="https://example.com/ebook-maja-lubicz"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0 }}
+                whileHover={{ scale: 1.03, y: -4 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={playClickSound}
+                className="group relative"
+              >
+                {/* HANDEL KRYPTOWALUT Badge */}
+                <motion.div
+                  className={`absolute -top-3 -right-3 px-2.5 py-1 rounded-full flex items-center gap-1 shadow-lg z-20 ${isNaughtyMode
+                    ? "bg-gradient-to-r from-red-600 to-rose-600"
+                    : "bg-gradient-to-r from-yellow-500 to-orange-500"
+                    }`}
+                  animate={{
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z" />
+                  </svg>
+                  <span className="text-[10px] font-bold text-white uppercase">
+                    {isNaughtyMode ? "Tylko dla dorosłych" : "Handel Kryptowalut"}
+                  </span>
+                </motion.div>
+                {/* Outer glow */}
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 group-hover:opacity-50 blur-2xl transition-opacity duration-500 -z-10 ${isNaughtyMode ? "from-red-500 via-rose-500 to-pink-500" : "from-fuchsia-500 via-pink-500 to-purple-500"
+                  }`}></div>
+
+                {/* Rotating border effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: isNaughtyMode
+                      ? 'linear-gradient(45deg, #ef4444, #f43f5e, #be123c, #ef4444)'
+                      : 'linear-gradient(45deg, #ec4899, #d946ef, #a855f7, #ec4899)',
+                    backgroundSize: '300% 300%'
+                  }}
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                ></motion.div>
+
+                <div className={`relative px-5 py-4 sm:px-6 sm:py-5 rounded-2xl bg-gradient-to-br transition-all duration-500 shadow-xl hover:shadow-2xl overflow-hidden m-[2px] ${isNaughtyMode
+                  ? "from-red-600 via-rose-600 to-pink-600 hover:from-red-500 hover:via-rose-500 hover:to-pink-500"
+                  : "from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:via-pink-500 hover:to-purple-500"
+                  }`}>
+                  {/* Animated particles overlay */}
+                  <div className="absolute inset-0 opacity-30">
+                    <motion.div
+                      className="absolute top-0 left-0 w-full h-full"
+                      style={{
+                        backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+                        backgroundSize: '50px 50px'
+                      }}
+                      animate={{
+                        backgroundPosition: ['0px 0px', '50px 50px']
+                      }}
+                      transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  </div>
+
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                  <div className="relative flex items-center justify-center gap-2.5 text-center">
+                    {/* Icon */}
+                    {isNaughtyMode ? (
+                      <Flame className="w-5 h-5 sm:w-6 sm:h-6 text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                    ) : (
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                      </svg>
+                    )}
+
+                    <span className="text-sm sm:text-base font-bold text-white tracking-wide">
+                      {isNaughtyMode ? "KUP DOSTĘP +18" : "KUP E-BOOK"}
                     </span>
                   </div>
-                  <div className="absolute inset-0 bg-pink-400/15 rounded-full blur-md animate-pulse"></div>
                 </div>
-              </div>
+              </motion.a>
 
-              {/* Hero-style floating particles */}
-              <div className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 w-2 h-2 sm:w-3 sm:h-3 bg-neon-pink rounded-full animate-float opacity-50 shadow-lg shadow-neon-pink/40" role="img" aria-label="Dekoracyjny element"></div>
-              <div className="absolute bottom-1/4 -right-2 sm:-right-3 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-neon-purple rounded-full animate-float delay-1500 opacity-50 shadow-lg shadow-neon-purple/40" role="img" aria-label="Dekoracyjny element"></div>
-            </div>
+              {/* VIP Access Button - MAIN CTA - Enhanced */}
+              <motion.a
+                href="https://t.me/+VT55zfE0n4o1MWY0"
+                initial={{ opacity: 0, y: 20, scale: 1 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 1.1 }}
+                whileHover={{ scale: 1.05, y: -6 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={playClickSound}
+                className="group relative sm:col-span-2 lg:col-span-1"
+              >
+                {/* CONTENT 18+ Badge */}
+                <motion.div
+                  className={`absolute -top-3 -right-3 px-2.5 py-1 rounded-full bg-gradient-to-r flex items-center gap-1 shadow-lg z-20 ${isNaughtyMode ? "from-red-600 to-red-800" : "from-red-500 to-pink-600"
+                    }`}
+                  animate={{
+                    scale: [1, 1.15, 1],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                  </svg>
+                  <span className="text-[10px] font-bold text-white uppercase">Content 18+</span>
+                </motion.div>
+
+                {/* Super strong outer glow - pulsing */}
+                <motion.div
+                  className={`absolute -inset-1 rounded-2xl bg-gradient-to-r blur-xl -z-10 ${isNaughtyMode ? "from-red-600 via-rose-600 to-purple-600" : "from-purple-500 via-violet-500 to-indigo-500"}`}
+                  animate={{
+                    opacity: [0.4, 0.8, 0.4],
+                    scale: [1, 1.02, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+
+                {/* Animated shimmer border */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl"
+                  animate={{
+                    background: isNaughtyMode
+                      ? ['linear-gradient(0deg, #dc2626, #be123c)', 'linear-gradient(360deg, #dc2626, #be123c)']
+                      : ['linear-gradient(0deg, #8b5cf6, #6366f1)', 'linear-gradient(360deg, #8b5cf6, #6366f1)']
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                ></motion.div>
+
+                <div className={`relative px-6 py-5 sm:px-8 sm:py-6 rounded-2xl bg-gradient-to-br transition-all duration-500 shadow-2xl hover:shadow-3xl overflow-hidden m-[2px] ${isNaughtyMode
+                  ? "from-red-700 via-rose-700 to-purple-800 hover:from-red-600 hover:via-rose-600 hover:to-purple-700"
+                  : "from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500"
+                  }`}>
+                  {/* Diamond pattern overlay */}
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute inset-0" style={{
+                      backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px),
+                                     repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)`
+                    }}></div>
+                  </div>
+
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                  <div className="relative flex items-center justify-center gap-3 text-center">
+                    {/* Lottie Heart Icon */}
+                    <LottieHeart className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
+                    <span className="text-base sm:text-lg font-bold text-white tracking-wide">
+                      {isNaughtyMode ? "ZOSTAŃ MOIM VIP-EM" : "DOSTĘP VIP"}
+                    </span>
+                  </div>
+                </div>
+              </motion.a>
+
+              {/* Buy Me Coffee Button */}
+              <motion.a
+                href="https://buymeacoffee.com/mayalubicz"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+                whileHover={{ scale: 1.03, y: -4 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={playClickSound}
+                className="group relative sm:col-span-2 lg:col-span-1"
+              >
+                {/* OKAŻ WSPARCIE Badge */}
+                <motion.div
+                  className={`absolute -top-3 -right-3 px-2.5 py-1 rounded-full flex items-center gap-1 shadow-lg z-20 ${isNaughtyMode
+                    ? "bg-gradient-to-r from-rose-500 to-pink-500"
+                    : "bg-gradient-to-r from-orange-500 to-amber-500"
+                    }`}
+                  animate={{
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                  <span className="text-[10px] font-bold text-white uppercase">
+                    {isNaughtyMode ? "Spełnij Marzenie" : "Okaż Wsparcie"}
+                  </span>
+                </motion.div>
+                {/* Outer glow */}
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 group-hover:opacity-50 blur-2xl transition-opacity duration-500 -z-10 ${isNaughtyMode ? "from-rose-500 via-pink-500 to-purple-500" : "from-orange-500 via-amber-500 to-yellow-500"
+                  }`}></div>
+
+                {/* Pulsing warm border */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl"
+                  style={{
+                    background: isNaughtyMode
+                      ? 'linear-gradient(to right, #ec4899, #f43f5e)'
+                      : 'linear-gradient(to right, #f97316, #d97706)'
+                  }}
+                  animate={{
+                    opacity: [0.5, 1, 0.5]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                ></motion.div>
+
+                <div className={`relative px-5 py-4 sm:px-6 sm:py-5 rounded-2xl bg-gradient-to-br transition-all duration-500 shadow-xl hover:shadow-2xl overflow-hidden m-[2px] ${isNaughtyMode
+                  ? "from-rose-600 via-pink-600 to-purple-600 hover:from-rose-500 hover:via-pink-500 hover:to-purple-500"
+                  : "from-orange-600 via-amber-600 to-yellow-600 hover:from-orange-500 hover:via-amber-500 hover:to-yellow-500"
+                  }`}>
+                  {/* Coffee steam/bubbles animation effect */}
+                  {isNaughtyMode ? (
+                    <div className="absolute top-0 right-1/4 w-full h-full opacity-20 overflow-hidden">
+                      <motion.div
+                        className="absolute bottom-0 w-2 h-2 bg-white rounded-full"
+                        animate={{ y: [-10, -50], opacity: [0, 0.5, 0], x: [0, 5] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                      />
+                      <motion.div
+                        className="absolute bottom-0 left-2 w-1.5 h-1.5 bg-white rounded-full"
+                        animate={{ y: [-10, -60], opacity: [0, 0.5, 0], x: [0, -5] }}
+                        transition={{ duration: 2.5, repeat: Infinity, delay: 1 }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="absolute top-0 left-1/4 w-1 h-full opacity-20">
+                      <motion.div
+                        className="w-1 h-8 bg-white rounded-full"
+                        animate={{
+                          y: [0, -20, -40],
+                          opacity: [0, 0.5, 0],
+                          x: [-2, 2, -2]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeOut"
+                        }}
+                      />
+                    </div>
+                  )}
+
+
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                  <div className="relative flex items-center justify-center gap-2.5 text-center">
+                    {/* Coffee Cup Icon / Drink Icon */}
+                    {isNaughtyMode ? (
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M8 21h8m-4-13v13M12 3a7 7 0 0 1 7 7c0 2.22-1.2 4.15-3 5.19V18a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.81A6.995 6.995 0 0 1 5 10a7 7 0 0 1 7-7Z" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M17 8h1a4 4 0 0 1 0 8h-1"></path>
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                        <motion.path
+                          d="M6 2v2M10 2v2M14 2v2"
+                          strokeLinecap="round"
+                          animate={{
+                            y: [0, -2, 0],
+                            opacity: [0.5, 1, 0.5]
+                          }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
+                      </svg>
+                    )}
+
+                    <span className="text-sm sm:text-base font-bold text-white tracking-wide">
+                      {isNaughtyMode ? "POSTAW MI DRINKA" : "POSTAW MI KAWĘ"}
+                    </span>
+                  </div>
+                </div>
+              </motion.a>
+            </motion.div>
+
+            {/* Secret Message Simulator */}
+            <motion.div
+              id="secret-message-root"
+              variants={fadeInUp}
+              className="w-full secret-message-container"
+            >
+              <SecretMessage isNaughty={isNaughtyMode} />
+            </motion.div>
+
+            {/* Social Media Cards - HIDDEN */}
+            {/* ... */}
+
+            <ChatPopup isNaughty={isNaughtyMode} />
+            {/* <motion.div
+            variants={fadeInUp}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pt-10 w-full max-w-5xl"
+          >
+            Instagram
+            <motion.a
+              href={SOCIAL_LINKS.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="relative p-8 rounded-2xl bg-gradient-to-br from-pink-500/10 to-purple-500/10 border border-pink-500/20 hover:border-pink-400/40 transition-all duration-300 backdrop-blur-sm min-h-[200px] flex flex-col items-center justify-center text-center">
+                <div className="mb-5">
+                  <Instagram className="w-12 h-12 text-pink-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Instagram</h3>
+                <p className="text-sm text-gray-400 italic">"Mój profil na Instagram"</p>
+                <div className="absolute top-3 right-3 p-2 rounded-full bg-pink-500/20 group-hover:bg-pink-500/30 transition-colors">
+                  <ArrowUpRight className="w-4 h-4 text-pink-400" />
+                </div>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-500 opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 -z-10" />
+              </div>
+            </motion.a>
+
+            TikTok
+            <motion.a
+              href={SOCIAL_LINKS.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="relative p-8 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-pink-500/10 border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 backdrop-blur-sm min-h-[200px] flex flex-col items-center justify-center text-center">
+                <div className="mb-5">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-pink-400 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                    TT
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">TikTok</h3>
+                <p className="text-sm text-gray-400 italic">"Mój profil na TikTok"</p>
+                <div className="absolute top-3 right-3 p-2 rounded-full bg-cyan-500/20 group-hover:bg-cyan-500/30 transition-colors">
+                  <ArrowUpRight className="w-4 h-4 text-cyan-400" />
+                </div>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500 to-pink-500 opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 -z-10" />
+              </div>
+            </motion.a>
+
+            Telegram - WITH HOT BADGE
+            <motion.a
+              href={SOCIAL_LINKS.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="relative p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 backdrop-blur-sm min-h-[200px] flex flex-col items-center justify-center text-center">
+                <motion.div
+                  className="absolute -top-2 -right-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center gap-1 shadow-lg"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <Flame className="w-3 h-3 text-white" />
+                  <span className="text-xs font-bold text-white">HOT</span>
+                </motion.div>
+                <div className="mb-5">
+                  <MessageCircle className="w-12 h-12 text-blue-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Telegram</h3>
+                <p className="text-sm text-gray-400 italic">"Mój profil na Telegram"</p>
+                <div className="absolute top-3 right-3 p-2 rounded-full bg-blue-500/20 group-hover:bg-blue-500/30 transition-colors">
+                  <ArrowUpRight className="w-4 h-4 text-blue-400" />
+                </div>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 -z-10" />
+              </div>
+            </motion.a>
+
+            X/Twitter
+            <motion.a
+              href={SOCIAL_LINKS.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="relative p-8 rounded-2xl bg-gradient-to-br from-gray-500/10 to-gray-700/10 border border-gray-500/20 hover:border-gray-400/40 transition-all duration-300 backdrop-blur-sm min-h-[200px] flex flex-col items-center justify-center text-center">
+                <div className="mb-5">
+                  <svg className="w-12 h-12 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">X (Twitter)</h3>
+                <p className="text-sm text-gray-400 italic">"Obserwuj mnie na X"</p>
+                <div className="absolute top-3 right-3 p-2 rounded-full bg-gray-500/20 group-hover:bg-gray-500/30 transition-colors">
+                  <ArrowUpRight className="w-4 h-4 text-gray-300" />
+                </div>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-500 to-gray-700 opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 -z-10" />
+              </div>
+            </motion.a>
+          </motion.div> */}
           </motion.div>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+
+
+      </section>
+
+      {/* Verification Modal */}
+      <ChatPopup isNaughty={isNaughtyMode} />
+
+      <VerificationModal
+        isOpen={isVerificationModalOpen}
+        onClose={() => setIsVerificationModalOpen(false)}
+      />
+    </>
   )
 }
 
